@@ -1,11 +1,13 @@
-import Image from "next/image";
 import Header from "./components/header";
-
+import Body from "./components/body";
+import Projects from "./components/projects";
 
 export default function Home() {
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24 bg-sand">
+    <main className="max-w-[1440px] mx-auto px-[40px]">
       <Header />
+      <Body />
+      <Projects />
     </main>
   );
 }
