@@ -3,10 +3,11 @@ import React from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
 import { Github , Linkedin } from "lucide-react";
+import { TypewriterEffectSmooth } from "./ui/typewriter-effect";
 
 const SocialButtons = () => {
     return (
-        <div className="flex items-center space-x-4 pt-5">
+        <div className="flex flex-wrap gap-4 pt-5">
             <motion.a
                 href="https://github.com/OlegTolochko"
                 target="_blank"
@@ -16,7 +17,7 @@ const SocialButtons = () => {
                 whileTap={{ scale: 0.95 }}
                 transition={{ type: "spring", stiffness: 400, damping: 17 }}
             >
-                <div className="flex items-center border-solid rounded-xl p-3 bg-black text-sand-100 text-xl">
+                <div className="flex border-solid rounded-xl p-3 bg-black text-sand-100 text-xl">
                     <Github className="mr-2" color="#F3F3F0" />
                     <span>OlegTolochko</span>
                 </div>
@@ -31,7 +32,7 @@ const SocialButtons = () => {
                 whileTap={{ scale: 0.95 }}
                 transition={{ type: "spring", stiffness: 400, damping: 17 }}
             >
-                <div className="flex items-center border-solid rounded-xl p-3 bg-linkedin text-sand-100 text-xl">
+                <div className="flex border-solid rounded-xl p-3 bg-linkedin text-sand-100 text-xl">
                     <Linkedin className="mr-2" color="#F3F3F0" />
                     <span>oleg-tolochko</span>
                 </div>
@@ -41,23 +42,40 @@ const SocialButtons = () => {
 };
 
 const Body = () => {
+    const words = [
+        {
+          text: "✋",
+        },
+        {
+          text: "Hi,",
+        },
+        {
+          text: "I'm",
+        },
+        {
+          text: "Oleg.",
+          className: "text-blue-500 dark:text-blue-500",
+        },
+      ];
+    
     return (
-        <div className="py-0 px-5" id="body">
+        <div className="py-0" id="body">
             <div className="container mx-auto pt-20">
-                <div className="flex justify-between items-center">
-                    <div className="flex-1">
-                        <h1 className="text-3xl font-semibold mt-4 text-gray-500">✋ Hi I'm Oleg Tolochko!</h1>
-                        <p className="text-5xl mt-2 font-bold">I develop Software.</p>
+                <div className="flex flex-col md:flex-row justify-between items-start md:items-center">
+                    <div className="flex-1 mb-8 md:mb-0 md:pr-8 md:max-w-[50%]">
+                        <TypewriterEffectSmooth words={words} />
+                        <p className="text-xl mt-4 mb-2 font-bold text-sand-900">I craft AI and data science solutions that work like a charm... most of the time. 
+                            When I'm not trying to make machines smarter, I might be busy with some full-stack wizardry.</p>
                         <SocialButtons />
                     </div>
                     
                     <motion.div 
-                        className="w-1/3"
+                        className="w-full md:w-1/3"
                         whileHover={{ scale: 1.02 }} 
                         whileTap={{ scale: 0.98 }}
                         transition={{ type: "spring", stiffness: 400, damping: 17 }}
                     >
-                        <Image src="/oleg-ikea.png" width={300} height={300} alt="logo" className="rounded-3xl border-4 border-sand-300" />
+                        <Image src="/oleg-ikea.png" width={300} height={300} alt="logo" className="rounded-3xl border-4 border-sand-500" />
                     </motion.div>
                 </div>
             </div>

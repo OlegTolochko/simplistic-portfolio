@@ -11,9 +11,6 @@ const Header = () => {
                     <motion.div whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.8 }}>
                         <Image src={"/t-black.ico"} width={75} height={75} alt="logo" />
                     </motion.div>
-                    <h1 className="text-2xl font-bold">
-                       Simplistic Portfolio 
-                    </h1>
                 </div>
             </div>
         </header>

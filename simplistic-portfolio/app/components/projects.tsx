@@ -6,9 +6,12 @@ import Project from "./project";
 
 const Projects = () => {
     return (
-        <div className="py-0 px-5" id="projects">
+        <div className=" " id="projects">
             <div className="container mx-auto pt-20">
-                <p className="text-3xl font-semibold pl-2">Projects</p>
+                <div className="flex items-center justify-end">
+                    <div className="flex-grow h-0.5 bg-sand-900"></div>
+                    <p className="text-5xl font-black pl-4 whitespace-nowrap">Projects</p>
+                </div>
             </div>
             <div className="py-5">
                 <Project 
