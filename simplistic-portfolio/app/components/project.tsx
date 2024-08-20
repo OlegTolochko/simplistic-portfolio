@@ -1,8 +1,8 @@
 import React from 'react';
 import Image from 'next/image';
-import { MotionProps, AnimatePresence, motion } from "framer-motion";
+import { motion, useAnimationControls, useMotionValue, MotionProps } from 'framer-motion';
 import { twMerge } from "tailwind-merge";
-
+import { useRouter } from "next/navigation";
 
 interface ProjectProps {
   name: string;
@@ -12,28 +12,29 @@ interface ProjectProps {
   skills: string[];
 }
 
-
 type BlockProps = {
   className?: string;
+  onClick?: () => void;
 } & MotionProps;
 
-const Block = ({ className, ...rest }: BlockProps) => {
+const Block: React.FC<BlockProps> = ({ className, onClick, children, ...rest }) => {
   return (
     <motion.div
+      onClick={onClick}
       variants={{
         initial: {
           scale: 0.5,
-          rotate: 10,
           y: 50,
           opacity: 0,
         },
         animate: {
           scale: 1,
           y: 0,
-          rotate: 0,
           opacity: 1,
         },
       }}
+      initial="initial"
+      whileInView="animate"
       transition={{
         type: "spring",
         mass: 3,
@@ -41,64 +42,97 @@ const Block = ({ className, ...rest }: BlockProps) => {
         damping: 50,
       }}
       className={twMerge(
-        "",
+        "cursor-pointer",
         className
       )}
       {...rest}
-    />
+    >
+      {children}
+    </motion.div>
   );
 };
 
-function ProjectImage(image: string) {
-    const background = `url(${image})`;
-  
-    return (
-      <motion.div
-        className="card-container"
-        initial="offscreen"
-        whileInView="onscreen"
-        viewport={{ once: true, amount: 0.8 }}
-      >
-        <div className="splash" style={{ background }} />
-        <motion.div className="card">
-        </motion.div>
-      </motion.div>
-    );
-  }
-
 const Project: React.FC<ProjectProps> = ({ name, description, image, link, skills }) => {
+  const router = useRouter();
+  const controls = useAnimationControls();
+  const scale = useMotionValue(1);
+  const rotate = useMotionValue(0);
+  const y = useMotionValue(0);
+  const boxShadow = useMotionValue('0px 0px 0px rgba(0, 0, 0, 0)');
+
+
+  const handleHoverStart = () => {
+    controls.start({
+      scale: 1.1,
+      rotate: -3,
+      y: -30,
+      boxShadow: '0px 10px 30px rgba(0, 0, 0, 0.4)',
+      transition: {
+        type: "spring",
+        mass: 3,
+        stiffness: 400,
+        damping: 50,
+      }
+    });
+  };
+  
+  
+  const handleHoverEnd = () => {
+    controls.start({
+      scale: 1,
+      rotate: 0,
+      y: 0,
+      boxShadow: '0px 0px 0px rgba(0, 0, 0, 0)',
+      transition: {
+        type: "spring",
+        mass: 3,
+        stiffness: 400,
+        damping: 50,
+      }
+    });
+  };
+
+  const handleClick = () => {
+    router.push(link);
+  };
+
   return (
-    <AnimatePresence>
     <Block 
-        className="rounded-3xl flex border-4 border-sand-500 bg-sand-300"
-        initial="initial"
-        animate="animate"
-        exit="initial"
-      >
-      <div className="flex-1 p-5 items-top">
-        <h1 className="text-5xl font-semibold mt-4 text-gray-500">{name}</h1>
-        <p className="text-2xl mt-2 font-bold">{description}</p>
-        <div className="flex gap-x-3 pt-10 items-left align-bottom">
-        {skills.map((skill, index) => (
-            <div className='rounded-3xl bg-black'>
-            <h1 key={index} className="text-xl py-2 px-4 font-light text-white">
+      className="rounded-3xl flex flex-col border-2 p-4 border-sand-500 bg-sand-200 col-span-1 overflow-hidden md:w-[50%]"
+      onHoverStart={handleHoverStart}
+      onHoverEnd={handleHoverEnd}
+      onClick={handleClick}
+    >
+      <div className="flex-1">
+        <h1 className="text-3xl md:text-5xl font-bold text-black">{name}</h1>
+        <p className="text-l mt-2 font-regular">{description}</p>
+        <div className="flex flex-wrap gap-3 pt-4">
+          {skills.map((skill, index) => (
+            <div key={index} className='rounded-3xl bg-black'>
+              <h1 className="text-l py-1 px-2 font-light text-white">
                 {skill}
-            </h1>
+              </h1>
             </div>
-        ))}
+          ))}
         </div>
       </div>
       
-      <motion.div 
-        className="w-1/3"
-        whileHover={{ scale: 1.02 }} 
-        whileTap={{ scale: 0.98 }}
-        transition={{ type: "spring", stiffness: 400, damping: 17 }}
-      >
-        <Image src={image} width={150} height={150} alt="logo" className="rounded-xl border-4 border-sand-300" />
-      </motion.div>
+      <div className="relative w-full md:w-auto h-[230px] mt-4 md:mt-0 flex justify-end items-end">
+        <motion.div
+          className="relative left-10 top-16 w-[295px] h-[250px]"
+          animate={controls}
+          style={{ scale, rotate, y, boxShadow }}
+        >
+          <Image
+            src={image}
+            layout="fill"
+            objectFit="contain"
+            alt={name}
+            draggable={false}
+          />
+        </motion.div>
+      </div>
     </Block>
-    </AnimatePresence>
   );
 }
 
