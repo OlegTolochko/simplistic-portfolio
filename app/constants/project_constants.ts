@@ -1,7 +1,7 @@
 export const skills_images = [
     { url: "/python.svg", title: "Python", bgColor: "#1b5789" },
     { url: "/pytorch.svg", title: "PyTorch", bgColor: "#deded5" },
-    { url: "/R.png", title: "R", bgColor: "#deded5" },
+    { url: "/r.svg", title: "R", bgColor: "#deded5" },
     { url: "/java.svg", title: "Java", bgColor: "#224268" },
     { url: "/javascript.svg", title: "JavaScript", bgColor: "#d1bb0b" },
     { url: "/typescript.svg", title: "TypeScript", bgColor: "#29629c" },
@@ -11,7 +11,7 @@ export const skills_images = [
     { url: "/mongo.svg", title: "MongoDB", bgColor: "#046c4c" },
     { url: "/csharp.svg", title: "C#", bgColor: "#4606ad" },
     { url: "/LaTeX.svg", title: "LaTeX", bgColor: "#deded5" },
-    { url: "/typst.png", title: "Typst", bgColor: "#36818a" },
+    { url: "/typst.svg", title: "Typst", bgColor: "#36818a" },
     { url: "/sql.svg", title: "SQL", bgColor: "#deded5" },
     { url: "/framermotion.svg", title: "Framer Motion", bgColor: "#101424" },
 
