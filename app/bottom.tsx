@@ -41,35 +41,45 @@ const SocialButtons = () => {
 
 
 const UsedLibraries = () => {
-    const libraries = ["React", "Next", "Tailwind", "TypeScript", "Framer Motion"];
-    
-    return (
-      <div className="flex gap-2">
-        {libraries.map((lib) => {
-          const skill = skills_images.find((skill) => skill.title === lib);
-          if (skill && skill.url) {
-            return (
-              <motion.div
-                className="rounded-xl p-2"
-                style={{backgroundColor: skill.bgColor}}
-                key={lib}
-                whileHover={{ scale: 1.1 }}
-                whileTap={{ scale: 0.9 }}
-              >
-                <Image
-                  src={skill.url}
-                  alt={lib}
-                  width={40}
-                  height={40}
-                />
-              </motion.div>
-            );
-          }
-          return null;
-        })}
-      </div>  
-    );
+  const libraries = [
+      { name: "React", url: "https://reactjs.org/" },
+      { name: "Next", url: "https://nextjs.org/" },
+      { name: "Tailwind", url: "https://tailwindcss.com/" },
+      { name: "TypeScript", url: "https://www.typescriptlang.org/" },
+      { name: "Framer Motion", url: "https://www.framer.com/motion/" }
+  ];
+  
+  return (
+    <div className="flex gap-2">
+      {libraries.map((lib) => {
+        const skill = skills_images.find((skill) => skill.title === lib.name);
+        if (skill && skill.url) {
+          return (
+            <motion.a
+              href={lib.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="rounded-xl p-2"
+              style={{backgroundColor: skill.bgColor}}
+              key={lib.name}
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.9 }}
+            >
+              <Image
+                src={skill.url}
+                alt={lib.name}
+                width={40}
+                height={40}
+              />
+            </motion.a>
+          );
+        }
+        return null;
+      })}
+    </div>  
+  );
 };
+
 
 const Bottom = () => {
   const [copySuccess, setCopySuccess] = useState(false);

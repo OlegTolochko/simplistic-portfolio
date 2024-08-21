@@ -8,7 +8,7 @@ export const metadata: Metadata = {
   title: "Oleg Tolochko - Portfolio",
   description: "A simple portfolio template",
   icons: {
-    icon: "/t-white.ico",
+    icon: "/t-blue.svg",
   },
 };
 

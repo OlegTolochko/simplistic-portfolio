@@ -1,0 +1,14 @@
+<svg viewBox="17.06678181818182 91.08768 929.1914545454546 732.49676" data-name="Layer 2" id="Layer_2" xmlns="http://www.w3.org/2000/svg" style="max-height: 500px" width="929.1914545454546" height="732.49676">
+  <defs fill="#3b82f6">
+    <style>
+      .cls-1 {
+        fill: #32acff;
+        font-family: Inter-Bold, Inter;
+        font-size: 800px;
+        font-variation-settings: 'opsz' 14, 'wght' 700;
+        font-weight: 700;
+      }
+    </style>
+  </defs>
+  <text fill="#3b82f6" transform="translate(0 691.02)" class="cls-1"><tspan fill="#3b82f6" y="0" x="0">{t}</tspan></text>
+</svg>
