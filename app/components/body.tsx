@@ -64,7 +64,7 @@ const Body = () => {
                     <div className="flex-1 mb-8 md:mb-0 md:pr-8 md:max-w-[50%]">
                         <TypewriterEffectSmooth words={words} />
                         <span className="text-l mt-4 mb-2 font-regular text-black">I craft AI and data science solutions that work like a charm... most of the time. 
-                            When I'm not trying to make machines smarter, I might be busy with some full-stack wizardry.
+                            When I&apos;m not trying to make machines smarter, I might be busy with some full-stack wizardry.
                             <span className="text-blue-500 dark:text-blue-500 font-bold"> Lets connect!</span>
                             </span>
                         <SocialButtons />
