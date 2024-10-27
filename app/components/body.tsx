@@ -74,7 +74,7 @@ const Body = () => {
                         className="w-2/5 md:w-2/5 z-10"
                         whileHover={{ scale: 1.02 }} 
                         whileTap={{ scale: 0.98 }}
-                        initial={{ opacity: 0, scale: 0.2 }}
+                        initial={{ opacity: 0, scale: 0.8 }}
                         whileInView={{ scale: 1, opacity: 1, rotate: -15 }}
                         transition={{ type: "spring", stiffness: 400, damping: 17 }}
                     >
@@ -84,7 +84,7 @@ const Body = () => {
                         className="w-2/5 md:w-2/5 mt-8 md:mt-12"
                         whileHover={{ scale: 1.02 }} 
                         whileTap={{ scale: 0.98 }}
-                        initial={{ opacity: 0, scale: 0.2 }}
+                        initial={{ opacity: 0, scale: 0.8 }}
                         whileInView={{ scale: 1, opacity: 1, rotate: 15 }}
                         transition={{ type: "spring", stiffness: 400, damping: 17 }}
                     >
