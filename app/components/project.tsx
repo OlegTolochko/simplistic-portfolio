@@ -3,14 +3,7 @@ import Image from 'next/image';
 import { motion, useAnimationControls, useMotionValue, MotionProps } from 'framer-motion';
 import { twMerge } from "tailwind-merge";
 import { useRouter } from "next/navigation";
-
-interface ProjectProps {
-  name: string;
-  description: string;
-  image: string;
-  link: string;
-  skills: string[];
-}
+import { badge_urls, ProjectPreview } from '../constants/project_constants';
 
 type BlockProps = {
   className?: string;
@@ -52,7 +45,7 @@ const Block: React.FC<BlockProps> = ({ className, onClick, children, ...rest }) 
   );
 };
 
-const Project: React.FC<ProjectProps> = ({ name, description, image, link, skills }) => {
+const Project: React.FC<ProjectPreview> = ({ index, name, description, skills, img_url, url, img_width }) => {
   const router = useRouter();
   const controls = useAnimationControls();
   const scale = useMotionValue(1);
@@ -93,7 +86,7 @@ const Project: React.FC<ProjectProps> = ({ name, description, image, link, skill
   };
 
   const handleClick = () => {
-    router.push(link);
+    router.push(url);
   };
 
   return (
@@ -106,28 +99,40 @@ const Project: React.FC<ProjectProps> = ({ name, description, image, link, skill
       <div className="flex-1">
         <h1 className="text-3xl md:text-5xl font-bold text-black">{name}</h1>
         <p className="text-l mt-2 font-regular">{description}</p>
-        <div className="flex flex-wrap gap-3 pt-4">
-          {skills.map((skill, index) => (
-            <div key={index} className='rounded-3xl bg-black'>
-              <h1 className="text-l py-1 px-2 font-light text-white">
-                {skill}
-              </h1>
-            </div>
-          ))}
+        <div className="flex flex-wrap gap-2 pt-4">
+          {skills.map((skill, index) => {
+
+              const skill_badge = badge_urls.find((badge_skill) => badge_skill.name === skill.toLowerCase())
+              if (skill_badge && skill_badge.url) {
+                return (
+                  <Image
+                    key={`${skill_badge.name}- ${index}`}
+                    className='rounded-lg w-auto'
+                    src={skill_badge.url}
+                    alt={skill +"_badge"}
+                    height={30}
+                    width={0}
+                    style={{ width: 'auto' }}
+                  />
+                )
+              }
+              return null;
+          })}
         </div>
       </div>
       
       <div className="relative w-full md:w-auto h-[230px] mt-4 md:mt-0 flex justify-end items-end">
         <motion.div
-          className="relative left-10 top-16 w-[295px] h-[250px]"
+          className={`relative left-10 top-12 w-[350px] h-full rounded-tl-xl`}
           animate={controls}
           style={{ scale, rotate, y, boxShadow }}
         >
-          <Image 
-            src="/uni2work_dark.png" 
+          <Image
+          className='rounded-tl-xl'
+            src={img_url} 
             fill
             style={{ objectFit: 'cover' }}
-            alt="Uni2Work Dark Logo"
+            alt={name + "_image"}
           />
         </motion.div>
       </div>

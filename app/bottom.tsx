@@ -2,7 +2,7 @@
 import React from "react";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
-import { skills_images } from "@/app/constants/project_constants";
+import { skills_images, utilized_libraries } from "@/app/constants/project_constants";
 import { Copy, Scale } from "lucide-react";
 import { useEffect, useState } from "react";
 import { Linkedin, Github, MapPin } from "lucide-react";
@@ -41,13 +41,7 @@ const SocialButtons = () => {
 
 
 const UsedLibraries = () => {
-  const libraries = [
-      { name: "React", url: "https://reactjs.org/" },
-      { name: "Next", url: "https://nextjs.org/" },
-      { name: "Tailwind", url: "https://tailwindcss.com/" },
-      { name: "TypeScript", url: "https://www.typescriptlang.org/" },
-      { name: "Framer Motion", url: "https://www.framer.com/motion/" }
-  ];
+  const libraries = utilized_libraries
   
   return (
     <div className="flex gap-2">

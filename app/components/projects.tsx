@@ -20,11 +20,13 @@ const Projects = () => {
                 {project_previews.map((project, index) => (
                     <Project
                         key={index}
+                        index={index}
                         name={project.name}
                         description={project.description}
-                        image={project.img_url}
-                        link={project.url}
                         skills={project.skills}
+                        img_url={project.img_url}
+                        url={project.url}
+                        img_width={project.img_width}       
                     />
                 ))}
             </div>
