@@ -61,7 +61,7 @@ const Body = () => {
         <div className="py-0" id="body">
             <div className="container mx-auto pt-14">
                 <div className="flex flex-col md:flex-row justify-between items-start md:items-center">
-                    <div className="flex-1 mb-8 md:mb-0 md:pr-8 md:max-w-[50%]">
+                    <div className="flex-1 relative mb-8 md:mb-0 md:pr-8 md:max-w-[55%]">
                         <TypewriterEffectSmooth words={words} />
                         <span className="text-l mt-4 mb-2 font-regular text-black">I craft AI and data science solutions that work like a charm... most of the time. 
                             When I&apos;m not trying to make machines smarter, I might be busy with some full-stack wizardry.
@@ -69,15 +69,28 @@ const Body = () => {
                             <div className="text-blue-500 dark:text-blue-500 font-bold"> Lets connect!</div>
                         <SocialButtons />
                     </div>
-                    
+                    <div className="relative md:w-[45%] md:h-[400px] flex items-center justify-center">
                     <motion.div 
-                        className="w-full md:w-1/3"
+                        className="w-2/5 md:w-2/5 z-10"
                         whileHover={{ scale: 1.02 }} 
                         whileTap={{ scale: 0.98 }}
+                        initial={{ opacity: 0, scale: 0.2 }}
+                        whileInView={{ scale: 1, opacity: 1, rotate: -15 }}
+                        transition={{ type: "spring", stiffness: 400, damping: 17 }}
+                    >
+                        <Image src="/oleg_professional.jpg" width={300} height={300} alt="logo" className="rounded-3xl border-4 border-sand-500" />
+                    </motion.div>
+                    <motion.div 
+                        className="w-2/5 md:w-2/5 mt-8 md:mt-12"
+                        whileHover={{ scale: 1.02 }} 
+                        whileTap={{ scale: 0.98 }}
+                        initial={{ opacity: 0, scale: 0.2 }}
+                        whileInView={{ scale: 1, opacity: 1, rotate: 15 }}
                         transition={{ type: "spring", stiffness: 400, damping: 17 }}
                     >
                         <Image src="/oleg-ikea.jpg" width={300} height={300} alt="logo" className="rounded-3xl border-4 border-sand-500" />
                     </motion.div>
+                    </div>
                 </div>
             </div>
         </div>
