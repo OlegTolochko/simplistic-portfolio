@@ -72,6 +72,10 @@ export const badge_urls: BadgeUrl[] = [
         name: "sqlite",
         url: "https://img.shields.io/badge/SQLite-07405E?style=for-the-badge&logo=sqlite&logoColor=white"
     },
+    {
+        name: "flask",
+        url: "https://img.shields.io/badge/Flask-000000?style=for-the-badge&logo=flask&logoColor=white"
+    }
 ]
 
 export type ProjectPreview = {
@@ -88,22 +92,70 @@ export const project_previews: ProjectPreview[] = [
     {
         index: 0,
         name: "BrawlAI",
-        description: "A solution for optimizing ranked drafting sequences in the mobile game Brawl Stars by Supercell.",
-        skills: ["React", "TypeScript", "Tailwind", "Next" ,"Python", "PyTorch","PostgreSQL"],
+        description: "An AI based solution for optimizing ranked drafting sequences in the mobile game Brawl Stars by Supercell.",
+        skills: ["React", "TypeScript", "Tailwind", "Next" ,"Python", "fastapi" , "PyTorch","PostgreSQL"],
         img_url: "/brawlai.png",
-        url: "https://douni2work.de",
+        url: "https://github.com/ANDI-neV/brawl-ai",
         img_width: "w-[400px]  h-[200px] md:h-[250px]"
     },
     {
         index: 1,
         name: "douni2work",
         description: "Uptime/Response time-tracker for University website uni2work.de",
-        skills: ["React", "JavaScript", "Vite", "Tailwind", "Python", "SQLite"],
+        skills: ["React", "JavaScript", "Tailwind", "Vite", "Python", "Flask","SQLite"],
         img_url: "/uni2work_dark.png",
         url: "https://douni2work.de",
         img_width: "w-[300px] h-[250px]"
     }
 ];
+
+type Section = {
+    title: string;
+    description: string;
+}
+
+export type ProjectInformation = {
+    sections: Section[];
+    repository_url: string;
+} & ProjectPreview
+
+export const project_info: ProjectInformation[] = project_previews.map(preview => {
+    switch (preview.name) {
+        case "BrawlAI":
+            return {
+                ...preview,
+                repository_url: "https://github.com/ANDI-neV/brawl-ai",
+                sections: [
+                    {
+                        title: "Overview",
+                        description: "BrawlAI is an advanced drafting assistant that helps players optimize their hero selections in ranked matches..."
+                    },
+                    {
+                        title: "Technical Implementation",
+                        description: "The system uses PyTorch for deep learning models, with a FastAPI backend and a Next.js frontend..."
+                    },
+                ]
+            };
+        case "douni2work":
+            return {
+                ...preview,
+                repository_url: "https://github.com/yourusername/douni2work",
+                sections: [
+                    {
+                        title: "Overview",
+                        description: "douni2work is a monitoring system that tracks the availability and performance of uni2work.de..."
+                    },
+                    {
+                        title: "Features",
+                        description: "Includes real-time monitoring, historical data visualization, and automated alerts..."
+                    },
+                ]
+            };
+        default:
+            throw new Error(`No detailed information found for project: ${preview.name}`);
+    }
+});
+
 
 export const utilized_libraries = [
     { name: "React", url: "https://reactjs.org/" },

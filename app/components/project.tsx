@@ -4,10 +4,11 @@ import { motion, useAnimationControls, useMotionValue, MotionProps, useInView } 
 import { twMerge } from "tailwind-merge";
 import { useRouter } from "next/navigation";
 import { badge_urls, ProjectPreview } from '../constants/project_constants';
+import { Overlay } from "./project_information"
 
 type BlockProps = {
   className?: string;
-  onClick?: () => void;
+  onClick?: (e: React.MouseEvent) => void;
 } & MotionProps;
 
 const Block: React.FC<BlockProps> = ({ className, onClick, children, ...rest }) => {
@@ -56,6 +57,7 @@ const Project: React.FC<ProjectPreview> = ({ index, name, description, skills, i
   const ref = React.useRef(null);
   const isInView = useInView(ref, { once: false, amount: 0.6 });
   const [isMobile, setIsMobile] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
 
   useEffect(() => {
     const checkScreenSize = () => {
@@ -66,6 +68,10 @@ const Project: React.FC<ProjectPreview> = ({ index, name, description, skills, i
     window.addEventListener('resize', checkScreenSize);
     return () => window.removeEventListener('resize', checkScreenSize);
   }, []);
+
+  const toggleOverlay = () => {
+    setIsOpen(!isOpen);
+  };
 
   const handleHoverStart = () => {
     controls.start({
@@ -107,17 +113,21 @@ const Project: React.FC<ProjectPreview> = ({ index, name, description, skills, i
     }
   }, [isInView, isMobile]);
 
-  const handleClick = () => {
-    router.push(url);
-  };
+  const handleClick = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    if (!isOpen) {
+        toggleOverlay();
+        handleHoverEnd();
+    }
+};
 
   return (
     <Block 
-      className="rounded-3xl flex flex-col border-2 p-4 border-sand-500 bg-sand-200 col-span-1 overflow-hidden md:w-[50%]"
-      onHoverStart={() => !isMobile && handleHoverStart()}
-      onHoverEnd={() => !isMobile && handleHoverEnd()}
-      onClick={handleClick}
-    >
+    className="rounded-3xl flex flex-col border-2 p-4 border-sand-500 bg-sand-200 col-span-1 overflow-hidden md:w-[50%]"
+    onHoverStart={() => !isMobile && handleHoverStart()}
+    onHoverEnd={() => !isMobile && handleHoverEnd()}
+    onClick={handleClick}
+>
       <div className="flex-1">
         <h1 className="text-3xl md:text-5xl font-bold text-black">{name}</h1>
         <p className="text-l mt-2 font-regular">{description}</p>
@@ -158,6 +168,7 @@ const Project: React.FC<ProjectPreview> = ({ index, name, description, skills, i
           />
         </motion.div>
       </div>
+      <Overlay isOpen={isOpen} onClose={toggleOverlay} index={index}/>
     </Block>
   );
 }
