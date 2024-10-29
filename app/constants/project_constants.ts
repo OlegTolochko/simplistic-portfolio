@@ -94,7 +94,7 @@ export const project_previews: ProjectPreview[] = [
         name: "BrawlAI",
         description: "An AI based solution for optimizing ranked drafting sequences in the mobile game Brawl Stars by Supercell.",
         skills: ["React", "TypeScript", "Tailwind", "Next" ,"Python", "fastapi" , "PyTorch","PostgreSQL"],
-        img_url: "/brawlai.png",
+        img_url: "/brawlai.webp",
         url: "https://github.com/ANDI-neV/brawl-ai",
         img_width: "w-[400px]  h-[200px] md:h-[250px]"
     },
@@ -103,7 +103,7 @@ export const project_previews: ProjectPreview[] = [
         name: "douni2work",
         description: "Uptime/Response time-tracker for University website uni2work.de",
         skills: ["React", "JavaScript", "Tailwind", "Vite", "Python", "Flask","SQLite"],
-        img_url: "/uni2work_dark.png",
+        img_url: "/uni2work_dark.webp",
         url: "https://douni2work.de",
         img_width: "w-[300px] h-[250px]"
     }
@@ -139,7 +139,7 @@ export const project_info: ProjectInformation[] = project_previews.map(preview =
         case "douni2work":
             return {
                 ...preview,
-                repository_url: "https://github.com/yourusername/douni2work",
+                repository_url: "https://github.com/OlegTolochko/douni2work",
                 sections: [
                     {
                         title: "Overview",

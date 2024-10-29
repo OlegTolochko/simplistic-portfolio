@@ -78,7 +78,7 @@ const Body = () => {
                         whileInView={{ scale: 1, opacity: 1, rotate: -15 }}
                         transition={{ type: "spring", stiffness: 400, damping: 17 }}
                     >
-                        <Image src="/oleg_professional.jpg" width={300} height={300} alt="logo" className="rounded-3xl border-4 border-sand-500" />
+                        <Image src="/oleg_professional.webp" width={300} height={300} alt="logo" className="rounded-3xl border-4 border-sand-500" />
                     </motion.div>
                     <motion.div 
                         className="w-2/5 md:w-2/5 mt-8 md:mt-12"
@@ -88,7 +88,7 @@ const Body = () => {
                         whileInView={{ scale: 1, opacity: 1, rotate: 15 }}
                         transition={{ type: "spring", stiffness: 400, damping: 17 }}
                     >
-                        <Image src="/oleg-ikea.jpg" width={300} height={300} alt="logo" className="rounded-3xl border-4 border-sand-500" />
+                        <Image src="/oleg-ikea.webp" width={300} height={300} alt="logo" className="rounded-3xl border-4 border-sand-500" />
                     </motion.div>
                     </div>
                 </div>

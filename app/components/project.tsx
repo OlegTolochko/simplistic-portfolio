@@ -117,7 +117,9 @@ const Project: React.FC<ProjectPreview> = ({ index, name, description, skills, i
     e.stopPropagation();
     if (!isOpen) {
         toggleOverlay();
-        handleHoverEnd();
+        if (!isMobile){
+          handleHoverEnd();
+        }
     }
 };
 
