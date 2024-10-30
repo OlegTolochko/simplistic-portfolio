@@ -4,12 +4,16 @@ import { motion, useAnimationControls, useMotionValue, MotionProps, useInView } 
 import { twMerge } from "tailwind-merge";
 import { useRouter } from "next/navigation";
 import { badge_urls, ProjectPreview } from '../constants/project_constants';
-import { Overlay } from "./project_information"
 
 type BlockProps = {
   className?: string;
   onClick?: (e: React.MouseEvent) => void;
 } & MotionProps;
+
+type ProjectProps = {
+  isOpen: boolean;
+  toggleOverlay: () => void;
+} & ProjectPreview;
 
 const Block: React.FC<BlockProps> = ({ className, onClick, children, ...rest }) => {
   return (
@@ -46,7 +50,7 @@ const Block: React.FC<BlockProps> = ({ className, onClick, children, ...rest }) 
   );
 };
 
-const Project: React.FC<ProjectPreview> = ({ index, name, description, skills, img_url, url, img_width }) => {
+const Project: React.FC<ProjectProps> = ({ index, name, description, skills, img_url, url, isOpen, toggleOverlay }) => {
   const router = useRouter();
   const controls = useAnimationControls();
   const scale = useMotionValue(1);
@@ -57,7 +61,6 @@ const Project: React.FC<ProjectPreview> = ({ index, name, description, skills, i
   const ref = React.useRef(null);
   const isInView = useInView(ref, { once: false, amount: 0.6 });
   const [isMobile, setIsMobile] = useState(false);
-  const [isOpen, setIsOpen] = useState(false);
 
   useEffect(() => {
     const checkScreenSize = () => {
@@ -68,10 +71,6 @@ const Project: React.FC<ProjectPreview> = ({ index, name, description, skills, i
     window.addEventListener('resize', checkScreenSize);
     return () => window.removeEventListener('resize', checkScreenSize);
   }, []);
-
-  const toggleOverlay = () => {
-    setIsOpen(!isOpen);
-  };
 
   const handleHoverStart = useCallback(() => {
     controls.start({
@@ -170,7 +169,6 @@ const Project: React.FC<ProjectPreview> = ({ index, name, description, skills, i
           />
         </motion.div>
       </div>
-      <Overlay isOpen={isOpen} onClose={toggleOverlay} index={index}/>
     </Block>
   );
 }

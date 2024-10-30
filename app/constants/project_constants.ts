@@ -85,7 +85,6 @@ export type ProjectPreview = {
     skills: string[];
     img_url: string;
     url: string;
-    img_width: string;
 };
 
 export const project_previews: ProjectPreview[] = [
@@ -96,7 +95,6 @@ export const project_previews: ProjectPreview[] = [
         skills: ["React", "TypeScript", "Tailwind", "Next" ,"Python", "fastapi" , "PyTorch","PostgreSQL"],
         img_url: "/brawlai.webp",
         url: "https://github.com/ANDI-neV/brawl-ai",
-        img_width: "w-[400px]  h-[200px] md:h-[250px]"
     },
     {
         index: 1,
@@ -105,7 +103,6 @@ export const project_previews: ProjectPreview[] = [
         skills: ["React", "JavaScript", "Tailwind", "Vite", "Python", "Flask","SQLite"],
         img_url: "/uni2work_dark.webp",
         url: "https://douni2work.de",
-        img_width: "w-[300px] h-[250px]"
     }
 ];
 

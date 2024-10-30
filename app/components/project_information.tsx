@@ -3,20 +3,51 @@ import { X, Github } from "lucide-react";
 import { badge_urls, project_info } from "../constants/project_constants";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
+import { createPortal } from 'react-dom';
 
 type OverlayProps = {
     isOpen: boolean;
     onClose: () => void;
-    index: number;
+    index: number | null;
 }
 
 export function Overlay({ isOpen, onClose, index }: OverlayProps) {
     const project = project_info.find((project) => project.index === index);
 
     useEffect(() => {
-        document.body.style.overflow = isOpen ? "hidden" : "unset";
+        if (isOpen) {
+            const scrollY = window.scrollY;
+            document.body.style.position = 'fixed';
+            document.body.style.top = `-${scrollY}px`;
+            document.body.style.width = '100%';
+        } else {
+            const scrollY = document.body.style.top;
+            document.body.style.position = '';
+            document.body.style.top = '';
+            document.body.style.width = '';
+            window.scrollTo(0, parseInt(scrollY || '0') * -1);
+        }
+
+        return () => {
+            document.body.style.position = '';
+            document.body.style.top = '';
+            document.body.style.width = '';
+        };
     }, [isOpen]);
-    
+
+    useEffect(() => {
+        const handleEscapeKey = (e: KeyboardEvent) => {
+            if (e.key === 'Escape' && isOpen) {
+                onClose();
+            }
+        };
+
+        document.addEventListener('keydown', handleEscapeKey);
+        return () => {
+            document.removeEventListener('keydown', handleEscapeKey);
+        };
+    }, [isOpen, onClose]);
+
     if (!project) return null;
 
     const handleBackdropClick = (e: React.MouseEvent) => {
@@ -26,9 +57,8 @@ export function Overlay({ isOpen, onClose, index }: OverlayProps) {
         }
     };
 
-    return (
+    return isOpen ? createPortal(
         <AnimatePresence mode="wait">
-            {isOpen && (
                 <Fragment>
                     {/* Backdrop */}
                     <motion.div
@@ -144,9 +174,10 @@ export function Overlay({ isOpen, onClose, index }: OverlayProps) {
                         </motion.div>
                     </div>
                 </Fragment>
-            )}
-        </AnimatePresence>
-    );
+            )
+        </AnimatePresence>,
+        document.body
+    ) : null;
 }
 
 export default Overlay;

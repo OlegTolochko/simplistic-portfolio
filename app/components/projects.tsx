@@ -5,7 +5,12 @@ import { motion } from "framer-motion";
 import Project from "./project";
 import { project_previews } from "@/app/constants/project_constants";
 
-const Projects = () => {
+type ProjectProps = {
+    isOpen: boolean;
+    toggleOverlay: (index: number) => void;
+}
+
+const Projects = ({isOpen, toggleOverlay}: ProjectProps) => {
     return (
         <div className=" " id="projects">
             <div className="container mx-auto pt-20">
@@ -26,7 +31,8 @@ const Projects = () => {
                         skills={project.skills}
                         img_url={project.img_url}
                         url={project.url}
-                        img_width={project.img_width}       
+                        isOpen={isOpen}
+                        toggleOverlay={() => toggleOverlay(project.index)}
                     />
                 ))}
             </div>
