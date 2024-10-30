@@ -12,11 +12,12 @@ type OverlayProps = {
 
 export function Overlay({ isOpen, onClose, index }: OverlayProps) {
     const project = project_info.find((project) => project.index === index);
-    if (!project) return null;
 
     useEffect(() => {
         document.body.style.overflow = isOpen ? "hidden" : "unset";
     }, [isOpen]);
+    
+    if (!project) return null;
 
     const handleBackdropClick = (e: React.MouseEvent) => {
         if (e.target === e.currentTarget) {

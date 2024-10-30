@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import Image from 'next/image';
 import { motion, useAnimationControls, useMotionValue, MotionProps, useInView } from 'framer-motion';
 import { twMerge } from "tailwind-merge";
@@ -73,7 +73,7 @@ const Project: React.FC<ProjectPreview> = ({ index, name, description, skills, i
     setIsOpen(!isOpen);
   };
 
-  const handleHoverStart = () => {
+  const handleHoverStart = useCallback(() => {
     controls.start({
       scale: 1.1,
       rotate: -3,
@@ -86,9 +86,9 @@ const Project: React.FC<ProjectPreview> = ({ index, name, description, skills, i
         damping: 50,
       }
     });
-  };
+  },[controls]);
   
-  const handleHoverEnd = () => {
+  const handleHoverEnd = useCallback(() => {
     controls.start({
       scale: 1,
       rotate: 0,
@@ -101,7 +101,7 @@ const Project: React.FC<ProjectPreview> = ({ index, name, description, skills, i
         damping: 50,
       }
     });
-  };
+  }, [controls]);
 
   useEffect(() => {
     if (isMobile) {
