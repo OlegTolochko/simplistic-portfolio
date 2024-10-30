@@ -15,25 +15,26 @@ export function Overlay({ isOpen, onClose, index }: OverlayProps) {
     const project = project_info.find((project) => project.index === index);
 
     useEffect(() => {
+        const body = document.body;
+
         if (isOpen) {
             const scrollY = window.scrollY;
-            document.body.style.position = 'fixed';
-            document.body.style.top = `-${scrollY}px`;
-            document.body.style.width = '100%';
+            body.style.top = `-${scrollY}px`;
+            body.classList.add('modal-open');
+            body.dataset.scrollY = scrollY.toString();
         } else {
-            const scrollY = document.body.style.top;
-            document.body.style.position = '';
-            document.body.style.top = '';
-            document.body.style.width = '';
-            window.scrollTo(0, parseInt(scrollY || '0') * -1);
+            const scrollY = body.dataset.scrollY;
+            body.classList.remove('modal-open');
+            body.style.top = '';
+            window.scrollTo(0, parseInt(scrollY || '0'));
         }
 
         return () => {
-            document.body.style.position = '';
-            document.body.style.top = '';
-            document.body.style.width = '';
+            body.classList.remove('modal-open');
+            body.style.top = '';
         };
     }, [isOpen]);
+
 
     useEffect(() => {
         const handleEscapeKey = (e: KeyboardEvent) => {
@@ -80,7 +81,7 @@ export function Overlay({ isOpen, onClose, index }: OverlayProps) {
                             animate={{ opacity: 1, y: 0, scale: 1 }}
                             exit={{ opacity: 0, y: 100, scale: 0.8 }}
                             transition={{ type: "spring", damping: 25, stiffness: 400 }}
-                            className="bg-sand-100 rounded-2xl p-6 w-full max-w-7xl max-h-[90vh] overflow-y-auto cursor-default"
+                            className="bg-sand-100 rounded-2xl p-6 w-full max-w-7xl max-h-[90vh] overflow-y-auto cursor-default custom-scrollbar"
                             onClick={(e) => e.stopPropagation()}
                         >
                             <div className="max-w-6xl mx-auto">

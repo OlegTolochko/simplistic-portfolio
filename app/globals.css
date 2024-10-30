@@ -5,3 +5,26 @@
 * {
   scroll-behavior: smooth;
 }
+.modal-open {
+  overflow: hidden;
+}
+
+* {
+  scroll-behavior: smooth;
+}
+
+.custom-scrollbar::-webkit-scrollbar {
+  width: 16px;
+}
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: #deded5;
+  border-radius: 0 8px 8px 0;
+}
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background-color: #bdbdad;
+  border-radius: 8px;
+  border: 2px solid #deded5;
+}
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background-color: #c8c8ba;
+}

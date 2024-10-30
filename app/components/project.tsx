@@ -59,12 +59,14 @@ const Project: React.FC<ProjectProps> = ({ index, name, description, skills, img
   const boxShadow = useMotionValue('0px 0px 0px rgba(0, 0, 0, 0)');
   
   const ref = React.useRef(null);
-  const isInView = useInView(ref, { once: false, amount: 0.6 });
   const [isMobile, setIsMobile] = useState(false);
+  const [isTablet, setIsTablet] = useState(false);
+  const isInView = useInView(ref, { once: false, amount: 0.1});
 
   useEffect(() => {
     const checkScreenSize = () => {
-      setIsMobile(window.innerWidth < 768); // 768px is tailwind's md breakpoint
+      setIsMobile(window.innerWidth <= 768); // 768px is tailwind's md breakpoint
+      setIsTablet(window.innerWidth >= 768 && window.innerWidth < 1024,);
     };
 
     checkScreenSize();
