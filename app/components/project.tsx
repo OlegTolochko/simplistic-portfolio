@@ -111,7 +111,7 @@ const Project: React.FC<ProjectPreview> = ({ index, name, description, skills, i
         handleHoverEnd();
       }
     }
-  }, [isInView, isMobile]);
+  }, [isInView, isMobile, handleHoverStart, handleHoverEnd]);
 
   const handleClick = (e: React.MouseEvent) => {
     e.stopPropagation();

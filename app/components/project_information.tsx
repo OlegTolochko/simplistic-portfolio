@@ -14,16 +14,16 @@ export function Overlay({ isOpen, onClose, index }: OverlayProps) {
     const project = project_info.find((project) => project.index === index);
     if (!project) return null;
 
+    useEffect(() => {
+        document.body.style.overflow = isOpen ? "hidden" : "unset";
+    }, [isOpen]);
+
     const handleBackdropClick = (e: React.MouseEvent) => {
         if (e.target === e.currentTarget) {
             e.stopPropagation();
             onClose();
         }
     };
-
-    useEffect(() => {
-        document.body.style.overflow = isOpen ? "hidden" : "unset";
-      }, [isOpen]);
 
     return (
         <AnimatePresence mode="wait">
