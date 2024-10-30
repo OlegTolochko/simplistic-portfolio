@@ -71,15 +71,15 @@ export function Overlay({ isOpen, onClose, index }: OverlayProps) {
                                 </div>
 
                                 {/* Project Image */}
-                                <div className="relative md:w-2/3 h-[300px] md:h-[450px] mb-8 rounded-xl overflow-hidden">
+                                <div className="relative md:w-2/3 mb-8 rounded-xl overflow-hidden">
                                     <Image
-                                        src={project.img_url}
+                                        src={project.cropped_img_url}
                                         alt={project.name}
-                                        fill
-                                        className="object-cover"
+                                        width={1200}
+                                        height={800}
+                                        className="w-full h-auto"
                                     />
                                 </div>
-
                                 {/* Skills */}
                                 <div className="mb-8">
                                     <h3 className="text-2xl font-semibold mb-4">Technologies</h3>
@@ -109,7 +109,7 @@ export function Overlay({ isOpen, onClose, index }: OverlayProps) {
                                     {project.sections.map((section, i) => (
                                         <div key={i}>
                                             <h3 className="text-2xl font-semibold mb-3">{section.title}</h3>
-                                            <p className="text-gray-600 leading-relaxed">
+                                            <p className="text-gray-600 leading-relaxed text-s">
                                                 {section.description}
                                             </p>
                                         </div>
@@ -118,7 +118,7 @@ export function Overlay({ isOpen, onClose, index }: OverlayProps) {
 
                                 {/* Links */}
                                 <div className="mt-8 pt-8 border-t border-gray-200">
-                                    <div className="flex gap-4">
+                                    <div className="flex gap-4 flex-col md:flex-row items-center">
                                         <motion.a
                                             href={project.url}
                                             target="_blank"

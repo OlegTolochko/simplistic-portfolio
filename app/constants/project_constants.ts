@@ -117,6 +117,7 @@ type Section = {
 export type ProjectInformation = {
     sections: Section[];
     repository_url: string;
+    cropped_img_url: string;
 } & ProjectPreview
 
 export const project_info: ProjectInformation[] = project_previews.map(preview => {
@@ -128,13 +129,22 @@ export const project_info: ProjectInformation[] = project_previews.map(preview =
                 sections: [
                     {
                         title: "Overview",
-                        description: "BrawlAI is an advanced drafting assistant that helps players optimize their hero selections in ranked matches..."
+                        description: "BrawlAI is an advanced drafting assistant that helps players optimize their brawler selections in ranked matches. It utilizes a self-trained AI model to understand the complex relationships between the individual brawlers to deliver context-rich predictions."
                     },
                     {
                         title: "Technical Implementation",
-                        description: "The system uses PyTorch for deep learning models, with a FastAPI backend and a Next.js frontend..."
+                        description: "The system uses PyTorch to train a Transformer based model, with a FastAPI backend and a Next.js frontend, with Typescript, TailwindCSS and React, as well a database hosted with PostgreSQL to store player data and matches."
                     },
-                ]
+                    {
+                        title: "Model Architecture and Training",
+                        description: "The data used for training is obtained from the free Brawlstars API provided by Supercell. The model uses a Transformer-based neural network architecture for sequential predictions of Brawl Stars brawler combinations. It utilizes a Transformer encoder to process sequences of brawlers, the associated team, positions, and map information to output a pick-score for all brawlers in the game in terms of a score from 0 to 1, where the sum of all scores is 1. This allows the prediction of the next best brawlers for selection."
+                    },
+                    {
+                        title: "Challenges",
+                        description: "One of the biggest challenges was finding a suitable neural architecture, that balanced complexity with efficiency. The initial approach used a Multilayer-Perceptron with a 6xBrawlerCount input dimension, with size 6xBrawlerCount input size, representing team compositions, with an output of 1 (win) or 0 (loss). Though this architecture didn't look too promising and only delivered semi-good predictions, especially with nature of drafting inputs being of variable length. To receive the next best brawler with this architecture, the model ran once for each brawler in the game to receive the associated winrate, which is not very efficient. Thus the solution was to fully revamp the architecture and use a Transformer based model, which can handle variable input lenghts and outputs one vector, where each variable represents the associated score predicted by the model. Another big challenge was the data preparation for training."
+                    }
+                ],
+                cropped_img_url: "/brawlai_cropped.webp"
             };
         case "douni2work":
             return {
@@ -143,13 +153,18 @@ export const project_info: ProjectInformation[] = project_previews.map(preview =
                 sections: [
                     {
                         title: "Overview",
-                        description: "douni2work is a monitoring system that tracks the availability and performance of uni2work.de..."
+                        description: "douni2work is a monitoring system that tracks the availability and performance of the LMU University website uni2work.de."
                     },
                     {
                         title: "Features",
-                        description: "Includes real-time monitoring, historical data visualization, and automated alerts..."
+                        description: "Includes real-time monitoring and historical data visualization, of the the uptime of uni2work."
                     },
-                ]
+                    {
+                        title: "Technical Implementation",
+                        description: "Built with a Flask backend, the system periodically measures response times and stores is the data in SQLite database. The frontend utilizes Vite with React, Javascript and TailwindCSS. To display historical performance metrics rechart is utilized."
+                    }
+                ],
+                cropped_img_url: "/uni2work_dark_cropped.webp"
             };
         default:
             throw new Error(`No detailed information found for project: ${preview.name}`);

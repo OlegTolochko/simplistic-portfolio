@@ -62,8 +62,8 @@ const UsedLibraries = () => {
               <Image
                 src={skill.url}
                 alt={lib.name}
-                width={40}
-                height={40}
+                width={30}
+                height={30}
               />
             </motion.a>
           );
@@ -108,7 +108,7 @@ const Bottom = () => {
 
   return (
     <>
-    <div className="mt-8 pb-8 flex flex-col md:flex-row justify-between items-center gap-y-6 relative">
+    <div className="mt-8 pb-8 flex flex-col md:flex-row justify-between items-center gap-y-6 gap-x-4 relative">
       <div className="flex-row">
         <div className="font-bold text-3xl">
           Feel free to reach out:
