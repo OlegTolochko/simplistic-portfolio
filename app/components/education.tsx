@@ -2,6 +2,7 @@
 import React from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
+import { education_list } from "../constants/project_constants";
 
 const Education = () => {
     return (
@@ -14,21 +15,25 @@ const Education = () => {
                     <div className="flex-grow h-0.5 ml-2 bg-sand-900"></div>
                 </div>
             </div>
-            <div className="py-5 flex flex-row gap-4 max-w-full">
-                <div className="relative flex-shrink-0">
-                    <div className="w-1 h-full bg-sand-500 absolute left-1/2 transform -translate-x-1/2"></div>
-                    <div className="w-4 h-4 bg-sand-500 rounded-full relative z-10"></div>
-                </div>
-                <div className="flex-grow">
-                    <div className="font-bold text-xl">
-                        Ludwig Maximilian University of Munich
+            {education_list.map((education, index) => (
+                <div className="py-5 flex flex-row gap-4 max-w-full"
+                key={index}
+                >
+                    <div className="relative flex-shrink-0">
+                        <div className="w-1 h-full bg-sand-500 absolute left-1/2 transform -translate-x-1/2"></div>
+                        <div className="w-4 h-4 bg-sand-500 rounded-full relative z-10"></div>
                     </div>
-                    <div>Bachelor Computer Science with a minor in Statistics</div>
-                    <div className="text-sand-900">
-                        2022 - 2025
+                    <div className="flex-grow">
+                        <div className="font-bold text-xl">
+                            {education.location}
+                        </div>
+                        <div>{education.education_type}</div>
+                        <div className="text-sand-900">
+                            {education.date}
+                        </div>
                     </div>
                 </div>
-            </div>
+            ))}
         </div>
     );
 };

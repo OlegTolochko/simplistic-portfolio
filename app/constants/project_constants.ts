@@ -1,22 +1,54 @@
 export const skills_images = [
-    { url: "/python.svg", title: "Python", bgColor: "#1b5789" },
-    { url: "/pytorch.svg", title: "PyTorch", bgColor: "#deded5" },
-    { url: "/r.svg", title: "R", bgColor: "#deded5" },
-    { url: "/java.svg", title: "Java", bgColor: "#224268" },
-    { url: "/javascript.svg", title: "JavaScript", bgColor: "#d1bb0b" },
-    { url: "/typescript.svg", title: "TypeScript", bgColor: "#29629c" },
-    { url: "/react.svg", title: "React", bgColor: "#000101" },
-    { url: "/nextjs.svg", title: "Next", bgColor: "#deded5" },
-    { url: "/tailwind.svg", title: "Tailwind", bgColor: "#101424" },
-    { url: "/mongo.svg", title: "MongoDB", bgColor: "#046c4c" },
-    { url: "/csharp.svg", title: "C#", bgColor: "#4606ad" },
-    { url: "/LaTeX.svg", title: "LaTeX", bgColor: "#deded5" },
-    { url: "/typst.svg", title: "Typst", bgColor: "#36818a" },
-    { url: "/sql.svg", title: "SQL", bgColor: "#deded5" },
-    { url: "/framermotion.svg", title: "Framer Motion", bgColor: "#101424" },
-
-    
+    { url: "/skill_images/python.svg", title: "Python", bgColor: "#1b5789" },
+    { url: "/skill_images/pytorch.svg", title: "PyTorch", bgColor: "#deded5" },
+    { url: "/skill_images/r.svg", title: "R", bgColor: "#deded5" },
+    { url: "/skill_images/java.svg", title: "Java", bgColor: "#224268" },
+    { url: "/skill_images/javascript.svg", title: "JavaScript", bgColor: "#d1bb0b" },
+    { url: "/skill_images/typescript.svg", title: "TypeScript", bgColor: "#29629c" },
+    { url: "/skill_images/react.svg", title: "React", bgColor: "#000101" },
+    { url: "/skill_images/nextjs.svg", title: "Next", bgColor: "#deded5" },
+    { url: "/skill_images/tailwind.svg", title: "Tailwind", bgColor: "#101424" },
+    { url: "/skill_images/mongo.svg", title: "MongoDB", bgColor: "#046c4c" },
+    { url: "/skill_images/csharp.svg", title: "C#", bgColor: "#4606ad" },
+    { url: "/skill_images/LaTeX.svg", title: "LaTeX", bgColor: "#deded5" },
+    { url: "/skill_images/typst.svg", title: "Typst", bgColor: "#36818a" },
+    { url: "/skill_images/sql.svg", title: "SQL", bgColor: "#deded5" },
+    { url: "/skill_images/framermotion.svg", title: "Framer Motion", bgColor: "#101424" },
 ];
+
+export const header_icon = "/t-black.ico"
+
+export const github_username = "OlegTolochko"
+export const linked_in_username = "oleg-tolochko"
+
+export const personal_image_1 = "/personal_images/oleg_professional.webp"
+export const personal_image_2 = "/personal_images/oleg-ikea.webp"
+
+export const welcoming_words = [
+    {
+      text: "✋",
+    },
+    {
+      text: "Hi,",
+    },
+    {
+      text: "I'm",
+    },
+    {
+      text: "Oleg.",
+      className: "text-blue-500 dark:text-blue-500",
+    },
+  ];
+
+export const welcoming_text = "I craft AI and data science solutions that work like a charm... most of the time. When I'm not trying to make machines smarter, I might be busy with some full-stack development."
+
+export const education_list = [
+    {
+        location: "Ludwig Maximilian University of Munich",
+        education_type: "Bachelor Computer Science with a minor in Statistics",
+        date: "2022 - 2025"
+    }
+]
 
 export type BadgeUrl = {
     name: string
@@ -93,7 +125,7 @@ export const project_previews: ProjectPreview[] = [
         name: "BrawlAI",
         description: "An AI based solution for optimizing ranked drafting sequences in the mobile game Brawl Stars by Supercell.",
         skills: ["React", "TypeScript", "Tailwind", "Next" ,"Python", "fastapi" , "PyTorch","PostgreSQL"],
-        img_url: "/brawlai.webp",
+        img_url: "/project_1/brawlai.webp",
         url: "https://github.com/ANDI-neV/brawl-ai",
     },
     {
@@ -101,7 +133,7 @@ export const project_previews: ProjectPreview[] = [
         name: "douni2work",
         description: "Uptime/Response time-tracker for University website uni2work.de",
         skills: ["React", "JavaScript", "Tailwind", "Vite", "Python", "Flask","SQLite"],
-        img_url: "/uni2work_dark.webp",
+        img_url: "/project_2/uni2work_dark.webp",
         url: "https://douni2work.de",
     }
 ];
@@ -141,7 +173,7 @@ export const project_info: ProjectInformation[] = project_previews.map(preview =
                         description: "One of the biggest challenges was finding a suitable neural architecture, that balanced complexity with efficiency. The initial approach used a Multilayer-Perceptron, with size 6xBrawlerCount input size, representing team compositions, with an output of 1 (win) or 0 (loss). Though this architecture didn't look too promising and only delivered semi-good predictions, especially with nature of drafting inputs being of variable length. To receive the next best brawler with this architecture, the model ran once for each brawler in the game to receive the associated winrate, which is not very efficient. Thus the solution was to fully revamp the architecture and use a Transformer based model, which can handle variable input lenghts and outputs one vector, where each variable represents the associated score predicted by the model. Another big challenge was the data preparation for training."
                     }
                 ],
-                cropped_img_url: "/brawlai_cropped.webp"
+                cropped_img_url: "/project_1/brawlai_cropped.webp"
             };
         case "douni2work":
             return {
@@ -161,7 +193,7 @@ export const project_info: ProjectInformation[] = project_previews.map(preview =
                         description: "Built with a Flask backend, the system periodically measures response times and stores is the data in SQLite database. The frontend utilizes Vite with React, Javascript and TailwindCSS. To display historical performance metrics rechart is utilized."
                     }
                 ],
-                cropped_img_url: "/uni2work_dark_cropped.webp"
+                cropped_img_url: "/project_2/uni2work_dark_cropped.webp"
             };
         default:
             throw new Error(`No detailed information found for project: ${preview.name}`);
@@ -177,3 +209,4 @@ export const utilized_libraries = [
     { name: "Framer Motion", url: "https://www.framer.com/motion/" }
 ];
   
+export const github_source = "https://github.com/OlegTolochko/simplistic-portfolio"

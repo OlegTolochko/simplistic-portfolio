@@ -6,9 +6,9 @@ const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "Oleg Tolochko - Portfolio",
-  description: "A simple portfolio template",
+  description: "A simplistic portfolio website.",
   icons: {
-    icon: "/t-blue.svg",
+    icon: "/favicon.svg",
   },
 };
 

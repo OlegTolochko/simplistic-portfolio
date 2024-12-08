@@ -2,7 +2,7 @@
 import React from "react";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
-import { skills_images, utilized_libraries } from "@/app/constants/project_constants";
+import { skills_images, utilized_libraries, linked_in_username, github_username, github_source } from "@/app/constants/project_constants";
 import { Copy, Scale } from "lucide-react";
 import { useEffect, useState } from "react";
 import { Linkedin, Github, MapPin } from "lucide-react";
@@ -11,10 +11,12 @@ import Link from "next/link";
 
 
 const SocialButtons = () => {
+  const github_link = "https://github.com/" + github_username
+  const linked_in_link = "https://www.linkedin.com/in/" + linked_in_username
   return (
       <div className="flex gap-3 pt-3">
           <motion.a
-              href="https://www.linkedin.com/in/oleg-tolochko"
+              href={linked_in_link}
               target="_blank"
               rel="noopener noreferrer"
               className="box"
@@ -25,7 +27,7 @@ const SocialButtons = () => {
             <Linkedin className="mr-2" size={25}/>
           </motion.a>
           <motion.a
-              href="https://github.com/OlegTolochko"
+              href={github_link}
               target="_blank"
               rel="noopener noreferrer"
               className="box"
@@ -174,7 +176,7 @@ const Bottom = () => {
     <div className="text-lg flex flex-col justify-between items-center pb-8 mt-auto">
       <div className="flex items-center space-x-4">
         <a
-          href="https://github.com/OlegTolochko/simplistic-portfolio"
+          href={github_source}
           target="_blank"
           rel="noopener noreferrer"
           className="text-gray-600 hover:text-gray-800 transition-colors"

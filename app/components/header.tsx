@@ -3,6 +3,7 @@ import { Dispatch, SetStateAction, useState } from "react";
 import Image from "next/image";
 import { AnimatePresence, motion } from "framer-motion";
 import { Folders, Layers3, AlignRight } from "lucide-react";
+import { header_icon } from "../constants/project_constants";
 
 
 const Header = () => {
@@ -19,7 +20,7 @@ const Header = () => {
             <div className="container">
                 <div className="border-solid border-2 border-sand-300 rounded-xl p-5 bg-sand-140 py-2 w-full items-center flex justify-between">
                     <motion.div whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.8 }}>
-                        <Image src={"/t-black.ico"} width={50} height={50} alt="logo" />
+                        <Image src={header_icon} width={50} height={50} alt="logo" />
                     </motion.div>
                     <div className="items-center gap-8 md:flex hidden">
                         <motion.div
