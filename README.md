@@ -38,15 +38,16 @@ Most of the portfolio content can be customized through the `project_constants.t
 ### Image Assets
 Replace the images in the public directory with your own:
 
-- `public/avatar.jpg` - Your profile picture
-- `public/project-thumbnails/` - Project preview images
-- `public/favicon.ico` - Website favicon
+- `public/personal_images/` - Your profile pictures
+- `public/project_n/` - Project related images
+- `public/favicon.svg` - Website favicon
+- `public/skill_images` - Skill images
 
 ### Advanced Customization
 The template uses Tailwind CSS for styling. You can modify the following files for more detailed customization:
 
 - `tailwind.config.js` - Theme configuration
-- `styles/globals.css` - Global styles
+- `globals.css` - Global styles
 - `components/` - Individual component styling
 
 ## License
