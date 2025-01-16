@@ -126,7 +126,7 @@ export const project_previews: ProjectPreview[] = [
         description: "An AI based solution for optimizing ranked drafting sequences in the mobile game Brawl Stars by Supercell.",
         skills: ["React", "TypeScript", "Tailwind", "Next" ,"Python", "fastapi" , "PyTorch","PostgreSQL"],
         img_url: "/project_1/brawlai.webp",
-        url: "https://github.com/ANDI-neV/brawl-ai",
+        url: "https://brawl-ai.com/",
     },
     {
         index: 1,
