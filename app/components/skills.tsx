@@ -13,12 +13,12 @@ const Skills = () => {
 
     return (
         <>
-            <div className="container mx-auto pt-12" id="skills">
+            <div className="container mx-auto pt-10" id="skills">
                 <div className="flex items-center justify-end">
-                <div className="flex-grow h-0.5 bg-sand-900"></div>
-                    <span className="text-3xl md:text-5xl pl-4 font-black whitespace-nowrap">Skills
+                    <span className="text-3xl md:text-5xl font-black whitespace-nowrap">Skills
                         <span className="text-blue-500 dark:text-blue-500">.</span>
                     </span>
+                    <div className="flex-grow h-0.5 ml-2 bg-sand-900"></div>
                 </div>
             </div>
             <div className="relative flex justify-center flex-wrap sm:grid sm:grid-cols-4 md:grid-cols-8 lg:grid-cols-10 mt-[20px] gap-2 pb-20">

@@ -200,6 +200,13 @@ export const project_info: ProjectInformation[] = project_previews.map(preview =
     }
 });
 
+export const experience_list = [
+    {
+        location: "Ludwig Maximilian University of Munich",
+        experience_type: "Student Research Assistant at the Chair of Artificial Intelligence and Machine Learning",
+        date: "06.2025 - Present"
+    }
+]
 
 export const utilized_libraries = [
     { name: "React", url: "https://reactjs.org/" },

@@ -15,8 +15,8 @@ const Projects = ({isOpen, toggleOverlay}: ProjectProps) => {
         <div className=" " id="projects">
             <div className="container mx-auto pt-20">
                 <div className="flex items-center justify-end">
-                    <div className="flex-grow h-0.5 bg-sand-900"></div>
-                    <span className="text-3xl md:text-5xl font-black pl-4 whitespace-nowrap">Projects
+                    <div className="flex-grow h-0.5 mr-4 bg-sand-900"></div>
+                    <span className="text-3xl md:text-5xl font-black whitespace-nowrap">Projects
                         <span className="text-blue-500 dark:text-blue-500">.</span>
                     </span>
                 </div>

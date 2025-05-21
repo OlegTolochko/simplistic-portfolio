@@ -7,6 +7,7 @@ import Education from "./components/education";
 import Bottom from "./bottom";
 import Overlay from "./components/project_information"
 import { useState } from "react";
+import Experience from "./components/experience";
 
 export default function Home() {
   const [isOpen, setIsOpen] = useState(false);
@@ -24,6 +25,7 @@ export default function Home() {
       <Projects isOpen={isOpen}
                 toggleOverlay={toggleOverlay} />
       <Education />
+      <Experience />
       <Skills />
       <Bottom />
       <Overlay index={selectedProjectIndex} isOpen={isOpen} onClose={() => setIsOpen(false)}/>

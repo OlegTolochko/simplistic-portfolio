@@ -2,20 +2,21 @@
 import React from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
-import { education_list } from "../constants/project_constants";
+import { experience_list } from "../constants/project_constants";
 
-const Education = () => {
+const Experience = () => {
     return (
-        <div className="container mx-auto" id="education">
+        <div className="container mx-auto" id="experience">
             <div className="pt-10">
                 <div className="flex items-center justify-end">
-                    <span className="text-3xl md:text-5xl font-black whitespace-nowrap">Education
+                    
+                    <span className="text-3xl md:text-5xl font-black whitespace-nowrap">Experience
                         <span className="text-blue-500 dark:text-blue-500">.</span>
                     </span>
                     <div className="flex-grow h-0.5 ml-2 bg-sand-900"></div>
                 </div>
             </div>
-            {education_list.map((education, index) => (
+            {experience_list.map((experience, index) => (
                 <div className="py-5 flex flex-row gap-4 max-w-full"
                 key={index}
                 >
@@ -25,11 +26,11 @@ const Education = () => {
                     </div>
                     <div className="flex-grow">
                         <div className="font-bold text-xl">
-                            {education.location}
+                            {experience.location}
                         </div>
-                        <div>{education.education_type}</div>
+                        <div>{experience.experience_type}</div>
                         <div className="text-sand-900">
-                            {education.date}
+                            {experience.date}
                         </div>
                     </div>
                 </div>
@@ -38,4 +39,4 @@ const Education = () => {
     );
 };
 
-export default Education;
+export default Experience;
