@@ -9,9 +9,9 @@ export const metadata: Metadata = {
   description: "A simplistic portfolio website.",
   icons: {
     icon: [
-      { url: '/favicon2.ico', type: 'image/x-icon', sizes: 'any' },
+      { url: '/favicon.png', type: 'image/x-icon', sizes: 'any' },
     ],
-    shortcut: '/favicon2.ico',
+    shortcut: '/favicon.png',
   },
 };
 
