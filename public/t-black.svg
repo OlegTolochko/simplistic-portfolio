@@ -6,10 +6,10 @@
     x="50"
     y="50"
     font-family="Inter-Bold, Inter"
-    font-size="100"
+    font-size="80"
     font-variation-settings="'opsz' 14, 'wght' 700"
-    font-weight="700"
-    fill="#32acff"
+    font-weight="800"
+    fill="#000000"
     text-anchor="middle"
     dominant-baseline="central"
   >

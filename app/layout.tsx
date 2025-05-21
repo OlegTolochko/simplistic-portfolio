@@ -8,7 +8,10 @@ export const metadata: Metadata = {
   title: "Oleg Tolochko - Portfolio",
   description: "A simplistic portfolio website.",
   icons: {
-    icon: "/favicon.svg",
+    icon: [
+      { url: '/favicon2.ico', type: 'image/x-icon', sizes: 'any' },
+    ],
+    shortcut: '/favicon2.ico',
   },
 };
 

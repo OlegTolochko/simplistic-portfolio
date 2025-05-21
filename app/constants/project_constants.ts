@@ -16,7 +16,7 @@ export const skills_images = [
     { url: "/skill_images/framermotion.svg", title: "Framer Motion", bgColor: "#101424" },
 ];
 
-export const header_icon = "/t-black.ico"
+export const header_icon = "/t-black.svg"
 
 export const github_username = "OlegTolochko"
 export const linked_in_username = "oleg-tolochko"
