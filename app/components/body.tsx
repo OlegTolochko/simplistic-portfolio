@@ -85,7 +85,7 @@ const Body = () => {
                 </p>
 
                 <div className="text-blue-600 dark:text-blue-500 font-bold text-xl bg-gradient-to-r from-blue-600 to-blue-500 bg-clip-text text-transparent">
-                  Let's connect!
+                  Let&apos;s connect!
                 </div>
               </motion.div>
 

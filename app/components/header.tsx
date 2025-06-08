@@ -1,8 +1,8 @@
 "use client";
-import { Dispatch, SetStateAction, useState, useEffect } from "react";
+import { Dispatch, SetStateAction, useState, useEffect, ComponentType } from "react";
 import Image from "next/image";
 import { AnimatePresence, motion } from "framer-motion";
-import { Folders, Layers3, AlignRight, X } from "lucide-react";
+import { Folders, Layers3, AlignRight, X, LucideProps } from "lucide-react";
 import { header_icon } from "../constants/project_constants";
 import { usePortfolioContext } from "../context/ProjectContext";
 
@@ -179,7 +179,7 @@ const Option = ({
   onClick,
 }: {
   text: string;
-  Icon: React.FC<{ size?: number; className?: string }>;
+  Icon: ComponentType<LucideProps>;
   setOpen: Dispatch<SetStateAction<boolean>>;
   onClick: () => void;
 }) => {
