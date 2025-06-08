@@ -10,22 +10,30 @@ A minimal and customizable portfolio template built with Next.js. Live demo: [to
 ## Quick Start
 
 1. Clone the repository:
+
 ```bash
 git clone https://github.com/yourusername/simplistic-portfolio.git
 cd simplistic-portfolio
 ```
+
 2. Install dependencies:
+
 ```bash
 npm install
 ```
+
 3. Start the development server:
+
 ```bash
 npm run dev
 ```
+
 4. Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
 ## Customization
+
 ### Basic Configuration
+
 Most of the portfolio content can be customized through the `project_constants.ts` file. This includes:
 
 - Personal information
@@ -36,6 +44,7 @@ Most of the portfolio content can be customized through the `project_constants.t
 - Contact information
 
 ### Image Assets
+
 Replace the images in the public directory with your own:
 
 - `public/personal_images/` - Your profile pictures
@@ -44,6 +53,7 @@ Replace the images in the public directory with your own:
 - `public/skill_images` - Skill images
 
 ### Advanced Customization
+
 The template uses Tailwind CSS for styling. You can modify the following files for more detailed customization:
 
 - `tailwind.config.js` - Theme configuration
@@ -51,4 +61,5 @@ The template uses Tailwind CSS for styling. You can modify the following files f
 - `components/` - Individual component styling
 
 ## License
+
 This project is licensed under the MIT License - see the `LICENSE` file for details.

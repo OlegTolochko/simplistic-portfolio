@@ -1,11 +1,11 @@
-"use client"
+"use client";
 import Header from "./components/header";
 import Body from "./components/body";
 import Projects from "./components/projects";
 import Skills from "./components/skills";
 import Education from "./components/education";
 import Bottom from "./components/bottom";
-import Overlay from "./components/project_information"
+import Overlay from "./components/project_information";
 import { useState } from "react";
 import Experience from "./components/experience";
 import { PortfolioProvider } from "./context/ProjectContext";

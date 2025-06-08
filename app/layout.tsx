@@ -8,10 +8,8 @@ export const metadata: Metadata = {
   title: "Oleg Tolochko - Portfolio",
   description: "A simplistic portfolio website.",
   icons: {
-    icon: [
-      { url: '/favicon.png', type: 'image/x-icon', sizes: 'any' },
-    ],
-    shortcut: '/favicon.png',
+    icon: [{ url: "/favicon.png", type: "image/x-icon", sizes: "any" }],
+    shortcut: "/favicon.png",
   },
 };
 
@@ -22,9 +20,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={`${inter.className} bg-sand-100`}>
-        {children}
-      </body>
+      <body className={`${inter.className} bg-sand-100`}>{children}</body>
     </html>
   );
 }
