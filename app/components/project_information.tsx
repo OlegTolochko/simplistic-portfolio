@@ -4,15 +4,12 @@ import { badge_urls, project_info } from "../constants/project_constants";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 import { createPortal } from 'react-dom';
+import { usePortfolioContext } from "../context/ProjectContext";
 
-type OverlayProps = {
-    isOpen: boolean;
-    onClose: () => void;
-    index: number | null;
-}
 
-export function Overlay({ isOpen, onClose, index }: OverlayProps) {
-    const project = project_info.find((project) => project.index === index);
+export function Overlay() {
+    const { isOpen, closeOverlay, selectedProjectIndex } = usePortfolioContext();
+    const project = project_info.find((project) => project.index === selectedProjectIndex);
 
     useEffect(() => {
         const body = document.body;
@@ -39,7 +36,7 @@ export function Overlay({ isOpen, onClose, index }: OverlayProps) {
     useEffect(() => {
         const handleEscapeKey = (e: KeyboardEvent) => {
             if (e.key === 'Escape' && isOpen) {
-                onClose();
+                closeOverlay();
             }
         };
 
@@ -47,14 +44,14 @@ export function Overlay({ isOpen, onClose, index }: OverlayProps) {
         return () => {
             document.removeEventListener('keydown', handleEscapeKey);
         };
-    }, [isOpen, onClose]);
+    }, [isOpen, closeOverlay]);
 
     if (!project) return null;
 
     const handleBackdropClick = (e: React.MouseEvent) => {
         if (e.target === e.currentTarget) {
             e.stopPropagation();
-            onClose();
+            closeOverlay();
         }
     };
 
@@ -94,7 +91,7 @@ export function Overlay({ isOpen, onClose, index }: OverlayProps) {
                                     <button
                                         onClick={(e) => {
                                             e.stopPropagation();
-                                            onClose();
+                                            closeOverlay();
                                         }}
                                         className="p-2 hover:bg-sand-200 rounded-full transition-colors cursor-pointer"
                                     >
