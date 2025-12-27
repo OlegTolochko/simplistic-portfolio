@@ -61,6 +61,11 @@ export const education_list = [
     education_type: "Bachelor Computer Science with a minor in Statistics",
     date: "2022 - 2025",
   },
+  {
+    location: "Technical University of Munich",
+    education_type: "Master Computer Science",
+    date: "2025 - 2027",
+  }
 ];
 
 export type BadgeUrl = {
@@ -121,6 +126,10 @@ export const badge_urls: BadgeUrl[] = [
     name: "flask",
     url: "https://img.shields.io/badge/Flask-000000?style=for-the-badge&logo=flask&logoColor=white",
   },
+  {
+    name: "numpy",
+    url: "https://img.shields.io/badge/-Numpy-013243?&logo=NumPy&logoColor=white&style=for-the-badge",
+  }
 ];
 
 export type ProjectPreview = {
@@ -151,8 +160,22 @@ export const project_previews: ProjectPreview[] = [
     img_url: "/project_1/brawlai.webp",
     url: "https://brawl-ai.com/",
   },
-  {
+ {
     index: 1,
+    name: "Trajectory Embedding Learning for Subspace Clustering",
+    description:
+      "A deep learning research project investigating motion segmentation. Features a novel Transformer-based architecture and a reproducible evaluation protocol.",
+    skills: [
+      "Python",
+      "PyTorch",
+      "Numpy",
+      "Typst",
+    ],
+    img_url: "/project_2/model_architecture.png",
+    url: "/project_2/thesis.pdf",
+  }, 
+  {
+    index: 2,
     name: "douni2work",
     description:
       "Uptime/Response time-tracker for University website uni2work.de",
@@ -165,7 +188,7 @@ export const project_previews: ProjectPreview[] = [
       "Flask",
       "SQLite",
     ],
-    img_url: "/project_2/uni2work_dark.webp",
+    img_url: "/project_3/uni2work_dark.webp",
     url: "https://douni2work.de",
   },
 ];
@@ -233,7 +256,36 @@ export const project_info: ProjectInformation[] = project_previews.map(
                 "Built with a Flask backend, the system periodically measures response times and stores is the data in SQLite database. The frontend utilizes Vite with React, Javascript and TailwindCSS. To display historical performance metrics rechart is utilized.",
             },
           ],
-          cropped_img_url: "/project_2/uni2work_dark_cropped.webp",
+          cropped_img_url: "/project_3/uni2work_dark_cropped.webp",
+        };
+      case "Trajectory Embedding Learning for Subspace Clustering":
+        return {
+          ...preview,
+          repository_url:
+            "https://github.com/OlegTolochko/trajectory-subspace-clustering",
+          sections: [
+            {
+              title: "Overview",
+              description:
+                "This project is a Bachelor Thesis about deep learning-based motion segmentation. It involves a faithful re-implementation of a state-of-the-art CVPR paper and addresses critical flaws in existing evaluation protocols. The thesis introduces a reproducible evaluation framework, extensive ablation studies on data augmentation, and a novel Cross-Trajectory Attention mechanism.",
+            },
+            {
+              title: "The Problem with Benchmarks",
+              description:
+                "A deep dive into the standard Hopkins155 dataset revealed significant issues: data leakage due to parent-child sequence relationships and a high volume of stationary points. To solve this, I designed a strict 'Parent-Wise Splitting' protocol and a cross-validation strategy, proving that naive splitting significantly overestimates model generalization.",
+            },
+            {
+              title: "Technical Implementation",
+              description:
+                "Implemented in Python using PyTorch. The architecture consists of a 1D-CNN feature extractor and a custom Subspace Estimator that learns basis functions to represent motion. The project utilizes Weights & Biases (wandb) for tracking hundreds of experiments and Bayesian optimization for hyperparameter tuning.",
+            },
+            {
+              title: "Novel Contributions: Attention & Augmentation",
+              description:
+                "I investigated the impact of SimCLR-inspired augmentations (shifting and occlusion) on unsupervised learning. Furthermore, I extended the architecture by integrating a Transformer Encoder to enable cross-trajectory attention. This allowed trajectories to 'communicate' and exchange motion information, resulting in a statistically significant performance improvement (p < 0.0001) compared to the base architecture.",
+            },
+          ],
+          cropped_img_url: "/project_2/model_architecture.png",
         };
       default:
         throw new Error(
