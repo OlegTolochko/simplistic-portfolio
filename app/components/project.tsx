@@ -14,27 +14,36 @@ import { badge_urls, ProjectPreview } from "../constants/project_constants";
 type BlockProps = {
   className?: string;
   onClick?: (e: React.MouseEvent) => void;
+  skipEntryAnimation?: boolean;
+  forceInView?: boolean;
 } & MotionProps;
 
 type ProjectProps = {
   isOpen: boolean;
   toggleOverlay: () => void;
+  skipEntryAnimation?: boolean;
+  forceInView?: boolean;
 } & ProjectPreview;
 
 const Block: React.FC<BlockProps> = ({
   className,
   onClick,
   children,
+  skipEntryAnimation = false,
+  forceInView,
   ...rest
 }) => {
+  // If forceInView is provided (not undefined), we control animation externally
+  const useExternalControl = forceInView !== undefined;
+  
   return (
     <motion.div
       onClick={onClick}
       variants={{
         initial: {
-          scale: 0.5,
-          y: 50,
-          opacity: 0,
+          scale: skipEntryAnimation ? 1 : 0.5,
+          y: skipEntryAnimation ? 0 : 50,
+          opacity: skipEntryAnimation ? 1 : 0,
         },
         animate: {
           scale: 1,
@@ -43,7 +52,8 @@ const Block: React.FC<BlockProps> = ({
         },
       }}
       initial="initial"
-      whileInView="animate"
+      animate={useExternalControl ? (forceInView ? "animate" : "initial") : undefined}
+      whileInView={useExternalControl ? undefined : "animate"}
       transition={{
         type: "spring",
         mass: 3,
@@ -67,6 +77,8 @@ const Project: React.FC<ProjectProps> = ({
   url,
   isOpen,
   toggleOverlay,
+  skipEntryAnimation = false,
+  forceInView,
 }) => {
   const router = useRouter();
   const controls = useAnimationControls();
@@ -143,7 +155,9 @@ const Project: React.FC<ProjectProps> = ({
 
   return (
     <Block
-      className="rounded-3xl flex flex-col border-2 p-4 border-sand-500 bg-sand-200 col-span-1 overflow-hidden md:w-[50%]"
+      skipEntryAnimation={skipEntryAnimation}
+      forceInView={forceInView}
+      className="rounded-3xl flex flex-col border-2 p-4 border-sand-500 bg-sand-200 col-span-1 overflow-hidden w-full h-full"
       onHoverStart={() => !isMobile && handleHoverStart()}
       onHoverEnd={() => !isMobile && handleHoverEnd()}
       whileHover={{
