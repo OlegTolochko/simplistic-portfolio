@@ -20,7 +20,12 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={`${inter.className} bg-sand-100`}>{children}</body>
+      <body
+        className={`${inter.className} bg-sand-100`}
+        suppressHydrationWarning
+      >
+        {children}
+      </body>
     </html>
   );
 }
