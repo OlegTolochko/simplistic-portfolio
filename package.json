@@ -6,7 +6,9 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "knowledge:sync": "node scripts/sync-knowledge.mjs",
+    "knowledge:sync:dry": "node scripts/sync-knowledge.mjs --dry"
   },
   "dependencies": {
     "clsx": "^2.1.1",
@@ -16,6 +18,7 @@
     "next": "^15.5.12",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
+    "react-force-graph-2d": "^1.29.1",
     "tailwind-merge": "^2.6.1"
   },
   "devDependencies": {

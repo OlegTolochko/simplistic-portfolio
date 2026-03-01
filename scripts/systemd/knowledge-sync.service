@@ -1,0 +1,25 @@
+# knowledge-sync.service
+# Place in ~/.config/systemd/user/knowledge-sync.service
+#
+# Then enable the timer:
+#   systemctl --user enable knowledge-sync.timer
+#   systemctl --user start knowledge-sync.timer
+#
+# To run manually:
+#   systemctl --user start knowledge-sync.service
+
+[Unit]
+Description=Sync Anki+Obsidian knowledge graph to Raspberry Pi
+Wants=network-online.target
+After=network-online.target
+
+[Service]
+Type=oneshot
+WorkingDirectory=%h/repos/simplistic-portfolio
+ExecStart=%h/repos/simplistic-portfolio/scripts/sync-knowledge-to-pi.sh
+Environment=PATH=/usr/local/bin:/usr/bin:/bin:%h/.local/bin:%h/.nvm/versions/node/v22/bin
+# Load your env vars
+EnvironmentFile=-%h/repos/simplistic-portfolio/.env
+
+[Install]
+WantedBy=default.target

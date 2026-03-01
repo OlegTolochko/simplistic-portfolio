@@ -1,0 +1,15 @@
+# knowledge-sync.timer
+# Place in ~/.config/systemd/user/knowledge-sync.timer
+#
+# Runs the sync every 2 hours while the machine is on.
+
+[Unit]
+Description=Periodically sync knowledge graph to Pi
+
+[Timer]
+OnBootSec=5min
+OnUnitActiveSec=2h
+Persistent=true
+
+[Install]
+WantedBy=timers.target
