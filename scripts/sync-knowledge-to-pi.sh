@@ -41,6 +41,8 @@ fi
 
 PI_HOST="${PI_HOST:-pi}"
 PI_REPO_PATH="${PI_REPO_PATH:-~/simplistic-portfolio}"
+PI_APP_SERVICE="${PI_APP_SERVICE:-}"
+PI_PM2_PROCESS="${PI_PM2_PROCESS:-}"
 DATA_FILE="app/data/knowledge_graph.json"
 
 echo "==> Step 1: Syncing from Anki + Obsidian..."
@@ -59,6 +61,12 @@ scp "$DATA_FILE" "$PI_HOST:$REMOTE_DATA_DIR/knowledge_graph.json"
 echo "==> Step 3: Triggering rebuild on Pi..."
 ssh "$PI_HOST" "
   set -e
+
+  if [ -s \"\$HOME/.nvm/nvm.sh\" ]; then
+    . \"\$HOME/.nvm/nvm.sh\"
+    nvm use --silent default >/dev/null 2>&1 || true
+  fi
+
   cd $PI_REPO_PATH
 
   NODE_VERSION=\$(node -v | sed 's/^v//')
@@ -72,5 +80,23 @@ ssh "$PI_HOST" "
 
   npm run build
 "
+
+if [[ -n "$PI_APP_SERVICE" ]]; then
+  echo "==> Step 4: Restarting app service on Pi ($PI_APP_SERVICE)..."
+  ssh "$PI_HOST" "systemctl --user restart $PI_APP_SERVICE || sudo systemctl restart $PI_APP_SERVICE"
+fi
+
+if [[ -n "$PI_PM2_PROCESS" ]]; then
+  echo "==> Step 5: Restarting PM2 app on Pi ($PI_PM2_PROCESS)..."
+  ssh "$PI_HOST" "
+    set -e
+    if [ -s \"\$HOME/.nvm/nvm.sh\" ]; then
+      . \"\$HOME/.nvm/nvm.sh\"
+      nvm use --silent default >/dev/null 2>&1 || true
+    fi
+    pm2 restart $PI_PM2_PROCESS
+    pm2 save >/dev/null 2>&1 || true
+  "
+fi
 
 echo "==> Done! Knowledge graph deployed."
