@@ -1,81 +1,110 @@
 # Knowledge Graph + Anki + Obsidian setup
 
-This guide configures your vault and decks so your site graph can sync automatically.
+This guide uses a low-friction workflow:
+
+- Anki cards: one primary concept tag (`kg::concept`)
+- Optional context tags (`ctx::topic`)
+- Graph structure: maintained in a dedicated JSON file
+- Obsidian: optional enrichment (description, links, wiki-link relations)
 
 ## 1) Install/enable local tools
 
 1. In Anki, install **AnkiConnect** (addon code: `2055492159`).
 2. Restart Anki.
-3. In Obsidian, keep your vault organized in topic folders and use wiki links (`[[...]]`).
+3. Keep your Obsidian vault available locally.
 
-## 2) Anki structure (recommended)
+## 2) Recommended tagging workflow
 
-Create a root deck and subdecks:
+For most cards, use exactly one concept tag:
 
-- `Knowledge::DeepLearning`
-- `Knowledge::MLSystems`
-- `Knowledge::Backend`
-- `Knowledge::Frontend`
-- `Knowledge::Infrastructure`
-- `Knowledge::Math`
+- `kg::bert`
+- `kg::relation-extraction`
+- `kg::regex`
 
-Tag cards with hierarchy tags (recommended):
+Optional context tags:
 
-- `kg1::deep-learning`
-- `kg2::attention`
-- `kg3::multi-head-latent-attention`
+- `ctx::nlp`
+- `ctx::information-extraction`
 
-Why this helps:
+Why this is better:
 
-- Builds hierarchy edges automatically: `deep-learning → attention → multi-head-latent-attention`.
-- Avoids creating one node per card.
-- Keeps graph scoped to actual studied concepts.
+- You no longer need to remember `kg1/kg2/kg3` hierarchy for each card.
+- Concept identity is stable (`kg::bert` always maps to one node).
+- Hierarchy is curated once in a structure file instead of repeated in every card.
 
-You can also use unnumbered tags (`kg::deep-learning`, `kg::attention`, `kg::multi-head-latent-attention`), but numbered tags make order explicit.
+Important:
 
-## 3) Obsidian structure (recommended)
+- Only `kg::...` (primary concept) and optional `ctx::...` (context) are supported.
+- `kg1::...`, `kg2::...`, `kg3::...` are intentionally not parsed.
 
-Use one concept per note if you want note-path enrichment and optional related links. Example:
+## 3) Define graph structure in one file
 
-```md
-# Attention
+Edit:
 
-Tags: #deep-learning #transformers
+- `app/data/knowledge_structure.json`
 
-Related:
-- [[Cross-Attention]]
-- [[Multi-Head Attention]]
-- [[Linear Algebra]]
+This file supports:
+
+- `concepts`: id, label, domain, parents, description, links
+- `edges`: explicit cross-links (`related`, `part-of`, etc.)
+
+Example concept:
+
+```json
+{
+  "id": "bert",
+  "label": "BERT",
+  "domain": "deep-learning",
+  "parents": ["lms", "relation-extraction"],
+  "links": [
+    "https://arxiv.org/abs/1810.04805 | BERT Paper"
+  ]
+}
 ```
 
-Conventions:
+## 4) Obsidian integration (optional)
 
-- One concept = one note.
-- Link related concepts with wiki links.
-- Keep concept titles stable (used for slug/id mapping).
-- No Obsidian plugin is required.
+Set:
 
-## 4) Environment variables
+- `OBSIDIAN_VAULT_PATH` to your vault
+- `OBSIDIAN_KNOWLEDGE_DIR` (default: `Knowledge`)
 
-Before sync, set:
+Only that folder is indexed (if present), which keeps things scoped.
+
+Per-note frontmatter options:
+
+```yaml
+---
+id: bert
+parents:
+  - lms
+  - relation-extraction
+domain: deep-learning
+description: Encoder-only transformer pretraining paradigm.
+links:
+  - https://arxiv.org/abs/1810.04805 | BERT Paper
+---
+```
+
+Wiki links (`[[...]]`) become `related` edges between known concepts.
+
+## 5) Environment variables
 
 ```bash
 export OBSIDIAN_VAULT_PATH="/absolute/path/to/your/obsidian/vault"
+export OBSIDIAN_KNOWLEDGE_DIR="Knowledge"
+export KNOWLEDGE_STRUCTURE_PATH="/absolute/path/to/repo/app/data/knowledge_structure.json"
 export ANKI_CONNECT_URL="http://127.0.0.1:8765"
 export ANKI_DECK="Knowledge"
 ```
 
-`ANKI_DECK` can be a root deck; subdecks are included by Anki query.
+`KNOWLEDGE_STRUCTURE_PATH` is optional; default is `app/data/knowledge_structure.json`.
 
-## 5) Run sync
+## 6) Run sync
 
 ```bash
 npm run knowledge:sync
 ```
-
-This updates:
-
-- `app/data/knowledge_graph.json`
 
 Dry run:
 
@@ -83,30 +112,13 @@ Dry run:
 npm run knowledge:sync:dry
 ```
 
-## 6) Open graph
+Output file:
 
-Run app and open:
+- `app/data/knowledge_graph.json`
 
-- `/knowledge-6`
+## 7) Practical daily flow
 
-Features:
-
-- Force-directed physics graph
-- Zoom/pan/drag navigation
-- Node details panel
-- Card due metadata per concept
-- Search and domain filtering
-
-## 7) Daily workflow suggestion
-
-1. Capture concept in Obsidian first.
-2. Add/revise cards in Anki with matching `kg::<concept-id>` tag.
-3. Run `npm run knowledge:sync`.
-4. Review hotspots in `/knowledge-6` (large/stale/due nodes).
-
----
-
-Important behavior:
-
-- Graph nodes are created only from Anki `kg*::` tags on cards/notes.
-- Obsidian does not create extra nodes; it only enriches existing Anki-linked nodes.
+1. Create/review card in Anki with `kg::concept` (+ optional `ctx::...`).
+2. Update concept hierarchy occasionally in `knowledge_structure.json`.
+3. Optionally add richer note metadata in Obsidian `Knowledge/` notes.
+4. Run sync and deploy.

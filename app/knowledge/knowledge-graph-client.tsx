@@ -67,6 +67,54 @@ export default function KnowledgeGraphClient() {
 
   const fitView = useCallback(() => graphRef.current?.zoomToFit(500, 80), []);
 
+  useEffect(() => {
+    const graph = graphRef.current;
+    if (!graph) return;
+
+    const linkForce = graph.d3Force("link");
+    if (linkForce) {
+      const nodeCards = (nodeLike: any) => {
+        const node = typeof nodeLike === "string" ? gd.nodes.find((n) => n.id === nodeLike) : nodeLike;
+        return Math.max(0, node?.anki?.totalCards ?? 0);
+      };
+
+      linkForce.distance((link: any) => {
+        const weight = link?.weight ?? 1;
+        const sourceCards = nodeCards(link?.source);
+        const targetCards = nodeCards(link?.target);
+
+        // Similar card volumes => more related => shorter distance.
+        // Large mismatch => longer distance to reduce visual tangling.
+        const maxCards = Math.max(1, sourceCards, targetCards);
+        const minCards = Math.min(sourceCards, targetCards);
+        const similarity = minCards / maxCards; // 0..1
+        const mismatch = 1 - similarity;
+
+        const weightedBonus = Math.log2(weight + 1) * 18;
+        const distance = 180 + mismatch * 230 - weightedBonus;
+        return Math.max(160, Math.min(420, distance));
+      });
+      linkForce.strength((link: any) => {
+        const sourceCards = nodeCards(link?.source);
+        const targetCards = nodeCards(link?.target);
+        const maxCards = Math.max(1, sourceCards, targetCards);
+        const minCards = Math.min(sourceCards, targetCards);
+        const similarity = minCards / maxCards;
+        const weight = link?.weight ?? 1;
+
+        // Similar + higher weight edges pull stronger.
+        return Math.max(0.06, Math.min(0.42, 0.09 + similarity * 0.22 + Math.log2(weight + 1) * 0.04));
+      });
+    }
+
+    const chargeForce = graph.d3Force("charge");
+    if (chargeForce) {
+      chargeForce.strength(-620);
+    }
+
+    graph.d3ReheatSimulation();
+  }, [gd]);
+
   const linkId = (end: string | any) => (typeof end === "string" ? end : end?.id);
 
   return (
@@ -90,7 +138,7 @@ export default function KnowledgeGraphClient() {
         nodeLabel=""
         cooldownTime={2800}
         d3AlphaDecay={0.03}
-        d3VelocityDecay={0.18}
+        d3VelocityDecay={0.24}
         onEngineStop={fitView}
         onBackgroundClick={() => setActive(null)}
         onNodeClick={(node: any) => {
@@ -121,8 +169,12 @@ export default function KnowledgeGraphClient() {
           if (sel) { ctx.lineWidth = 2.5; ctx.strokeStyle = "#374151"; ctx.stroke(); }
 
           // label
-          const fs = Math.max(11, 12 / globalScale);
-          ctx.font = `600 ${fs}px Inter, system-ui, sans-serif`;
+          const cards = g.anki?.totalCards ?? 0;
+          const labelScale = maxCardsLog > 0 ? Math.log10(cards + 1) / maxCardsLog : 0;
+          const labelBase = 6 + labelScale * 10;
+          const fs = Math.max(6, labelBase / globalScale);
+          const fontWeight = Math.round(420 + labelScale * 330);
+          ctx.font = `${fontWeight} ${fs}px Inter, system-ui, sans-serif`;
           ctx.textAlign = "center"; ctx.textBaseline = "top";
           ctx.fillStyle = "#374151";
           ctx.fillText(g.label, x, y + r + 4);

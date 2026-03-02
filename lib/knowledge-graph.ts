@@ -3,6 +3,8 @@ import graphData from "@/app/data/knowledge_graph.json";
 export type KnowledgeDomain =
   | "ml-systems"
   | "deep-learning"
+  | "nlp"
+  | "computer-vision"
   | "backend"
   | "frontend"
   | "infrastructure"
@@ -46,6 +48,8 @@ export const knowledgeGraphData = graphData as KnowledgeGraphData;
 export const domainLabel = (domain: string) => {
   const map: Record<string, string> = {
     "deep-learning": "Deep Learning",
+    nlp: "NLP",
+    "computer-vision": "Computer Vision",
     "ml-systems": "ML Systems",
     backend: "Backend",
     frontend: "Frontend",
@@ -59,6 +63,10 @@ export const domainColor = (domain: KnowledgeDomain) => {
   switch (domain) {
     case "deep-learning":
       return "#8b5cf6";
+    case "nlp":
+      return "#0ea5e9";
+    case "computer-vision":
+      return "#22c55e";
     case "ml-systems":
       return "#2563eb";
     case "backend":
