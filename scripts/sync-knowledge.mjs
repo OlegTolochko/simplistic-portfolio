@@ -20,6 +20,7 @@ const KNOWN_DOMAINS = new Set([
   "deep-learning",
   "nlp",
   "computer-vision",
+  "statistics",
   "ml-systems",
   "backend",
   "frontend",

@@ -128,17 +128,28 @@ export default function KnowledgeGraphClient() {
         nodeRelSize={4}
         linkWidth={(l: any) => 1.8 + Math.log2((l.weight ?? 1) + 1) * 1.2}
         linkColor={(l: any) => {
-          if (!matchIds) return "rgba(157,157,133,0.42)";
+          const isRelated = l.kind === "related";
+
+          if (!matchIds) {
+            return isRelated ? "rgba(120,130,145,0.30)" : "rgba(157,157,133,0.42)";
+          }
+
           const s = linkId(l.source), t = linkId(l.target);
-          return matchIds.has(s) && matchIds.has(t) ? "rgba(100,100,80,0.55)" : "rgba(157,157,133,0.12)";
+          if (matchIds.has(s) && matchIds.has(t)) {
+            return isRelated ? "rgba(98,112,128,0.45)" : "rgba(100,100,80,0.55)";
+          }
+
+          return isRelated ? "rgba(120,130,145,0.10)" : "rgba(157,157,133,0.12)";
         }}
+        linkLineDash={(l: any) => (l.kind === "related" ? [6, 6] : null)}
         linkDirectionalParticles={(l: any) => (l.kind === "part-of" ? 1 : 0)}
         linkDirectionalParticleWidth={3.2}
         linkDirectionalParticleColor={() => "rgba(157,157,133,0.35)"}
         nodeLabel=""
-        cooldownTime={2800}
-        d3AlphaDecay={0.03}
-        d3VelocityDecay={0.24}
+        cooldownTime={2000}
+        d3AlphaDecay={0.04}
+        d3VelocityDecay={0.32}
+        warmupTicks={25}
         onEngineStop={fitView}
         onBackgroundClick={() => setActive(null)}
         onNodeClick={(node: any) => {
@@ -156,25 +167,30 @@ export default function KnowledgeGraphClient() {
 
           ctx.globalAlpha = alpha;
 
-          // soft glow
-          const gradient = ctx.createRadialGradient(x, y, r * 0.5, x, y, r * 2.2);
-          gradient.addColorStop(0, g.color + (sel ? "40" : "14"));
-          gradient.addColorStop(1, "transparent");
-          ctx.beginPath(); ctx.arc(x, y, r * 2.2, 0, 2 * Math.PI);
-          ctx.fillStyle = gradient; ctx.fill();
+          // soft glow – solid fill is ~10× cheaper than createRadialGradient per frame
+          ctx.beginPath(); ctx.arc(x, y, r * 1.8, 0, 2 * Math.PI);
+          ctx.fillStyle = g.color + (sel ? "30" : "10");
+          ctx.fill();
 
           // core
           ctx.beginPath(); ctx.arc(x, y, r, 0, 2 * Math.PI);
           ctx.fillStyle = g.color; ctx.fill();
           if (sel) { ctx.lineWidth = 2.5; ctx.strokeStyle = "#374151"; ctx.stroke(); }
 
-          // label
+          // label – reuse cached font string to avoid parsing on every frame
           const cards = g.anki?.totalCards ?? 0;
           const labelScale = maxCardsLog > 0 ? Math.log10(cards + 1) / maxCardsLog : 0;
           const labelBase = 6 + labelScale * 10;
           const fs = Math.max(6, labelBase / globalScale);
           const fontWeight = Math.round(420 + labelScale * 330);
-          ctx.font = `${fontWeight} ${fs}px Inter, system-ui, sans-serif`;
+          // only rebuild font when scale changes meaningfully (floor to .5px)
+          const fsKey = (Math.round(fs * 2) / 2).toFixed(1);
+          const fontKey = `${fontWeight}_${fsKey}`;
+          if ((g as any).__fontKey !== fontKey) {
+            (g as any).__fontKey = fontKey;
+            (g as any).__font = `${fontWeight} ${fsKey}px Inter, system-ui, sans-serif`;
+          }
+          ctx.font = (g as any).__font;
           ctx.textAlign = "center"; ctx.textBaseline = "top";
           ctx.fillStyle = "#374151";
           ctx.fillText(g.label, x, y + r + 4);

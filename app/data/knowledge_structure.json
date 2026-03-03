@@ -14,121 +14,141 @@
       "id": "computer-vision",
       "label": "Computer Vision",
       "domain": "computer-vision",
-      "parents": [
-        "deep-learning"
-      ]
+      "parents": ["deep-learning"]
+    },
+    {
+      "id": "statistics",
+      "label": "Statistics",
+      "domain": "statistics"
+    },
+    {
+      "id": "probability-theory",
+      "label": "Probability Theory",
+      "domain": "statistics",
+      "parents": ["statistics"]
+    },
+    {
+      "id": "probabilistic-graphical-models",
+      "label": "Probabilistic Graphical Models",
+      "domain": "statistics",
+      "parents": ["probability-theory"]
+    },
+    {
+      "id": "evaluation-metrics",
+      "label": "Evaluation Metrics",
+      "domain": "nlp",
+      "parents": ["nlp"]
+    },
+    {
+      "id": "information-extraction",
+      "label": "Information Extraction",
+      "domain": "nlp",
+      "parents": ["nlp"]
+    },
+    {
+      "id": "sequence-labeling",
+      "label": "Sequence Labeling",
+      "domain": "nlp",
+      "parents": ["nlp"]
+    },
+    {
+      "id": "dependency-parsing",
+      "label": "Dependency Parsing",
+      "domain": "nlp",
+      "parents": ["nlp"]
+    },
+    {
+      "id": "constituency-parsing",
+      "label": "Constituency Parsing",
+      "domain": "nlp",
+      "parents": ["nlp"]
+    },
+    {
+      "id": "language-modeling",
+      "label": "Language Modeling",
+      "domain": "nlp",
+      "parents": ["nlp"]
+    },
+    {
+      "id": "information-retrieval",
+      "label": "Information Retrieval",
+      "domain": "nlp",
+      "parents": ["nlp"]
+    },
+    {
+      "id": "text-classification",
+      "label": "Text Classification",
+      "domain": "nlp",
+      "parents": ["nlp"]
     },
     {
       "id": "attention",
       "label": "Attention",
       "domain": "deep-learning",
-      "parents": [
-        "deep-learning"
-      ]
+      "parents": ["deep-learning"]
     },
     {
       "id": "transformers",
       "label": "Transformers",
       "domain": "deep-learning",
-      "parents": [
-        "deep-learning",
-        "attention"
-      ]
-    }, 
+      "parents": ["deep-learning", "attention"]
+    },
     {
       "id": "llms",
       "label": "Large Language Models",
       "domain": "nlp",
-      "parents": [
-        "nlp",
-        "transformers"
-      ]
+      "parents": ["language-modeling", "transformers"]
     },
     {
       "id": "rnns",
       "label": "RNNs",
       "domain": "nlp",
-      "parents": [
-        "nlp",
-        "deep-learning"
-      ]
+      "parents": ["language-modeling", "deep-learning"]
     },
     {
       "id": "vision-transformers",
       "label": "Vision Transformers",
       "domain": "computer-vision",
-      "parents": [
-        "computer-vision",
-        "transformers"
+      "parents": ["computer-vision", "transformers"]
+    },
+    {
+      "id": "bert",
+      "label": "BERT",
+      "domain": "nlp",
+      "parents": ["llms", "relation-extraction"],
+      "links": [
+        "https://arxiv.org/abs/1810.04805 | BERT Paper"
       ]
     },
     {
       "id": "regex",
       "label": "Regex",
       "domain": "nlp",
-      "parents": [
-        "nlp"
-      ]
+      "parents": ["information-extraction"]
     },
     {
       "id": "coreference-resolution",
       "label": "Coreference Resolution",
       "domain": "nlp",
-      "parents": [
-        "nlp"
-      ]
+      "parents": ["information-extraction"]
+    },
+    {
+      "id": "e2e-coref",
+      "label": "End-to-End Coreference Resolution",
+      "domain": "nlp",
+      "parents": ["coreference-resolution"]
     },
     {
       "id": "relation-extraction",
       "label": "Relation Extraction",
       "domain": "nlp",
-      "parents": [
-        "nlp"
-      ]
-    },
-    {
-      "id": "bert",
-      "label": "BERT",
-      "domain": "nlp",
-      "parents": [
-        "llms",
-        "transformers"
-      ],
-      "links": [
-        "https://arxiv.org/abs/1810.04805 | BERT Paper"
-      ]
-    },
-    {
-      "id": "information-extraction",
-      "label": "Information Extraction",
-      "domain": "nlp",
-      "parents": [
-        "nlp"
-      ]
+      "parents": ["information-extraction"]
     },
     {
       "id": "named-entity-recognition",
       "label": "Named Entity Recognition",
       "domain": "nlp",
-      "parents": [
-        "information-extraction"
-       ]
-    },
-    {
-      "id": "sentiment-analysis",
-      "label": "Sentiment Analysis",
-      "domain": "nlp",
-      "parents": [
-        "information-extraction"
-      ]
-    },
-    {
-      "id": "machine-translation",
-      "label": "Machine Translation",
-      "domain": "nlp",
-      "parents": [
-        "nlp"
-      ]
+      "parents": ["information-extraction", "sequence-labeling"]
     },
     {
       "id": "template-filling",
@@ -140,125 +160,155 @@
       "id": "semantic-role-labeling",
       "label": "Semantic Role Labeling",
       "domain": "nlp",
-      "parents": ["nlp"]
-    },
-    {
-      "id": "chrf",
-      "label": "chrF",
-      "domain": "nlp",
-      "parents": ["machine-translation"]
-    },
-    {
-      "id": "minimum-bayes-risk",
-      "label": "Minimum Bayes Risk",
-      "domain": "nlp",
-      "parents": ["machine-translation"]
-    },
-    {
-      "id": "n-gram-lms",
-      "label": "N-gram LMs",
-      "domain": "nlp",
-        "parents": ["nlp"]
-    },
-    {
-      "id": "dependendency-parsing",
-      "label": "Dependency Parsing",
-      "domain": "nlp",
-      "parents": ["nlp"]
-    },
-    {
-      "id": "graph-based-dependency-parsing",
-      "label": "Graph-based Dependency Parsing",
-      "domain": "nlp",
-      "parents": ["dependendency-parsing"]
-    },
-    {
-      "id": "transition-based-dependency-parsing",
-      "label": "Transition-based Dependency Parsing",
-      "domain": "nlp",
-      "parents": ["dependendency-parsing"]
-    },
-    {
-      "id": "e2e-coref",
-      "label": "End-to-End Coreference Resolution",
-      "domain": "nlp",
-      "parents": ["coreference-resolution"]
-    },
-    {
-      "id": "semantic-axis",
-      "label": "Semantic Axis",
-      "domain": "nlp",
-      "parents": ["sentiment-analysis"]
+      "parents": ["information-extraction"]
     },
     {
       "id": "pos-tagging",
       "label": "POS Tagging",
       "domain": "nlp",
+      "parents": ["sequence-labeling"]
+    },
+    {
+      "id": "machine-translation",
+      "label": "Machine Translation",
+      "domain": "nlp",
       "parents": ["nlp"]
     },
     {
-      "id": "information-retrieval",
-      "label": "Information Retrieval",
+      "id": "minimum-bayes-risk",
+      "label": "Minimum Bayes Risk",
       "domain": "nlp",
-      "parents": ["nlp"]
+      "parents": ["machine-translation", "evaluation-metrics"]
+    },
+    {
+      "id": "chrf",
+      "label": "chrF",
+      "domain": "nlp",
+      "parents": ["evaluation-metrics"]
+    },
+    {
+      "id": "prec-recall",
+      "label": "Precision + Recall",
+      "domain": "nlp",
+      "parents": ["evaluation-metrics"]
+    },
+    {
+      "id": "naive-bayes",
+      "label": "Naive Bayes",
+      "domain": "statistics",
+      "parents": ["probability-theory", "text-classification"]
+    },
+    {
+      "id": "hmm",
+      "label": "Hidden Markov Models",
+      "domain": "statistics",
+      "parents": ["probabilistic-graphical-models", "sequence-labeling"]
+    },
+    {
+      "id": "crfs",
+      "label": "Conditional Random Fields",
+      "domain": "statistics",
+      "parents": ["probabilistic-graphical-models", "sequence-labeling"],
+      "note": "discriminative counterpart of HMMs"
+    },
+    {
+      "id": "dp",
+      "label": "Dynamic Programming",
+      "domain": "statistics",
+      "parents": ["statistics"]
+    },
+    {
+      "id": "viterbi",
+      "label": "Viterbi Algorithm",
+      "domain": "statistics",
+      "parents": ["hmm", "dp"]
+    },
+    {
+      "id": "cnf",
+      "label": "Chomsky Normal Form",
+      "domain": "nlp",
+      "parents": ["constituency-parsing"]
+    },
+    {
+      "id": "cky",
+      "label": "CKY Algorithm",
+      "domain": "nlp",
+      "parents": ["constituency-parsing", "dp"]
+    },
+    {
+      "id": "word2vec",
+      "label": "Word2Vec",
+      "domain": "nlp",
+      "parents": ["language-modeling"]
+    },
+    {
+      "id": "rag",
+      "label": "Retrieval-Augmented Generation",
+      "domain": "nlp",
+      "parents": ["llms", "information-retrieval"]
+    },
+    {
+      "id": "cos-similarity",
+      "label": "Cosine Similarity",
+      "domain": "nlp",
+      "parents": ["information-retrieval", "evaluation-metrics"]
+    },
+    {
+      "id": "preference-alignment",
+      "label": "Preference Alignment",
+      "domain": "nlp",
+      "parents": ["llms"]
+    },
+    {
+      "id": "rlhf",
+      "label": "RLHF",
+      "domain": "nlp",
+      "parents": ["preference-alignment"]
+    },
+    {
+      "id": "sentiment-analysis",
+      "label": "Sentiment Analysis",
+      "domain": "nlp",
+      "parents": ["text-classification"]
+    },
+    {
+      "id": "graph-based-dependency-parsing",
+      "label": "Graph-Based Dependency Parsing",
+      "domain": "nlp",
+      "parents": ["dependency-parsing"]
+    },
+    {
+      "id": "transition-based-dependency-parsing",
+      "label": "Transition-Based Dependency Parsing",
+      "domain": "nlp",
+      "parents": ["dependency-parsing"]
+    },
+    {
+      "id": "semantic-axis",
+      "label": "Semantic Axis",
+      "domain": "nlp",
+      "parents": ["language-modeling"]
     },
     {
       "id": "tf-idf",
       "label": "TF-IDF",
       "domain": "nlp",
       "parents": ["information-retrieval"]
-    },
-    {
-      "id": "mathematical-optimization",
-      "label": "Mathematical Optimization",
-      "domain": "math",
-      "parents": ["math"]
-    },
-    {
-      "id": "dp",
-      "label": "Dynamic Programming",
-      "domain": "math",
-      "parents": ["mathematical-optimization"]
-    },
-    {
-      "id": "viterbi",
-      "label": "Viterbi Algorithm",
-      "domain": "math",
-      "parents": ["dp", "hmm"]
-    },
-    {
-      "id": "probability-theory",
-      "label": "Probability Theory",
-      "domain": "statistics",
-      "parents": ["statistics"]
-    },
-    {
-      "id": "markov-model",
-      "label": "Markov Models",
-      "domain": "statistics",
-      "parents": ["probability-theory"]
-    },
-    {
-      "id": "hmm",
-      "label": "Hidden Markov Models",
-      "domain": "statistics",
-      "parents": ["markov-model"]
-    },
-    {
-      "id": "sequenece-labeling",
-      "label": "Sequence Labeling",
-      "domain": "nlp",
-      "parents": ["named-entity-recognition", "pos-tagging"]
-    },
-    {
-      "id": "crfs",
-      "label": "Conditional Random Fields",
-      "domain": "nlp",
-      "parents": ["sequence-labeling"]
     }
-
   ],
   "edges": [
+    {
+      "source": "crfs",
+      "target": "hmm",
+      "kind": "related",
+      "weight": 1
+    },
+    {
+      "source": "crfs",
+      "target": "sequence-labeling",
+      "kind": "related",
+      "weight": 1
+    },
     {
       "source": "rnns",
       "target": "llms",
@@ -266,8 +316,38 @@
       "weight": 1
     },
     {
-      "source": "sequenece-labeling",
-      "target": "viterbi",
+      "source": "word2vec",
+      "target": "llms",
+      "kind": "related",
+      "weight": 1
+    },
+    {
+      "source": "rag",
+      "target": "cos-similarity",
+      "kind": "related",
+      "weight": 1
+    },
+    {
+      "source": "naive-bayes",
+      "target": "sentiment-analysis",
+      "kind": "related",
+      "weight": 1
+    },
+    {
+      "source": "bert",
+      "target": "word2vec",
+      "kind": "related",
+      "weight": 1
+    },
+    {
+      "source": "cnf",
+      "target": "cky",
+      "kind": "related",
+      "weight": 1
+    },
+    {
+      "source": "tf-idf",
+      "target": "text-classification",
       "kind": "related",
       "weight": 1
     }
