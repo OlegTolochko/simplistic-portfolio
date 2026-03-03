@@ -11,7 +11,16 @@ import {
   type KnowledgeGraphNode,
 } from "@/lib/knowledge-graph";
 
-const ForceGraph2D = dynamic(() => import("react-force-graph-2d"), { ssr: false });
+const ForceGraph2D = dynamic(
+  () =>
+    import("react-force-graph-2d").catch(() => {
+      // Retry once – handles stale chunk during deploys
+      return new Promise<typeof import("react-force-graph-2d")>((resolve) =>
+        setTimeout(() => resolve(import("react-force-graph-2d")), 1500)
+      );
+    }),
+  { ssr: false }
+);
 
 type GN = KnowledgeGraphNode & { val: number; color: string; x?: number; y?: number };
 
