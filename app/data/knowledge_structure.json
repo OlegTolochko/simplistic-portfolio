@@ -294,6 +294,96 @@
       "label": "TF-IDF",
       "domain": "nlp",
       "parents": ["information-retrieval"]
+    },
+    {
+      "id": "optimization",
+      "label": "Optimization",
+      "domain": "deep-learning",
+      "parents": ["deep-learning"]
+    },
+    {
+      "id": "adam",
+      "label": "Adam Optimizer",
+      "domain": "deep-learning",
+      "parents": ["optimization"]
+    },
+    {
+      "id": "fine-tuning",
+      "label": "Fine-Tuning",
+      "domain": "nlp",
+      "parents": ["llms"]
+    },
+    {
+      "id": "sft",
+      "label": "Supervised Fine-Tuning",
+      "domain": "nlp",
+      "parents": ["fine-tuning"]
+    },
+    {
+      "id": "lora",
+      "label": "LoRA (Low-Rank Adaptation)",
+      "domain": "nlp",
+      "parents": ["fine-tuning"]
+    },
+    {
+      "id": "bpe",
+      "label": "Byte Pair Encoding",
+      "domain": "nlp",
+      "parents": ["llms"]
+    },
+    {
+      "id": "markov-model",
+      "label": "Markov Models",
+      "domain": "statistics",
+      "parents": ["probability-theory"]
+    },
+    {
+      "id": "n-gram-lms",
+      "label": "N-gram Language Models",
+      "domain": "nlp",
+      "parents": ["language-modeling", "markov-model"]
+    },
+    {
+      "id": "mle",
+      "label": "Maximum Likelihood Estimation",
+      "domain": "statistics",
+      "parents": ["probability-theory"]
+    },
+    {
+      "id": "lstm",
+      "label": "LSTM",
+      "domain": "deep-learning",
+      "parents": ["rnns"]
+    },
+    {
+      "id": "cfg",
+      "label": "Context-Free Grammar",
+      "domain": "nlp",
+      "parents": ["constituency-parsing"]
+    },
+    {
+      "id": "ie",
+      "label": "IE (Information Extraction)",
+      "domain": "nlp",
+      "parents": ["information-extraction"]
+    },
+    {
+      "id": "entity-linking",
+      "label": "Entity Linking",
+      "domain": "nlp",
+      "parents": ["information-extraction", "ie"]
+    },
+    {
+      "id": "discourse-coherence",
+      "label": "Discourse Coherence",
+      "domain": "nlp",
+      "parents": ["nlp"]
+    },
+    {
+      "id": "rst-parsing",
+      "label": "RST Parsing",
+      "domain": "nlp",
+      "parents": ["discourse-coherence"]
     }
   ],
   "edges": [
@@ -348,6 +438,30 @@
     {
       "source": "tf-idf",
       "target": "text-classification",
+      "kind": "related",
+      "weight": 1
+    },
+    {
+      "source": "sft",
+      "target": "rlhf",
+      "kind": "related",
+      "weight": 1
+    },
+    {
+      "source": "lora",
+      "target": "transformers",
+      "kind": "related",
+      "weight": 1
+    },
+    {
+      "source": "n-gram-lms",
+      "target": "hmm",
+      "kind": "related",
+      "weight": 1
+    },
+    {
+      "source": "cfg",
+      "target": "cnf",
       "kind": "related",
       "weight": 1
     }
