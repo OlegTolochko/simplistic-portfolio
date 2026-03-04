@@ -1,4 +1,5 @@
-import graphData from "@/app/data/knowledge_graph.json";
+// Types and utilities for the knowledge graph.
+// Data is fetched at runtime from /data/knowledge_graph.json (public/).
 
 export type KnowledgeDomain =
   | "ml-systems"
@@ -44,7 +45,12 @@ export type KnowledgeGraphData = {
   links: KnowledgeGraphLink[];
 };
 
-export const knowledgeGraphData = graphData as KnowledgeGraphData;
+/** Fetch graph data at runtime – works with the file in public/data/. */
+export async function fetchKnowledgeGraphData(): Promise<KnowledgeGraphData> {
+  const res = await fetch("/data/knowledge_graph.json", { cache: "no-store" });
+  if (!res.ok) throw new Error(`Failed to load knowledge graph: ${res.status}`);
+  return res.json();
+}
 
 export const domainLabel = (domain: string) => {
   const map: Record<string, string> = {

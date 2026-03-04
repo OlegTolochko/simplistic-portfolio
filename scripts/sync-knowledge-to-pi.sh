@@ -3,7 +3,8 @@
 # sync-knowledge-to-pi.sh
 #
 # Runs on your local Arch machine. Syncs Anki+Obsidian → knowledge_graph.json,
-# then pushes the updated JSON to your Raspberry Pi so the portfolio rebuilds.
+# then pushes the updated JSON to your Raspberry Pi. No rebuild needed — the
+# file is served from public/data/ and fetched at runtime by the client.
 #
 # Usage:
 #   ./scripts/sync-knowledge-to-pi.sh
@@ -41,9 +42,7 @@ fi
 
 PI_HOST="${PI_HOST:-pi}"
 PI_REPO_PATH="${PI_REPO_PATH:-~/simplistic-portfolio}"
-PI_APP_SERVICE="${PI_APP_SERVICE:-}"
-PI_PM2_PROCESS="${PI_PM2_PROCESS:-}"
-DATA_FILE="app/data/knowledge_graph.json"
+DATA_FILE="public/data/knowledge_graph.json"
 
 echo "==> Step 1: Syncing from Anki + Obsidian..."
 cd "$REPO_DIR"
@@ -54,49 +53,8 @@ LINK_COUNT=$(grep -c '"source"' "$DATA_FILE" || true)
 echo "    Generated $NODE_COUNT nodes, $LINK_COUNT links"
 
 echo "==> Step 2: Pushing knowledge_graph.json to $PI_HOST..."
-REMOTE_DATA_DIR="$PI_REPO_PATH/app/data"
+REMOTE_DATA_DIR="$PI_REPO_PATH/public/data"
 ssh "$PI_HOST" "mkdir -p $REMOTE_DATA_DIR"
 scp "$DATA_FILE" "$PI_HOST:$REMOTE_DATA_DIR/knowledge_graph.json"
 
-echo "==> Step 3: Triggering rebuild on Pi..."
-ssh "$PI_HOST" "
-  set -e
-
-  if [ -s \"\$HOME/.nvm/nvm.sh\" ]; then
-    . \"\$HOME/.nvm/nvm.sh\"
-    nvm use --silent default >/dev/null 2>&1 || true
-  fi
-
-  cd $PI_REPO_PATH
-
-  NODE_VERSION=\$(node -v | sed 's/^v//')
-  NODE_MAJOR=\$(echo \"\$NODE_VERSION\" | cut -d. -f1)
-  NODE_MINOR=\$(echo \"\$NODE_VERSION\" | cut -d. -f2)
-
-  if [ \"\$NODE_MAJOR\" -lt 18 ] || { [ \"\$NODE_MAJOR\" -eq 18 ] && [ \"\$NODE_MINOR\" -lt 18 ]; }; then
-    echo \"Remote Node.js is too old: v\$NODE_VERSION (need >= 18.18, recommended 20+)\" >&2
-    exit 1
-  fi
-
-  npm run build
-"
-
-if [[ -n "$PI_APP_SERVICE" ]]; then
-  echo "==> Step 4: Restarting app service on Pi ($PI_APP_SERVICE)..."
-  ssh "$PI_HOST" "systemctl --user restart $PI_APP_SERVICE || sudo systemctl restart $PI_APP_SERVICE"
-fi
-
-if [[ -n "$PI_PM2_PROCESS" ]]; then
-  echo "==> Step 5: Restarting PM2 app on Pi ($PI_PM2_PROCESS)..."
-  ssh "$PI_HOST" "
-    set -e
-    if [ -s \"\$HOME/.nvm/nvm.sh\" ]; then
-      . \"\$HOME/.nvm/nvm.sh\"
-      nvm use --silent default >/dev/null 2>&1 || true
-    fi
-    pm2 restart $PI_PM2_PROCESS
-    pm2 save >/dev/null 2>&1 || true
-  "
-fi
-
-echo "==> Done! Knowledge graph deployed."
+echo "==> Done! Knowledge graph data deployed (no rebuild needed)."

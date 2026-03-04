@@ -4,7 +4,7 @@ import { readFile, writeFile, readdir, stat } from "node:fs/promises";
 import path from "node:path";
 
 const ROOT = process.cwd();
-const TARGET = path.join(ROOT, "app", "data", "knowledge_graph.json");
+const TARGET = path.join(ROOT, "public", "data", "knowledge_graph.json");
 const STRUCTURE_PATH =
   process.env.KNOWLEDGE_STRUCTURE_PATH ??
   path.join(ROOT, "app", "data", "knowledge_structure.json");

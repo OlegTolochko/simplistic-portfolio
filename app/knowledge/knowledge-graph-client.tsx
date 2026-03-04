@@ -3,18 +3,18 @@
 import dynamic from "next/dynamic";
 import { useMemo, useRef, useState, useCallback, useEffect } from "react";
 import {
-  knowledgeGraphData,
+  fetchKnowledgeGraphData,
   domainColor,
   domainColorWithEase,
   domainLabel,
   daysSinceReview,
   type KnowledgeGraphNode,
+  type KnowledgeGraphData,
 } from "@/lib/knowledge-graph";
 
 const ForceGraph2D = dynamic(
   () =>
     import("react-force-graph-2d").catch(() => {
-      // Retry once – handles stale chunk during deploys
       return new Promise<typeof import("react-force-graph-2d")>((resolve) =>
         setTimeout(() => resolve(import("react-force-graph-2d")), 1500)
       );
@@ -24,18 +24,22 @@ const ForceGraph2D = dynamic(
 
 type GN = KnowledgeGraphNode & { val: number; color: string; x?: number; y?: number };
 
-/* Find the max totalCards across all nodes for normalized scaling */
-const maxCards = Math.max(
-  1,
-  ...knowledgeGraphData.nodes.map((n) => n.anki?.totalCards ?? 0)
-);
-const maxCardsLog = Math.log10(maxCards + 1);
-
 export default function KnowledgeGraphClient() {
   const graphRef = useRef<any>(null);
   const [active, setActive] = useState<GN | null>(null);
   const [search, setSearch] = useState("");
   const [dim, setDim] = useState({ w: 1200, h: 700 });
+  const [graphData, setGraphData] = useState<KnowledgeGraphData | null>(null);
+  const [loadError, setLoadError] = useState<string | null>(null);
+
+  /* Fetch graph data at runtime from public/data/ */
+  useEffect(() => {
+    let cancelled = false;
+    fetchKnowledgeGraphData()
+      .then((data) => { if (!cancelled) setGraphData(data); })
+      .catch((err) => { if (!cancelled) setLoadError(err.message); });
+    return () => { cancelled = true; };
+  }, []);
 
   useEffect(() => {
     const measure = () => setDim({ w: window.innerWidth, h: window.innerHeight });
@@ -44,12 +48,20 @@ export default function KnowledgeGraphClient() {
     return () => window.removeEventListener("resize", measure);
   }, []);
 
+  /* Derived scaling constants */
+  const maxCardsLog = useMemo(() => {
+    if (!graphData) return 1;
+    const maxCards = Math.max(1, ...graphData.nodes.map((n) => n.anki?.totalCards ?? 0));
+    return Math.log10(maxCards + 1);
+  }, [graphData]);
+
   /* IDs matching the search — null means "no filter" */
   const matchIds = useMemo(() => {
+    if (!graphData) return null;
     const q = search.trim().toLowerCase();
     if (!q) return null;
     const ids = new Set<string>();
-    for (const n of knowledgeGraphData.nodes) {
+    for (const n of graphData.nodes) {
       if (
         n.label.toLowerCase().includes(q) ||
         n.tags.some((t) => t.toLowerCase().includes(q))
@@ -57,22 +69,21 @@ export default function KnowledgeGraphClient() {
         ids.add(n.id);
     }
     return ids;
-  }, [search]);
+  }, [search, graphData]);
 
   /* Always keep all nodes/links — dim non-matches instead of removing */
   const gd = useMemo(() => {
-    const nodes: GN[] = knowledgeGraphData.nodes.map((node) => {
+    if (!graphData) return { nodes: [] as GN[], links: [] };
+    const nodes: GN[] = graphData.nodes.map((node) => {
       const cards = node.anki?.totalCards ?? 0;
-      // Scale radius with capped logarithmic growth so large decks don't dominate.
-      // ~0-5 cards get visible separation; 50-500+ cards grow slowly.
       const t = maxCardsLog > 0 ? Math.log10(cards + 1) / maxCardsLog : 0;
       const val = 5.5 + t * 5.5;
       const color = domainColorWithEase(node.domain, node.anki?.avgEase);
       return { ...node, val, color };
     });
-    const links = knowledgeGraphData.links.map((l) => ({ ...l }));
+    const links = graphData.links.map((l) => ({ ...l }));
     return { nodes, links };
-  }, []);
+  }, [graphData, maxCardsLog]);
 
   const fitView = useCallback(() => graphRef.current?.zoomToFit(500, 80), []);
 
@@ -125,6 +136,32 @@ export default function KnowledgeGraphClient() {
   }, [gd]);
 
   const linkId = (end: string | any) => (typeof end === "string" ? end : end?.id);
+
+  /* Loading / error states */
+  if (loadError) {
+    return (
+      <div className="flex min-h-screen items-center justify-center bg-[#F3F3F0]">
+        <div className="max-w-md text-center space-y-4 p-8">
+          <h2 className="text-xl font-bold text-sand-900">Failed to load knowledge graph</h2>
+          <p className="text-sm text-sand-700">{loadError}</p>
+          <button
+            onClick={() => window.location.reload()}
+            className="px-4 py-2 rounded-lg bg-sand-300 text-sand-900 text-sm font-medium border border-sand-400 hover:bg-sand-400 transition-colors"
+          >
+            Retry
+          </button>
+        </div>
+      </div>
+    );
+  }
+
+  if (!graphData) {
+    return (
+      <div className="flex min-h-screen items-center justify-center bg-[#F3F3F0]">
+        <p className="text-sand-700 text-sm">Loading knowledge graph…</p>
+      </div>
+    );
+  }
 
   return (
     <div className="relative w-screen h-screen overflow-hidden bg-[#F3F3F0]">
@@ -229,7 +266,7 @@ export default function KnowledgeGraphClient() {
 
       {/* Domain legend */}
       <div className="absolute bottom-4 left-4 flex flex-wrap gap-2 pointer-events-none z-10">
-        {Array.from(new Set(knowledgeGraphData.nodes.map((n) => n.domain))).map((d) => (
+        {Array.from(new Set(graphData.nodes.map((n) => n.domain))).map((d) => (
           <span key={d} className="flex items-center gap-1.5 text-xs text-sand-800">
             <span className="w-2.5 h-2.5 rounded-full" style={{ backgroundColor: domainColor(d) }} />
             {domainLabel(d)}
