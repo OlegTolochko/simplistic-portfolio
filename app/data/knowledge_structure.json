@@ -22,6 +22,11 @@
       "domain": "statistics"
     },
     {
+      "id": "math",
+      "label": "Mathematics",
+      "domain": "math"
+    },
+    {
       "id": "probability-theory",
       "label": "Probability Theory",
       "domain": "statistics",
@@ -102,8 +107,8 @@
     {
       "id": "rnns",
       "label": "RNNs",
-      "domain": "nlp",
-      "parents": ["language-modeling", "deep-learning"]
+      "domain": "deep-learning",
+      "parents": ["deep-learning"]
     },
     {
       "id": "vision-transformers",
@@ -214,8 +219,8 @@
     {
       "id": "dp",
       "label": "Dynamic Programming",
-      "domain": "statistics",
-      "parents": ["statistics"]
+      "domain": "math",
+      "parents": ["math"]
     },
     {
       "id": "viterbi",
@@ -341,7 +346,7 @@
       "id": "n-gram-lms",
       "label": "N-gram Language Models",
       "domain": "nlp",
-      "parents": ["language-modeling", "markov-model"]
+      "parents": ["language-modeling"]
     },
     {
       "id": "mle",
@@ -384,6 +389,288 @@
       "label": "RST Parsing",
       "domain": "nlp",
       "parents": ["discourse-coherence"]
+    },
+    {
+      "id": "bleu",
+      "label": "BLEU",
+      "domain": "nlp",
+      "parents": ["machine-translation", "evaluation-metrics"]
+    },
+    {
+      "id": "perplexity",
+      "label": "Perplexity",
+      "domain": "nlp",
+      "parents": ["language-modeling", "evaluation-metrics"]
+    },
+    {
+      "id": "logistic-regression",
+      "label": "Logistic Regression",
+      "domain": "statistics",
+      "parents": ["statistics", "text-classification"]
+    },
+    {
+      "id": "beam-search",
+      "label": "Beam Search",
+      "domain": "nlp",
+      "parents": ["machine-translation", "language-modeling"]
+    },
+    {
+      "id": "llm-training",
+      "label": "LLM Training",
+      "domain": "nlp",
+      "parents": ["llms", "deep-learning"]
+    },
+    {
+      "id": "cross-attention",
+      "label": "Cross-Attention",
+      "domain": "deep-learning",
+      "parents": ["attention", "transformers"]
+    },
+    {
+      "id": "bio-tagging",
+      "label": "BIO Tagging",
+      "domain": "nlp",
+      "parents": ["sequence-labeling", "named-entity-recognition"]
+    },
+    {
+      "id": "object-detection",
+      "label": "Object Detection",
+      "domain": "computer-vision",
+      "parents": ["computer-vision", "cnns"]
+    },
+    {
+      "id": "object-tracking",
+      "label": "Object Tracking",
+      "domain": "computer-vision",
+      "parents": ["computer-vision"]
+    },
+    {
+      "id": "optical-flow",
+      "label": "Optical Flow",
+      "domain": "computer-vision",
+      "parents": ["computer-vision", "object-tracking"]
+    },
+    {
+      "id": "taylor-expansion",
+      "label": "Taylor Expansion",
+      "domain": "math",
+      "parents": ["math"]
+    },
+    {
+      "id": "triplet-loss",
+      "label": "Triplet Loss",
+      "domain": "deep-learning",
+      "parents": ["optimization", "object-tracking"]
+    },
+    {
+      "id": "cnns",
+      "label": "CNNs",
+      "domain": "deep-learning",
+      "parents": ["deep-learning"]
+    },
+    {
+      "id": "image-segmentation",
+      "label": "Image Segmentation",
+      "domain": "computer-vision",
+      "parents": ["computer-vision", "cnns"]
+    },
+    {
+      "id": "semantic-segmentation",
+      "label": "Semantic Segmentation",
+      "domain": "computer-vision",
+      "parents": ["image-segmentation"]
+    },
+    {
+      "id": "instance-segmentation",
+      "label": "Instance Segmentation",
+      "domain": "computer-vision",
+      "parents": ["image-segmentation", "object-detection"]
+    },
+    {
+      "id": "vos",
+      "label": "Video Object Segmentation",
+      "domain": "computer-vision",
+      "parents": ["instance-segmentation", "object-tracking"]
+    },
+    {
+      "id": "min-cost-max-flow",
+      "label": "Min-Cost Max-Flow",
+      "domain": "math",
+      "parents": ["math", "object-tracking"]
+    },
+    {
+      "id": "ap",
+      "label": "Average Precision",
+      "domain": "computer-vision",
+      "parents": ["evaluation-metrics", "object-detection"]
+    },
+    {
+      "id": "map",
+      "label": "Mean Average Precision",
+      "domain": "computer-vision",
+      "parents": ["evaluation-metrics", "object-detection", "ap"]
+    },
+    {
+      "id": "iou",
+      "label": "Intersection over Union",
+      "domain": "computer-vision",
+      "parents": ["evaluation-metrics", "object-detection"]
+    },
+    {
+      "id": "template-matching",
+      "label": "Template Matching",
+      "domain": "computer-vision",
+      "parents": ["computer-vision"]
+    },
+    {
+      "id": "hinge-loss",
+      "label": "Hinge Loss",
+      "domain": "deep-learning",
+      "parents": ["optimization", "text-classification"]
+    },
+    {
+      "id": "k-means",
+      "label": "K-Means",
+      "domain": "math",
+      "parents": ["math"]
+    },
+    {
+      "id": "spectral-clustering",
+      "label": "Spectral Clustering",
+      "domain": "math",
+      "parents": ["math", "k-means"]
+    },
+    {
+      "id": "ncut",
+      "label": "Normalized Cut",
+      "domain": "math",
+      "parents": ["spectral-clustering", "math"]
+    },
+    {
+      "id": "nms",
+      "label": "Non-Maximum Suppression",
+      "domain": "computer-vision",
+      "parents": ["object-detection"]
+    },
+    {
+      "id": "giou",
+      "label": "Generalized IoU",
+      "domain": "computer-vision",
+      "parents": ["iou", "evaluation-metrics"]
+    },
+    {
+      "id": "two-stage-detectors",
+      "label": "Two-Stage Detectors",
+      "domain": "computer-vision",
+      "parents": ["object-detection"]
+    },
+    {
+      "id": "single-stage-detectors",
+      "label": "Single-Stage Detectors",
+      "domain": "computer-vision",
+      "parents": ["object-detection"]
+    },
+    {
+      "id": "focal-loss",
+      "label": "Focal Loss",
+      "domain": "computer-vision",
+      "parents": ["single-stage-detectors", "optimization"]
+    },
+    {
+      "id": "r-cnn",
+      "label": "R-CNN",
+      "domain": "computer-vision",
+      "parents": ["two-stage-detectors"],
+      "links": [
+        "https://arxiv.org/abs/1311.2524 | R-CNN Paper"
+      ]
+    },
+    {
+      "id": "faster-r-cnn",
+      "label": "Faster R-CNN",
+      "domain": "computer-vision",
+      "parents": ["two-stage-detectors"],
+      "links": [
+        "https://arxiv.org/abs/1506.01497 | Faster R-CNN Paper"
+      ]
+    },
+    {
+      "id": "mask-r-cnn",
+      "label": "Mask R-CNN",
+      "domain": "computer-vision",
+      "parents": ["instance-segmentation", "two-stage-detectors"],
+      "links": [
+        "https://arxiv.org/abs/1703.06870 | Mask R-CNN Paper"
+      ]
+    },
+    {
+      "id": "roialign",
+      "label": "RoIAlign",
+      "domain": "computer-vision",
+      "parents": ["mask-r-cnn", "instance-segmentation"]
+    },
+    {
+      "id": "pointrend",
+      "label": "PointRend",
+      "domain": "computer-vision",
+      "parents": ["instance-segmentation", "mask-r-cnn"],
+      "links": [
+        "https://arxiv.org/abs/1912.08193 | PointRend Paper"
+      ]
+    },
+    {
+      "id": "detr",
+      "label": "DETR",
+      "domain": "computer-vision",
+      "parents": ["object-detection", "transformers"],
+      "links": [
+        "https://arxiv.org/abs/2005.12872 | DETR Paper"
+      ]
+    },
+    {
+      "id": "bipartite-matching",
+      "label": "Bipartite Matching",
+      "domain": "math",
+      "parents": ["math", "detr"]
+    },
+    {
+      "id": "overfeat",
+      "label": "OverFeat",
+      "domain": "computer-vision",
+      "parents": ["single-stage-detectors"],
+      "links": [
+        "https://arxiv.org/abs/1312.6229 | OverFeat Paper"
+      ]
+    },
+    {
+      "id": "solov2",
+      "label": "SOLOv2",
+      "domain": "computer-vision",
+      "parents": ["instance-segmentation", "single-stage-detectors"],
+      "links": [
+        "https://arxiv.org/abs/2003.10152 | SOLOv2 Paper"
+      ]
+    },
+    {
+      "id": "tracktor",
+      "label": "Tracktor",
+      "domain": "computer-vision",
+      "parents": ["object-tracking"],
+      "links": [
+        "https://arxiv.org/abs/1903.05625 | Tracktor Paper"
+      ]
+    },
+    {
+      "id": "viola-jones",
+      "label": "Viola-Jones",
+      "domain": "computer-vision",
+      "parents": ["object-detection"]
+    },
+    {
+      "id": "panoptic-segmentation",
+      "label": "Panoptic Segmentation",
+      "domain": "computer-vision",
+      "parents": ["semantic-segmentation", "instance-segmentation"]
     }
   ],
   "edges": [
@@ -436,6 +723,12 @@
       "weight": 1
     },
     {
+      "source": "cfg",
+      "target": "cnf",
+      "kind": "related",
+      "weight": 1
+    },
+    {
       "source": "tf-idf",
       "target": "text-classification",
       "kind": "related",
@@ -448,20 +741,50 @@
       "weight": 1
     },
     {
-      "source": "lora",
-      "target": "transformers",
+      "source": "bleu",
+      "target": "chrf",
       "kind": "related",
       "weight": 1
     },
     {
-      "source": "n-gram-lms",
-      "target": "hmm",
+      "source": "ap",
+      "target": "map",
       "kind": "related",
       "weight": 1
     },
     {
-      "source": "cfg",
-      "target": "cnf",
+      "source": "iou",
+      "target": "giou",
+      "kind": "related",
+      "weight": 1
+    },
+    {
+      "source": "r-cnn",
+      "target": "faster-r-cnn",
+      "kind": "related",
+      "weight": 1
+    },
+    {
+      "source": "faster-r-cnn",
+      "target": "mask-r-cnn",
+      "kind": "related",
+      "weight": 1
+    },
+    {
+      "source": "single-stage-detectors",
+      "target": "two-stage-detectors",
+      "kind": "related",
+      "weight": 1
+    },
+    {
+      "source": "object-detection",
+      "target": "object-tracking",
+      "kind": "related",
+      "weight": 1
+    },
+    {
+      "source": "ncut",
+      "target": "spectral-clustering",
       "kind": "related",
       "weight": 1
     }
