@@ -1,5 +1,16 @@
+import createMDX from "@next/mdx";
+import remarkGfm from "remark-gfm";
+
+const withMDX = createMDX({
+  extension: /\.mdx?$/,
+  options: {
+    remarkPlugins: [remarkGfm],
+  },
+});
+
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  pageExtensions: ["ts", "tsx", "md", "mdx"],
   images: {
     dangerouslyAllowSVG: true,
     remotePatterns: [{ protocol: "https", hostname: "img.shields.io" }],
@@ -22,4 +33,4 @@ const nextConfig = {
   },
 };
 
-export default nextConfig;
+export default withMDX(nextConfig);
