@@ -1,6 +1,13 @@
 import type { MDXComponents } from "mdx/types";
 import Link from "next/link";
 
+import Aside from "@/components/mdx/aside";
+import Callout from "@/components/mdx/callout";
+import Figure from "@/components/mdx/figure";
+import Metric from "@/components/mdx/metric";
+import TokenHeatmap from "@/components/mdx/token-heatmap";
+import TokenTable from "@/components/mdx/token-table";
+
 function ResponsiveTable({ children }: React.TableHTMLAttributes<HTMLTableElement>) {
   return (
     <div className="my-8 overflow-x-auto rounded-2xl border border-sand-300 bg-sand-50 shadow-sm">
@@ -67,9 +74,13 @@ const components: MDXComponents = {
     </pre>
   ),
   code: ({ children, ...props }) => (
-    <code className="rounded bg-sand-200 px-1.5 py-0.5 text-[0.95em] text-sand-900" {...props}>
-      {children}
-    </code>
+    typeof props.className === "string" && props.className.includes("language-") ? (
+      <code {...props}>{children}</code>
+    ) : (
+      <code className="rounded bg-sand-200 px-1.5 py-0.5 text-[0.95em] text-sand-900" {...props}>
+        {children}
+      </code>
+    )
   ),
   blockquote: ({ children, ...props }) => (
     <blockquote
@@ -79,6 +90,12 @@ const components: MDXComponents = {
       {children}
     </blockquote>
   ),
+  Aside,
+  Callout,
+  Figure,
+  Metric,
+  TokenHeatmap,
+  TokenTable,
 };
 
 export function useMDXComponents(): MDXComponents {
