@@ -1,0 +1,47 @@
+---
+title: Trajectory Embedding Learning for Subspace Clustering
+summary: A research-heavy bachelor thesis on motion segmentation that re-examined benchmark methodology and introduced an attention-based architectural extension.
+teaser: A deep learning research project investigating motion segmentation, reproducible evaluation, and a Transformer-based extension for stronger clustering quality.
+publishedAt: "2025-07-01"
+featured: true
+order: 2
+tags:
+  - research
+  - computer-vision
+  - transformers
+stack:
+  - Python
+  - PyTorch
+  - Numpy
+  - Typst
+heroImage: /project_2/model_architecture.png
+cardImage: /project_2/model_architecture.png
+repoUrl: https://github.com/OlegTolochko/trajectory-subspace-clustering
+liveUrl: /project_2/thesis.pdf
+---
+
+## Overview
+
+This project started as a bachelor thesis on deep learning-based motion segmentation and gradually became a deeper investigation into how much current benchmark practice can distort the conclusions of a paper.
+
+The work includes a faithful re-implementation of a strong CVPR baseline, a stricter evaluation protocol, extensive augmentation experiments, and a cross-trajectory attention extension that improved clustering quality.
+
+## The Benchmark Problem
+
+One of the most important findings was that the standard Hopkins155 setup can leak information between train and test splits because related sequences are not always separated carefully. The dataset also contains many stationary or low-information points that can inflate apparent performance.
+
+To address that, the thesis introduced a parent-wise splitting protocol together with a cross-validation strategy that avoids the most obvious leakage path. Once that stricter protocol was in place, reported generalization looked much less optimistic, but much more believable.
+
+## Technical Implementation
+
+The implementation is written in PyTorch and centers on a 1D CNN feature extractor plus a subspace estimator that learns basis functions for motion representation. The experimental workflow used Weights & Biases for tracking runs and Bayesian optimization for tuning.
+
+That setup made it possible to compare architectural changes and augmentation strategies under a reproducible pipeline rather than a collection of loosely comparable experiments.
+
+## Novel Contributions
+
+Two additions mattered most.
+
+First, the project tested SimCLR-style augmentations such as temporal shifting and occlusion to measure how contrastive-style intuition transfers to this clustering setting.
+
+Second, it added a Transformer encoder layer so trajectories can exchange information before clustering. That cross-trajectory attention mechanism produced a statistically significant improvement over the baseline model and helped show that interaction between trajectories is useful rather than incidental.

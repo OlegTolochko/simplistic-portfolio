@@ -1,0 +1,51 @@
+---
+title: BrawlAI
+summary: An AI-assisted drafting tool for Brawl Stars ranked play that predicts stronger picks from the full draft context.
+teaser: An AI based solution for optimizing ranked drafting sequences in the mobile game Brawl Stars by Supercell.
+publishedAt: "2025-01-15"
+featured: true
+order: 1
+tags:
+  - ai
+  - transformers
+  - full-stack
+stack:
+  - React
+  - TypeScript
+  - Tailwind
+  - Next
+  - Python
+  - FastAPI
+  - PyTorch
+  - PostgreSQL
+heroImage: /project_1/brawlai_cropped.webp
+cardImage: /project_1/brawlai.webp
+repoUrl: https://github.com/ANDI-neV/brawl-ai
+liveUrl: https://brawl-ai.com/
+---
+
+## Overview
+
+BrawlAI is a drafting assistant built for ranked matches in **Brawl Stars**. The main goal was to move beyond isolated win-rate heuristics and instead evaluate a pick in the full context of the draft: already selected brawlers, team side, and map-specific constraints.
+
+The end result is a system that can rank the next best options at each draft step, which makes it useful both as a research project and as a practical tool for competitive players.
+
+## Technical Implementation
+
+The stack combines a PyTorch training pipeline with a FastAPI backend and a Next.js frontend. PostgreSQL stores user-facing data and match-related information, while the frontend presents the draft state and model suggestions in a responsive interface.
+
+From an engineering perspective, the interesting part was not just serving a model, but structuring the input so the prediction remains meaningful while the draft is still incomplete.
+
+## Model Architecture and Training
+
+The training data comes from the public Brawl Stars API. Earlier versions of the project treated the draft as a flattened fixed-size feature vector, but that quickly became awkward because drafting is inherently sequential and variable in length.
+
+The final model uses a Transformer-style architecture that reads the evolving draft state and produces a score distribution over the full brawler roster. Instead of evaluating every candidate in separate forward passes, the model emits one vector containing the predicted usefulness of every possible next pick.
+
+That shift made the system both more expressive and more practical to deploy.
+
+## Main Challenges
+
+The biggest architectural challenge was choosing a model that matched the structure of the problem. A simpler multilayer perceptron could produce rough signals, but it struggled with variable-length drafts and made next-pick inference inefficient.
+
+There was also a large amount of data work behind the scenes: cleaning match records, encoding draft position, integrating map context, and making sure the training objective matched the user-facing recommendation task.

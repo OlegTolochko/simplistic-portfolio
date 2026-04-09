@@ -1,0 +1,42 @@
+---
+title: douni2work
+summary: A small but useful monitoring system that tracks uptime and response-time behavior for a university website.
+teaser: Uptime and response-time tracker for the University website uni2work.de.
+publishedAt: "2024-06-15"
+featured: true
+order: 3
+tags:
+  - monitoring
+  - full-stack
+  - web
+stack:
+  - React
+  - JavaScript
+  - Tailwind
+  - Vite
+  - Python
+  - Flask
+  - SQLite
+heroImage: /project_3/uni2work_dark_cropped.webp
+cardImage: /project_3/uni2work_dark.webp
+repoUrl: https://github.com/OlegTolochko/douni2work
+liveUrl: https://douni2work.de
+---
+
+## Overview
+
+douni2work is a lightweight monitoring system for the LMU service **uni2work.de**. The project focuses on a narrow problem, but it does so in a way that makes failures immediately visible and historically inspectable.
+
+The core product value is simple: if the site goes down or slows down, the dashboard should show it clearly.
+
+## Features
+
+The system tracks uptime over time and records response-time measurements that can be displayed later in the frontend. This gives a small but useful historical view of reliability instead of a single current-status indicator.
+
+That historical perspective was the main reason to build it as a proper application rather than a one-off script.
+
+## Technical Implementation
+
+The backend is built with Flask and periodically measures request performance before persisting the results in SQLite. The frontend uses React, Vite, JavaScript, and TailwindCSS to present the accumulated data.
+
+Although the project is much smaller than the research-heavy entries in this portfolio, it is a good example of end-to-end ownership: backend scheduling, persistence, data shaping, and frontend visualization all live in the same system.
