@@ -1,10 +1,18 @@
 "use client";
 import { Dispatch, SetStateAction, useState, useEffect, ComponentType } from "react";
 import Image from "next/image";
+import Link from "next/link";
 import { AnimatePresence, motion } from "framer-motion";
 import { Folders, Layers3, AlignRight, X, LucideProps } from "lucide-react";
 import { header_icon } from "../constants/project_constants";
 import { usePortfolioContext } from "../context/ProjectContext";
+
+type NavItem = {
+  icon: ComponentType<LucideProps>;
+  text: string;
+  section?: string;
+  href?: string;
+};
 
 const Header = () => {
   const [open, setOpen] = useState(false);
@@ -29,8 +37,8 @@ const Header = () => {
     setOpen(false);
   };
 
-  const navItems = [
-    // { icon: Folders, text: "Blog", section: "blog" },
+  const navItems: NavItem[] = [
+    { icon: Folders, text: "Blog", href: "/blog" },
     { icon: Folders, text: "Projects", section: "projects" },
     { icon: Layers3, text: "Skills", section: "skills" },
   ];
@@ -79,34 +87,65 @@ const Header = () => {
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: index * 0.1 + 0.3 }}
                   >
-                    <motion.button
-                      className="text-sm font-medium flex items-center gap-2 px-4 py-2 rounded-lg cursor-pointer transition-all duration-200 relative overflow-hidden group"
-                      whileHover={{ scale: 1.05 }}
-                      whileTap={{ scale: 0.95 }}
-                      onClick={() => scrollToSection(item.section)}
-                    >
-                      <div className="absolute inset-0 bg-gradient-to-r from-blue-500/10 to-blue-600/10 scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left rounded-lg"></div>
+                    {item.href ? (
+                      <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+                        <Link
+                          href={item.href}
+                          className="text-sm font-medium flex items-center gap-2 px-4 py-2 rounded-lg cursor-pointer transition-all duration-200 relative overflow-hidden group"
+                        >
+                          <div className="absolute inset-0 bg-gradient-to-r from-blue-500/10 to-blue-600/10 scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left rounded-lg"></div>
 
-                      <motion.div
-                        className="relative z-10 flex items-center gap-2"
-                        whileHover={{ x: 2 }}
-                        transition={{
-                          type: "spring",
-                          stiffness: 400,
-                          damping: 17,
-                        }}
-                      >
-                        <item.icon
-                          size={18}
-                          className="text-gray-600 group-hover:text-blue-600 transition-colors duration-200"
-                        />
-                        <span className="text-gray-700 group-hover:text-blue-600 transition-colors duration-200">
-                          {item.text}
-                        </span>
+                          <motion.div
+                            className="relative z-10 flex items-center gap-2"
+                            whileHover={{ x: 2 }}
+                            transition={{
+                              type: "spring",
+                              stiffness: 400,
+                              damping: 17,
+                            }}
+                          >
+                            <item.icon
+                              size={18}
+                              className="text-gray-600 group-hover:text-blue-600 transition-colors duration-200"
+                            />
+                            <span className="text-gray-700 group-hover:text-blue-600 transition-colors duration-200">
+                              {item.text}
+                            </span>
+                          </motion.div>
+
+                          <div className="absolute bottom-0 left-0 w-full h-0.5 bg-gradient-to-r from-blue-500 to-blue-600 scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></div>
+                        </Link>
                       </motion.div>
+                    ) : (
+                      <motion.button
+                        className="text-sm font-medium flex items-center gap-2 px-4 py-2 rounded-lg cursor-pointer transition-all duration-200 relative overflow-hidden group"
+                        whileHover={{ scale: 1.05 }}
+                        whileTap={{ scale: 0.95 }}
+                        onClick={() => item.section && scrollToSection(item.section)}
+                      >
+                        <div className="absolute inset-0 bg-gradient-to-r from-blue-500/10 to-blue-600/10 scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left rounded-lg"></div>
 
-                      <div className="absolute bottom-0 left-0 w-full h-0.5 bg-gradient-to-r from-blue-500 to-blue-600 scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></div>
-                    </motion.button>
+                        <motion.div
+                          className="relative z-10 flex items-center gap-2"
+                          whileHover={{ x: 2 }}
+                          transition={{
+                            type: "spring",
+                            stiffness: 400,
+                            damping: 17,
+                          }}
+                        >
+                          <item.icon
+                            size={18}
+                            className="text-gray-600 group-hover:text-blue-600 transition-colors duration-200"
+                          />
+                          <span className="text-gray-700 group-hover:text-blue-600 transition-colors duration-200">
+                            {item.text}
+                          </span>
+                        </motion.div>
+
+                        <div className="absolute bottom-0 left-0 w-full h-0.5 bg-gradient-to-r from-blue-500 to-blue-600 scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></div>
+                      </motion.button>
+                    )}
                   </motion.div>
                 ))}
               </div>
@@ -154,7 +193,9 @@ const Header = () => {
                                 setOpen={setOpen}
                                 Icon={item.icon}
                                 text={item.text}
-                                onClick={() => scrollToSection(item.section)}
+                                section={item.section}
+                                href={item.href}
+                                onClick={() => item.section && scrollToSection(item.section)}
                               />
                             </motion.div>
                           ))}
@@ -176,23 +217,19 @@ const Option = ({
   text,
   Icon,
   setOpen,
+  section,
+  href,
   onClick,
 }: {
   text: string;
   Icon: ComponentType<LucideProps>;
   setOpen: Dispatch<SetStateAction<boolean>>;
+  section?: string;
+  href?: string;
   onClick: () => void;
 }) => {
-  return (
-    <motion.button
-      onClick={() => {
-        setOpen(false);
-        onClick();
-      }}
-      className="flex items-center gap-3 w-full px-4 py-3 text-sm font-medium whitespace-nowrap hover:bg-gradient-to-r hover:from-blue-50 hover:to-blue-100 text-gray-700 hover:text-blue-600 transition-all duration-200 cursor-pointer group"
-      whileHover={{ x: 4 }}
-      whileTap={{ scale: 0.98 }}
-    >
+  const content = (
+    <>
       <motion.div
         whileHover={{ scale: 1.1 }}
         transition={{ type: "spring", stiffness: 400, damping: 17 }}
@@ -203,6 +240,34 @@ const Option = ({
         />
       </motion.div>
       <span>{text}</span>
+    </>
+  );
+
+  if (href) {
+    return (
+      <Link
+        href={href}
+        onClick={() => setOpen(false)}
+        className="flex items-center gap-3 w-full px-4 py-3 text-sm font-medium whitespace-nowrap hover:bg-gradient-to-r hover:from-blue-50 hover:to-blue-100 text-gray-700 hover:text-blue-600 transition-all duration-200 cursor-pointer group"
+      >
+        {content}
+      </Link>
+    );
+  }
+
+  return (
+    <motion.button
+      onClick={() => {
+        setOpen(false);
+        if (section) {
+          onClick();
+        }
+      }}
+      className="flex items-center gap-3 w-full px-4 py-3 text-sm font-medium whitespace-nowrap hover:bg-gradient-to-r hover:from-blue-50 hover:to-blue-100 text-gray-700 hover:text-blue-600 transition-all duration-200 cursor-pointer group"
+      whileHover={{ x: 4 }}
+      whileTap={{ scale: 0.98 }}
+    >
+      {content}
     </motion.button>
   );
 };
