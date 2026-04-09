@@ -129,6 +129,10 @@ export const badge_urls: BadgeUrl[] = [
   {
     name: "numpy",
     url: "https://img.shields.io/badge/-Numpy-013243?&logo=NumPy&logoColor=white&style=for-the-badge",
+  },
+  {
+    name: "typst",
+    url: "https://img.shields.io/badge/Typst-239DAD?style=for-the-badge&logo=typst&logoColor=white",
   }
 ];
 

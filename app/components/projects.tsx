@@ -1,7 +1,6 @@
 "use client";
 import React, { useState, useRef, useEffect, useCallback } from "react";
 import { motion, useInView } from "framer-motion";
-import Link from "next/link";
 import Project from "./project";
 import { ChevronDown, ChevronUp } from "lucide-react";
 
@@ -25,7 +24,7 @@ const Projects = ({ projects }: { projects: HomepageProjectCard[] }) => {
   const firstRowProjects = projects.slice(0, 2);
   const remainingProjects = projects.slice(2);
 
-  const PEEK_HEIGHT = 128;
+  const PEEK_HEIGHT = 112;
   const HOVER_PADDING = 48;
 
   useEffect(() => {
@@ -126,7 +125,7 @@ const Projects = ({ projects }: { projects: HomepageProjectCard[] }) => {
             <div ref={buttonRef} className="flex justify-center relative z-10 mt-2 mb-8">
               <motion.button
                 onClick={handleToggle}
-                className="flex items-center gap-2 px-6 py-3 bg-sand-200 hover:bg-sand-300 border-2 border-sand-500 rounded-full font-medium transition-colors shadow-lg"
+                className="flex items-center gap-2 px-6 py-3 bg-sand-200 hover:bg-sand-300 border-2 border-sand-500 rounded-full font-medium text-stone-900 transition-colors shadow-lg"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
               >
@@ -143,15 +142,6 @@ const Projects = ({ projects }: { projects: HomepageProjectCard[] }) => {
             </div>
           </div>
         )}
-
-        <div className="mb-8 flex justify-center">
-          <Link
-            href="/projects"
-            className="rounded-full border-2 border-sand-500 bg-sand-200 px-6 py-3 font-medium text-sand-900 transition-colors hover:bg-sand-300"
-          >
-            Browse All Projects
-          </Link>
-        </div>
       </div>
     </div>
   );

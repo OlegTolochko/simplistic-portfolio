@@ -3,6 +3,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ArrowUpRight, Github } from "lucide-react";
 
+import SkillBadges from "@/app/components/skill-badges";
 import ArticleShell from "@/components/mdx/article-shell";
 import { getAllProjects, getProjectBySlug, loadProjectModule } from "@/lib/content";
 
@@ -24,7 +25,7 @@ function ProjectLink({
   return (
     <Link
       href={href}
-      className="inline-flex items-center gap-2 rounded-full border border-sand-400 bg-sand-50 px-4 py-2 text-sm font-medium text-sand-900 transition-colors hover:bg-sand-100"
+      className="inline-flex items-center gap-2 rounded-full border border-sand-400 bg-white px-4 py-2 text-sm font-medium text-stone-900 shadow-sm transition-colors hover:bg-sand-100"
       rel={href.startsWith("http") ? "noreferrer" : undefined}
       target={href.startsWith("http") ? "_blank" : undefined}
     >
@@ -94,16 +95,7 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
         }
         preamble={
           project.stack.length > 0 ? (
-            <div className="flex flex-wrap gap-2">
-              {project.stack.map((item) => (
-                <span
-                  key={item}
-                  className="rounded-full border border-sand-300 bg-sand-100 px-3 py-1 text-sm font-medium text-sand-700"
-                >
-                  {item}
-                </span>
-              ))}
-            </div>
+            <SkillBadges skills={project.stack} badgeHeight={30} className="gap-2" />
           ) : null
         }
       >

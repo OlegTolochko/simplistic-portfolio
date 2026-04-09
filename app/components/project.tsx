@@ -9,7 +9,7 @@ import {
 } from "framer-motion";
 import { twMerge } from "tailwind-merge";
 import { useRouter } from "next/navigation";
-import { badge_urls } from "../constants/project_constants";
+import SkillBadges from "./skill-badges";
 
 type BlockProps = {
   className?: string;
@@ -89,13 +89,11 @@ const Project: React.FC<ProjectProps> = ({
 
   const ref = React.useRef(null);
   const [isMobile, setIsMobile] = useState(false);
-  const [isTablet, setIsTablet] = useState(false);
   const isInView = useInView(ref, { once: false, amount: 0.1 });
 
   useEffect(() => {
     const checkScreenSize = () => {
       setIsMobile(window.innerWidth <= 768); // 768px is tailwind's md breakpoint
-      setIsTablet(window.innerWidth >= 768 && window.innerWidth < 1024);
     };
 
     checkScreenSize();
@@ -155,7 +153,7 @@ const Project: React.FC<ProjectProps> = ({
     <Block
       skipEntryAnimation={skipEntryAnimation}
       forceInView={forceInView}
-      className="rounded-3xl flex flex-col border-2 p-4 border-sand-500 bg-sand-200 col-span-1 overflow-hidden w-full h-full"
+      className="rounded-[2rem] flex flex-col border-2 p-3.5 md:p-4 border-sand-500 bg-gradient-to-br from-sand-160 to-sand-200 col-span-1 overflow-hidden w-full h-full"
       onHoverStart={() => !isMobile && handleHoverStart()}
       onHoverEnd={() => !isMobile && handleHoverEnd()}
       whileHover={{
@@ -172,40 +170,22 @@ const Project: React.FC<ProjectProps> = ({
       onClick={handleClick}
     >
       <div className="flex-1">
-        <h1 className="text-3xl md:text-5xl font-bold text-black">{name}</h1>
-        <p className="text-l mt-2 font-regular">{description}</p>
-        <div className="flex flex-wrap gap-2 pt-4">
-          {skills.map((skill, index) => {
-            const skill_badge = badge_urls.find(
-              (badge_skill) => badge_skill.name === skill.toLowerCase(),
-            );
-            if (skill_badge && skill_badge.url) {
-              return (
-                <Image
-                  key={`${skill_badge.name}- ${index}`}
-                  className="rounded-lg w-auto"
-                  src={skill_badge.url}
-                  alt={skill + "_badge"}
-                  height={30}
-                  width={0}
-                  style={{ width: "auto" }}
-                />
-              );
-            }
-            return null;
-          })}
-        </div>
+        <h1 className="text-[1.9rem] leading-none md:text-[2.7rem] font-bold text-stone-950">
+          {name}
+        </h1>
+        <p className="mt-2.5 text-[1.02rem] leading-7 text-stone-700">{description}</p>
+        <SkillBadges skills={skills} badgeHeight={28} className="gap-2 pt-4" />
       </div>
 
-      <div className="relative w-full md:w-auto h-[230px] mt-4 md:mt-0 flex justify-end items-end">
+      <div className="relative w-full md:w-auto h-[205px] mt-4 md:mt-0 flex justify-end items-end">
         <motion.div
           ref={ref}
-          className={`relative left-10 top-12 w-[350px] h-full rounded-tl-xl`}
+          className="relative left-6 top-8 w-[305px] md:left-8 md:top-10 md:w-[320px] h-full rounded-tl-[1.35rem]"
           animate={controls}
           style={{ scale, rotate, y, boxShadow }}
         >
           <Image
-            className="rounded-tl-xl"
+            className="rounded-tl-[1.35rem]"
             src={img_url}
             fill
             style={{ objectFit: "cover" }}

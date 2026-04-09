@@ -5,10 +5,10 @@ import Skills from "./components/skills";
 import Education from "./components/education";
 import Bottom from "./components/bottom";
 import Experience from "./components/experience";
-import { getFeaturedProjects } from "@/lib/content";
+import { getAllProjects } from "@/lib/content";
 
 export default function Home() {
-  const featuredProjects = getFeaturedProjects(3).map((project) => ({
+  const homepageProjects = getAllProjects().map((project) => ({
     slug: project.slug,
     name: project.title,
     description: project.teaser,
@@ -20,7 +20,7 @@ export default function Home() {
     <main className="max-w-[1440px] mx-auto px-[30px]">
       <Header />
       <Body />
-      <Projects projects={featuredProjects} />
+      <Projects projects={homepageProjects} />
       <Education />
       <Experience />
       <Skills />

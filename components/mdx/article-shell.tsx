@@ -44,16 +44,16 @@ export default function ArticleShell({
           <h1 className="max-w-3xl text-4xl font-black leading-tight text-sand-950 sm:text-5xl">
             {title}
           </h1>
-          <p className="max-w-3xl text-lg leading-8 text-sand-700 sm:text-xl">{summary}</p>
+          <p className="max-w-3xl text-lg leading-8 text-stone-700 sm:text-xl">{summary}</p>
         </div>
 
-        <div className="flex flex-wrap items-center gap-3 text-sm text-sand-600">
+        <div className="flex flex-wrap items-center gap-3 text-sm font-medium text-stone-600">
           <span>{formatDate(publishedAt)}</span>
-          <span className="text-sand-400">/</span>
+          <span className="text-stone-400">/</span>
           <span>{readingTimeMinutes} min read</span>
           {updatedAt ? (
             <>
-              <span className="text-sand-400">/</span>
+              <span className="text-stone-400">/</span>
               <span>Updated {formatDate(updatedAt)}</span>
             </>
           ) : null}
@@ -64,7 +64,7 @@ export default function ArticleShell({
             {tags.map((tag) => (
               <span
                 key={tag}
-                className="rounded-full border border-sand-300 bg-sand-50 px-3 py-1 text-sm font-medium text-sand-700"
+                className="rounded-full border border-blue-200 bg-blue-50 px-3 py-1 text-sm font-medium text-blue-800"
               >
                 {tag}
               </span>
@@ -92,14 +92,14 @@ export default function ArticleShell({
 
       <div
         className="
-          mt-12 text-[17px] leading-8 text-sand-800
+          mt-12 text-[17px] leading-8 text-stone-800
           [&_h2]:mt-14 [&_h2]:text-3xl [&_h2]:font-bold [&_h2]:leading-tight [&_h2]:text-sand-950
           [&_h3]:mt-10 [&_h3]:text-2xl [&_h3]:font-semibold [&_h3]:leading-tight [&_h3]:text-sand-950
           [&_h4]:mt-8 [&_h4]:text-xl [&_h4]:font-semibold [&_h4]:text-sand-950
-          [&_p]:my-6 [&_p]:leading-8
+          [&_p]:my-6 [&_p]:leading-8 [&_p]:text-stone-800
           [&_ul]:my-6 [&_ul]:list-disc [&_ul]:pl-6
           [&_ol]:my-6 [&_ol]:list-decimal [&_ol]:pl-6
-          [&_li]:my-2
+          [&_li]:my-2 [&_li]:text-stone-800
           [&_hr]:my-12 [&_hr]:border-sand-300
           [&_strong]:font-semibold [&_strong]:text-sand-950
         "
