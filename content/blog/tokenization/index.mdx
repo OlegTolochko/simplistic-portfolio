@@ -1,0 +1,73 @@
+---
+title: Tokenization Is Part of the Model
+summary: Tokenization is often treated like preprocessing, but in practice it shapes what the model can preserve, compress, and predict.
+subtitle: If two models see the same string through different token boundaries, they are not starting from the same representation.
+publishedAt: "2026-04-09"
+featured: true
+tags:
+  - llms
+  - tokenization
+  - nlp
+---
+
+import { mergeExampleRows, mergeExampleText, tokenTableColumns, tokenizerHeatmapVariants } from "./data";
+
+<Metric
+  label="Core idea"
+  value="The tokenizer is an interface."
+  detail="It decides which patterns become first-class objects and which patterns must be reconstructed from fragments."
+/>
+
+Tokenization often gets described as a preprocessing step, which makes it sound incidental. In practice it is much closer to an architectural choice. Before the model has produced a single logit, the tokenizer has already decided which chunks of text are stable units and which ones are awkward composites.
+
+That matters because the network never reasons over raw text. It reasons over token ids. If two strings that look similar to a human end up with very different token boundaries, then the model starts from different internal representations.
+
+## What a tokenizer actually does
+
+At a high level, a tokenizer maps text into a sequence of discrete units from a fixed vocabulary. Those units are often subwords rather than whole words, because a practical vocabulary has to balance coverage against size.
+
+The tradeoff is subtle:
+
+- larger units preserve more semantic structure per token
+- smaller units improve coverage and reduce out-of-vocabulary failure modes
+- pathological splits force the model to rebuild obvious structure from fragments
+
+<Callout title="Working heuristic">
+  A good tokenizer does not merely compress text. It preserves the kinds of regularities the downstream model can exploit cheaply.
+</Callout>
+
+## The split changes the task
+
+The same string can become easy or annoying depending on the split.
+
+<TokenTable columns={tokenTableColumns} rows={mergeExampleRows} caption="Three small examples where token boundaries change what the model has to recover." />
+
+When the pieces align with frequent morphemes or stable formatting units, the model gets reusable building blocks. When they do not, probability mass gets spent on reconstructing boundaries that a better tokenizer would have preserved for free.
+
+## A token-level view
+
+The easiest way to build intuition is to imagine a loss heatmap over the token sequence. Darker regions below are not literal measurements from a production tokenizer, but they express the right qualitative point: bad fragmentation raises the burden on specific local regions of the sequence.
+
+<Figure caption="The same sentence can become meaningfully harder to model once semantic units are split into less reusable fragments.">
+  <TokenHeatmap text={mergeExampleText} variants={tokenizerHeatmapVariants} />
+</Figure>
+
+Notice what changes in the second variant. The sentence is still perfectly readable to us, but the model now has to treat several pieces as reconstruction problems instead of familiar units. That pushes more difficulty into the token sequence than the surface text alone would suggest.
+
+## Why this matters in practice
+
+For LLM work, tokenization leaks into almost every practical concern:
+
+- prompt length is measured in tokens, not characters
+- costs are billed per token, not per sentence
+- formatting-heavy tasks depend on whitespace and punctuation splits
+- multilingual behavior depends heavily on how the vocabulary allocates capacity
+- specialized jargon may be easy or painful depending on whether common fragments already exist
+
+<Aside>
+  This is also why “same architecture, different tokenizer” is not a cosmetic change. It changes the effective input language the model is optimized over.
+</Aside>
+
+## Closing thought
+
+A tokenizer is not just the thing that runs before the model. It defines the alphabet of objects the model is allowed to think in. Once you frame it that way, tokenization stops looking like boring plumbing and starts looking like part of the model itself.
