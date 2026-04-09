@@ -3,10 +3,17 @@ import React, { useState, useRef, useEffect, useCallback } from "react";
 import { motion, useInView } from "framer-motion";
 import Link from "next/link";
 import Project from "./project";
-import { project_previews } from "@/app/constants/project_constants";
 import { ChevronDown, ChevronUp } from "lucide-react";
 
-const Projects = () => {
+type HomepageProjectCard = {
+  slug: string;
+  name: string;
+  description: string;
+  skills: string[];
+  img_url: string;
+};
+
+const Projects = ({ projects }: { projects: HomepageProjectCard[] }) => {
   const [expanded, setExpanded] = useState(false);
   const contentRef = useRef<HTMLDivElement>(null);
   const buttonRef = useRef<HTMLDivElement>(null);
@@ -14,9 +21,9 @@ const Projects = () => {
   
   const isPeekInView = useInView(buttonRef, { once: false, amount: 0.3 });
 
-  const hasMoreProjects = project_previews.length > 2;
-  const firstRowProjects = project_previews.slice(0, 2);
-  const remainingProjects = project_previews.slice(2);
+  const hasMoreProjects = projects.length > 2;
+  const firstRowProjects = projects.slice(0, 2);
+  const remainingProjects = projects.slice(2);
 
   const PEEK_HEIGHT = 128;
   const HOVER_PADDING = 48;
@@ -65,7 +72,7 @@ const Projects = () => {
         {/* First row - always visible */}
         <div className="py-5 mx-1 md:mx-4 grid grid-cols-1 md:grid-cols-2 gap-4 max-w-[100%] auto-rows-fr px-4">
           {firstRowProjects.map((project) => (
-            <div key={project.index} className="h-full">
+            <div key={project.slug} className="h-full">
               <Project
                 name={project.name}
                 description={project.description}
@@ -92,7 +99,7 @@ const Projects = () => {
               >
                 {remainingProjects.map((project) => (
                   <div
-                    key={project.index}
+                    key={project.slug}
                     className={`h-full ${!expanded ? "pointer-events-none" : ""}`}
                   >
                     <Project
