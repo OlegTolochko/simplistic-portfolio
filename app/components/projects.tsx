@@ -1,13 +1,12 @@
 "use client";
 import React, { useState, useRef, useEffect, useCallback } from "react";
 import { motion, useInView } from "framer-motion";
+import Link from "next/link";
 import Project from "./project";
 import { project_previews } from "@/app/constants/project_constants";
-import { usePortfolioContext } from "../context/ProjectContext";
 import { ChevronDown, ChevronUp } from "lucide-react";
 
 const Projects = () => {
-  const { isOpen, openProject } = usePortfolioContext();
   const [expanded, setExpanded] = useState(false);
   const contentRef = useRef<HTMLDivElement>(null);
   const buttonRef = useRef<HTMLDivElement>(null);
@@ -68,14 +67,11 @@ const Projects = () => {
           {firstRowProjects.map((project) => (
             <div key={project.index} className="h-full">
               <Project
-                index={project.index}
                 name={project.name}
                 description={project.description}
                 skills={project.skills}
                 img_url={project.img_url}
-                url={project.url}
-                isOpen={isOpen}
-                toggleOverlay={() => openProject(project.index)}
+                slug={project.slug}
               />
             </div>
           ))}
@@ -100,14 +96,11 @@ const Projects = () => {
                     className={`h-full ${!expanded ? "pointer-events-none" : ""}`}
                   >
                     <Project
-                      index={project.index}
                       name={project.name}
                       description={project.description}
                       skills={project.skills}
                       img_url={project.img_url}
-                      url={project.url}
-                      isOpen={isOpen}
-                      toggleOverlay={() => openProject(project.index)}
+                      slug={project.slug}
                       forceInView={expanded ? undefined : isPeekInView}
                     />
                   </div>
@@ -143,6 +136,15 @@ const Projects = () => {
             </div>
           </div>
         )}
+
+        <div className="mb-8 flex justify-center">
+          <Link
+            href="/projects"
+            className="rounded-full border-2 border-sand-500 bg-sand-200 px-6 py-3 font-medium text-sand-900 transition-colors hover:bg-sand-300"
+          >
+            Browse All Projects
+          </Link>
+        </div>
       </div>
     </div>
   );

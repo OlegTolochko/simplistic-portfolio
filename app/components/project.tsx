@@ -9,7 +9,7 @@ import {
 } from "framer-motion";
 import { twMerge } from "tailwind-merge";
 import { useRouter } from "next/navigation";
-import { badge_urls, ProjectPreview } from "../constants/project_constants";
+import { badge_urls } from "../constants/project_constants";
 
 type BlockProps = {
   className?: string;
@@ -19,11 +19,14 @@ type BlockProps = {
 } & MotionProps;
 
 type ProjectProps = {
-  isOpen: boolean;
-  toggleOverlay: () => void;
+  name: string;
+  description: string;
+  skills: string[];
+  img_url: string;
+  slug: string;
   skipEntryAnimation?: boolean;
   forceInView?: boolean;
-} & ProjectPreview;
+};
 
 const Block: React.FC<BlockProps> = ({
   className,
@@ -69,14 +72,11 @@ const Block: React.FC<BlockProps> = ({
 };
 
 const Project: React.FC<ProjectProps> = ({
-  index,
   name,
   description,
   skills,
   img_url,
-  url,
-  isOpen,
-  toggleOverlay,
+  slug,
   skipEntryAnimation = false,
   forceInView,
 }) => {
@@ -145,12 +145,10 @@ const Project: React.FC<ProjectProps> = ({
 
   const handleClick = (e: React.MouseEvent) => {
     e.stopPropagation();
-    if (!isOpen) {
-      toggleOverlay();
-      if (!isMobile) {
-        handleHoverEnd();
-      }
+    if (!isMobile) {
+      handleHoverEnd();
     }
+    router.push(`/projects/${slug}`);
   };
 
   return (

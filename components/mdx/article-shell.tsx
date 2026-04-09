@@ -2,6 +2,7 @@ import Image from "next/image";
 import type { ReactNode } from "react";
 
 type ArticleShellProps = {
+  eyebrow?: string;
   title: string;
   summary: string;
   publishedAt: string;
@@ -23,6 +24,7 @@ function formatDate(dateString: string) {
 }
 
 export default function ArticleShell({
+  eyebrow = "Writing",
   title,
   summary,
   publishedAt,
@@ -38,7 +40,7 @@ export default function ArticleShell({
     <article className="mx-auto max-w-4xl px-4 pb-24 pt-28 sm:px-6">
       <header className="space-y-8">
         <div className="space-y-4">
-          <p className="text-sm font-semibold uppercase tracking-[0.24em] text-blue-700">Writing</p>
+          <p className="text-sm font-semibold uppercase tracking-[0.24em] text-blue-700">{eyebrow}</p>
           <h1 className="max-w-3xl text-4xl font-black leading-tight text-sand-950 sm:text-5xl">
             {title}
           </h1>

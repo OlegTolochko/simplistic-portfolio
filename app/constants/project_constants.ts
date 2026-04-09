@@ -134,6 +134,7 @@ export const badge_urls: BadgeUrl[] = [
 
 export type ProjectPreview = {
   index: number;
+  slug: string;
   name: string;
   description: string;
   skills: string[];
@@ -144,6 +145,7 @@ export type ProjectPreview = {
 export const project_previews: ProjectPreview[] = [
   {
     index: 0,
+    slug: "brawlai",
     name: "BrawlAI",
     description:
       "An AI based solution for optimizing ranked drafting sequences in the mobile game Brawl Stars by Supercell.",
@@ -160,8 +162,9 @@ export const project_previews: ProjectPreview[] = [
     img_url: "/project_1/brawlai.webp",
     url: "https://brawl-ai.com/",
   },
- {
+  {
     index: 1,
+    slug: "trajectory-subspace-clustering",
     name: "Trajectory Embedding Learning for Subspace Clustering",
     description:
       "A deep learning research project investigating motion segmentation. Features a novel Transformer-based architecture and a reproducible evaluation protocol.",
@@ -176,6 +179,7 @@ export const project_previews: ProjectPreview[] = [
   }, 
   {
     index: 2,
+    slug: "douni2work",
     name: "douni2work",
     description:
       "Uptime/Response time-tracker for University website uni2work.de",
