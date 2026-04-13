@@ -1,7 +1,7 @@
 ---
 title: Uncertainty Quantification in Neural Mass Conserving Data Assimilation
 summary: A scientific ML project that combines a physically constrained shallow water model, ensemble-based data assimilation, CNN corrections, and conformal uncertainty quantification into one reproducible pipeline.
-teaser: End-to-end data assimilation pipeline built around the MSW model, EnKF and QPEns baselines, CNN-based corrections, and CP/CQR uncertainty quantification.
+teaser: End-to-end data assimilation pipeline built around the MSW model, assimilation with EnKF and QPEns, CNN-based corrections, and CP/CQR uncertainty quantification.
 publishedAt: "2025-07-01"
 featured: true
 order: 1
@@ -20,48 +20,47 @@ repoUrl: https://github.com/OlegTolochko/msw-da-ml
 ---
 
 <Callout title="Context">
-  This project started as a reimplementation of the paper <em>Training a convolutional neural network to conserve mass in data assimilation</em>, but it evolved into a broader research pipeline: physically constrained simulation, ensemble-based assimilation, learned corrections, and uncertainty quantification on top.
+  The project builds upon the paper <em>Training a convolutional neural network to conserve mass in data assimilation</em> and builds upon it for an uncertainty quantification pipeline.
 </Callout>
 
 ## Overview
 
-The core problem is deceptively narrow: improve data assimilation in a shallow water model while respecting the physical structure of the system. In practice, that becomes a multi-stage research problem involving simulation, observation generation, classical assimilation baselines, learned correction models, and calibrated uncertainty estimates.
+The core problem the original paper solves is: improve data assimilation in a physically constrained shallow water model, by replacing an expensive (but accurate) heuristic approach with a neural approach.
+This on its own is a multi-stage research problem involving simulation, observation generation, classical assimilation baselines and learning correction models.
 
-This repository ties those pieces together into one end-to-end workflow. The project uses the **MSW** shallow water model as the physical backbone, compares **EnKF** and **QPEns** style assimilation, trains a **CNN** to learn mass-conserving corrections, and then evaluates **CP** and **CQR** based uncertainty quantification on top of the learned system.
-
-## Why the project is interesting
-
-What makes the project compelling is that it sits at the boundary between numerical modeling and machine learning.
-
-- The simulation itself is not an arbitrary toy problem. It has physical structure that should not be ignored.
-- The learned model is not asked to replace everything. It is asked to improve a specific part of the pipeline.
-- The uncertainty layer is not cosmetic. It matters because the system is ultimately making structured corrections to a dynamical process, and those corrections need calibrated confidence estimates.
-
-That combination makes the repository a strong example of scientific ML done as a pipeline rather than as an isolated model notebook.
+This repository puts these pieces together into one end-to-end workflow and expands on top of it with an Uncertainty quantification pipeline using Conformal Prediction (CP) and Conformalized Quantile Regression (CQR).
 
 ## End-to-end pipeline
 
-The portfolio hero uses a shorter, wider overview specifically for readability on this site. The original full pipeline graphic from the project repo is included below because it still gives the best “everything at once” picture of the system.
-
-<Figure caption="Full project pipeline overview from the main repository. This is the detailed version I would use when explaining how the pieces connect end to end.">
+<Figure caption="Full project pipeline overview from the main repository.">
   <img src="/content/projects/msw-da-ml/full_project_pipeline.png" alt="Full project pipeline overview" />
 </Figure>
 
 ## 1. Physical model backbone
 
-The whole system begins with the **MSW model**, which provides the controlled physical environment. The state tracks variables such as velocity, water height, and rain over a spatial grid and evolves them under shallow-water dynamics with stochastic perturbations.
+The whole system begins with the **MSW model**, which provides the controlled physical environment. A single MSW state tracks variables such as velocity, water height, and rain over a spatial grid and evolves them under shallow-water dynamics with stochastic perturbations.
 
-That matters because the later ML components are only meaningful if the upstream dynamics remain physically grounded. The model is not just producing arbitrary tensors; it is defining the space in which the data assimilation and correction tasks make sense.
+This physical constraints are required because the later ML components are only meaningful if the upstream dynamics are physically grounded.
 
-<Figure caption="MSW model dynamics and loop structure. This is the lowest-level view of how the physical state evolves over time.">
+<Figure caption="MSW model dynamics and loop structure.">
   <img src="/content/projects/msw-da-ml/msw_model.svg" alt="MSW model D2 diagram" />
 </Figure>
 
 ## 2. Training-data generation for data assimilation
 
-Once the physical simulator is in place, the next step is to generate training data that makes the correction problem learnable. The repository simulates truth trajectories, constructs noisy and masked observations, and runs multiple assimilation variants so their outputs can be compared later.
+Once the physical simulator is set up, the next step is to generate training data that makes the correction problem learnable.
+Therefore a ground truth model is propagated, from which noisy and masked observations are constructed.
+In addition, separately **EnKF** and **QPEns** model states are propagated. 
+The goal is to use the noisy generated obsevations stemming from the ground truth model, to update the Ensemble Kalman Filter (**EnKF**) and Quadratic Programming Ensemble **QPEns** states to be as close as possible to the current ground truth state.
+The QPEns appraoch solves a constrained optimization problem given a set of constraints to calculate the optimal update given the observations (implementation details can be found here: https://github.com/OlegTolochko/msw-da-ml/blob/master/msw_da_ml/msw/assimilation.py)
 
-This stage is especially important because it defines the supervision signal. The CNN is not trained from raw truth alone; it is trained to map the more accessible **EnKF** behavior toward the stronger **QPEns** target.
+This stage is especially important because it defines the training signal for the CNN.
+The CNN training objective is to map the more accessible **EnKF** behavior toward the stronger (but significantly more computationally expensive) **QPEns** target correction.
+This also involves an important design choice: Before assimilation in the EnKF model, the EnKF model state is set to previous QPEns model state.
+Since the pipeline is only used for training data generation and the target for the CNN is the QPEns prediction, the previous state input should also be a QPEns prediction.
+This is essentially equivalent to teacher forcing in seq2seq models.
+
+This creates a set of pairs where X = EnKF correction and Y = QPEns correction.
 
 <Figure caption="Training-data generation pipeline: truth simulation, noisy observation generation, masking, assimilation, and state-history saving.">
   <img src="/content/projects/msw-da-ml/data_generation_pipeline.svg" alt="Data generation pipeline diagram" />
@@ -69,11 +68,16 @@ This stage is especially important because it defines the supervision signal. Th
 
 ## 3. CNN and quantile-regression training
 
-The learned part of the pipeline is intentionally constrained. Rather than replacing the physics or the assimilation stack, the network learns a correction from EnKF-style states toward the QPEns target. That is a good decomposition because it turns the learning problem into a structured residual-style refinement rather than a full-system imitation problem.
+To train the model a dataset is constructed from all generated EnKF and QPEns assimilation state pairs.
+The is trained to refine EnKF updates to match QPEns updates. (Side Note: The CNN also receives the observation locations as an additional input, besides the EnKF correction)
+EnKF updates on their own already relatively good and cheap to compute (This resembles the idea of anchors in object detection models in spirit).
+So the model is not required to directly perform the whole update. This turns the complex system-imitation problem to a simplified refinement problem.
 
-The repository also includes a quantile-regression variant, which makes it possible to learn interval predictions that later plug naturally into the uncertainty-quantification stage.
+So put simply: The CNN receives the not perfect **EnKF** update and refines it to be closer to the **QPEns** update, so essentially EnKF + CNN is supposed to be a cheaper alternative to **QPEns**.
 
-<Figure caption="CNN and quantile-regression training pipeline. The important design choice here is that the network learns a correction target, not an unconstrained end-to-end surrogate of the full simulator.">
+The repository also includes a quantile-regression variant, which makes it possible to learn interval predictions (so upper and lower bound for each output variable) that later plug naturally into the uncertainty-quantification stage.
+
+<Figure caption="CNN and quantile-regression training pipeline.">
   <img src="/content/projects/msw-da-ml/training_pipeline.svg" alt="Training pipeline diagram" />
 </Figure>
 
@@ -81,17 +85,15 @@ The repository also includes a quantile-regression variant, which makes it possi
 
 At inference time, the system returns to the original dynamical setting: propagate the ensemble, generate observations, assimilate with EnKF, and then apply the learned correction model. Optionally, QPEns can still be computed as a reference for comparison.
 
-That makes the project more than an offline training exercise. The final artifact is a loop that can be run over many inference steps and evaluated operationally against truth and baseline methods.
-
-<Figure caption="Inference loop with assimilation and learned correction in the loop. This is the operational version of the trained system.">
+The main inference pipeline is a loop that can be run over many inference steps and evaluated operationally against truth and baseline methods.
+ 
+<Figure caption="Inference loop with assimilation and learned correction in the loop.">
   <img src="/content/projects/msw-da-ml/inference.svg" alt="Inference pipeline diagram" />
 </Figure>
 
 ## 5. History generation for evaluation
 
-To evaluate uncertainty methods properly, the repository generates multi-seed histories across truth, EnKF, QPEns, and CNN-based predictions. This stage is what turns the project from “one trained model” into a real evaluation framework.
-
-It also creates the bridge from raw model behavior to calibrated statistical comparisons. Without this step, the uncertainty work would stay anecdotal.
+To evaluate uncertainty methods properly, the repository generates multi-seed histories across truth, EnKF, QPEns, and CNN-based predictions. 
 
 <Figure caption="History-generation pipeline used for calibration, evaluation, and general pipeline verification.">
   <img src="/content/projects/msw-da-ml/conformal_data_generation.svg" alt="History generation diagram" />
@@ -99,14 +101,13 @@ It also creates the bridge from raw model behavior to calibrated statistical com
 
 ## 6. Uncertainty quantification
 
-The uncertainty layer is where the project becomes especially interesting from a research perspective.
-
+The main new research addition is an uncertainty quantification pipeline built on top.
 Two main routes are implemented:
 
 - **Conformal Prediction (CP)**, where non-conformity scores are calibrated and then converted into intervals on held-out data.
 - **Conformalized Quantile Regression (CQR)**, where learned lower and upper quantiles are widened just enough to achieve empirical coverage.
 
-The CLI also exposes a broader comparison surface through the `compare_uq_methods` command, including hooks for optional baselines such as MCDO, NIG-based evidential regression, normalized CP, and random-forest-style variants.
+Also additional baselines such as MCDO, NIG-based evidential regression, normalized CP, and random-forest-style variants are included.
 
 <Figure caption="Conformal prediction pipeline over generated histories.">
   <img src="/content/projects/msw-da-ml/uncertainty_quantification_cp.svg" alt="Conformal prediction diagram" />
@@ -116,9 +117,9 @@ The CLI also exposes a broader comparison surface through the `compare_uq_method
   <img src="/content/projects/msw-da-ml/uncertainty_quantification_cqr.svg" alt="Conformalized quantile regression diagram" />
 </Figure>
 
-## CLI and reproducibility
+## CLI
 
-The repository is organized around a clean CLI surface in `msw_da_ml.main`, which makes the full workflow easier to reason about and rerun. The main steps are:
+The repository is organized around a clean CLI surface in `msw_da_ml.main`. The main steps are:
 
 ```bash
 uv sync
@@ -131,14 +132,3 @@ uv run python -m msw_da_ml.main generate-conformal-prediction-data
 uv run python -m msw_da_ml.main generate-cqr-data
 uv run python -m msw_da_ml.main compare-uq-methods <cp_hist_name> <cqr_hist_name>
 ```
-
-That organization matters. It means the repository reads like a pipeline you can execute, inspect, and extend, rather than a loose collection of research scripts.
-
-## What I would emphasize when presenting this project
-
-If I were presenting this project in conversation or on a CV, I would highlight four things:
-
-1. It combines **physical simulation**, **classical data assimilation**, **neural correction models**, and **uncertainty quantification** in one coherent workflow.
-2. The ML component is used in a disciplined way: not as a magical replacement, but as a targeted improvement over a baseline assimilation method.
-3. The repo is structured around explicit intermediate artifacts and pipeline stages, which makes it easier to debug and extend.
-4. The D2 visualizations are not decorative. They are part of how the project stays understandable despite spanning multiple research ideas.

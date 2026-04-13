@@ -25,18 +25,14 @@ liveUrl: https://douni2work.de
 
 ## Overview
 
-douni2work is a lightweight monitoring system for the LMU service **uni2work.de**. The project focuses on a narrow problem, but it does so in a way that makes failures immediately visible and historically inspectable.
+douni2work was a mini joke project for monitoring system for the LMU service **uni2work.de**.
+Uni2work is pretty cool in itself, since it was entirely written with Haskell.
+Though it has been known to be one of the most unreliable webpages the LMU had to offer amongst us students.
+So we decided to create a small project to monitor its actual downtime, just for the fun of it.
 
-The core product value is simple: if the site goes down or slows down, the dashboard should show it clearly.
-
-## Features
-
-The system tracks uptime over time and records response-time measurements that can be displayed later in the frontend. This gives a small but useful historical view of reliability instead of a single current-status indicator.
-
-That historical perspective was the main reason to build it as a proper application rather than a one-off script.
+Surprisingly, by now the webpage is very reliable and rarely has any downtime, though this is more likely tied to the fact, that its barely used anymore at LMU :(.
 
 ## Technical Implementation
 
-The backend is built with Flask and periodically measures request performance before persisting the results in SQLite. The frontend uses React, Vite, JavaScript, and TailwindCSS to present the accumulated data.
-
-Although the project is much smaller than the research-heavy entries in this portfolio, it is a good example of end-to-end ownership: backend scheduling, persistence, data shaping, and frontend visualization all live in the same system.
+The backend is built with Flask and periodically measures request performance before writing the results into a SQLite database. 
+The frontend uses React, Vite, JavaScript, and TailwindCSS to present the accumulated data.

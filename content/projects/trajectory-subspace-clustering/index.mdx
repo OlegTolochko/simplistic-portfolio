@@ -22,26 +22,22 @@ liveUrl: /project_2/thesis.pdf
 
 ## Overview
 
-This project started as a bachelor thesis on deep learning-based motion segmentation and gradually became a deeper investigation into how much current benchmark practice can distort the conclusions of a paper.
+This project is a Bachelor Thesis about deep learning-based motion segmentation. 
+It involves a faithful re-implementation of a state-of-the-art CVPR paper and addresses critical flaws in existing evaluation protocols. 
+The thesis introduces a reproducible evaluation framework, extensive ablation studies on data augmentation, and a novel Cross-Trajectory Attention mechanism.
 
-The work includes a faithful re-implementation of a strong CVPR baseline, a stricter evaluation protocol, extensive augmentation experiments, and a cross-trajectory attention extension that improved clustering quality.
+## The Problem with Benchmarks
 
-## The Benchmark Problem
-
-One of the most important findings was that the standard Hopkins155 setup can leak information between train and test splits because related sequences are not always separated carefully. The dataset also contains many stationary or low-information points that can inflate apparent performance.
-
-To address that, the thesis introduced a parent-wise splitting protocol together with a cross-validation strategy that avoids the most obvious leakage path. Once that stricter protocol was in place, reported generalization looked much less optimistic, but much more believable.
+A deep dive into the standard Hopkins155 dataset revealed significant issues: data leakage due to parent-child sequence relationships and a high volume of stationary points. 
+To solve this, I designed a strict 'Parent-Wise Splitting' protocol and a cross-validation strategy, proving that naive splitting significantly overestimates model generalization.
 
 ## Technical Implementation
 
-The implementation is written in PyTorch and centers on a 1D CNN feature extractor plus a subspace estimator that learns basis functions for motion representation. The experimental workflow used Weights & Biases for tracking runs and Bayesian optimization for tuning.
+Implemented in Python using PyTorch. The architecture consists of a 1D-CNN feature extractor and a custom Subspace Estimator that learns basis functions to represent motion. 
+The project utilizes Weights & Biases (wandb) for tracking hundreds of experiments and Bayesian optimization for hyperparameter tuning.
 
-That setup made it possible to compare architectural changes and augmentation strategies under a reproducible pipeline rather than a collection of loosely comparable experiments.
+## Novel Contributions: Attention & Augmentation
 
-## Novel Contributions
-
-Two additions mattered most.
-
-First, the project tested SimCLR-style augmentations such as temporal shifting and occlusion to measure how contrastive-style intuition transfers to this clustering setting.
-
-Second, it added a Transformer encoder layer so trajectories can exchange information before clustering. That cross-trajectory attention mechanism produced a statistically significant improvement over the baseline model and helped show that interaction between trajectories is useful rather than incidental.
+I investigated the impact of SimCLR-inspired augmentations (shifting and occlusion) on unsupervised learning. 
+Furthermore, I extended the architecture by integrating a Transformer Encoder to enable cross-trajectory attention. 
+This allowed trajectories to 'communicate' and exchange motion information, resulting in a statistically significant performance improvement (p < 0.0001) compared to the base architecture.
