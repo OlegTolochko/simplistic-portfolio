@@ -1,0 +1,52 @@
+direction: right
+vars: {
+  d2-config: {
+    layout-engine: elk
+  }
+}
+
+pipeline: "MSW-DA-ML Pipeline" {
+  style: {
+    fill: "#F7F5EF"
+    border-radius: 16
+    shadow: true
+  }
+
+  physics: "MSW model\nphysical dynamics" {
+    style.fill: "#FFD7A6"
+    style.stroke: "#D98A2B"
+    style.font-color: "#3D2A10"
+  }
+
+  data: "Data generation\nTruth + EnKF + QPEns" {
+    style.fill: "#D9EAD3"
+    style.stroke: "#7BA05B"
+    style.font-color: "#20361A"
+  }
+
+  train: "CNN / QR training\nLearn EnKF -> QPEns" {
+    style.fill: "#FFE599"
+    style.stroke: "#B58D16"
+    style.font-color: "#423200"
+  }
+
+  infer: "Inference loop\nAssimilate + correct" {
+    style.fill: "#D8C8F0"
+    style.stroke: "#7B63B8"
+    style.font-color: "#271C45"
+  }
+
+  histories: "History generation\nMulti-seed rollouts" {
+    style.fill: "#F4C2C2"
+    style.stroke: "#BA6C6C"
+    style.font-color: "#4A2222"
+  }
+
+  uq: "UQ comparison\nCP / CQR / analysis" {
+    style.fill: "#CFE8F6"
+    style.stroke: "#6295B7"
+    style.font-color: "#163247"
+  }
+
+  physics -> data -> train -> infer -> histories -> uq
+}
