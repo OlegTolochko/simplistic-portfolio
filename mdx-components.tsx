@@ -1,5 +1,6 @@
 import type { MDXComponents } from "mdx/types";
 import Link from "next/link";
+import { twMerge } from "tailwind-merge";
 
 import Aside from "@/components/mdx/aside";
 import Callout from "@/components/mdx/callout";
@@ -65,19 +66,36 @@ const components: MDXComponents = {
       {children}
     </td>
   ),
-  pre: ({ children, ...props }) => (
+  pre: ({ children, className, ...props }) => (
     <pre
-      className="my-8 overflow-x-auto rounded-3xl border border-sand-900 bg-sand-950 p-5 text-sm text-sand-100 shadow-lg"
+      className={twMerge(
+        "my-8 overflow-x-auto rounded-3xl border border-stone-900 bg-stone-950 p-5 text-sm text-stone-50 shadow-lg",
+        className,
+      )}
       {...props}
     >
       {children}
     </pre>
   ),
-  code: ({ children, ...props }) => (
-    typeof props.className === "string" && props.className.includes("language-") ? (
-      <code {...props}>{children}</code>
+  code: ({ children, className, ...props }) => (
+    typeof className === "string" && className.includes("language-") ? (
+      <code
+        className={twMerge(
+          "block whitespace-pre text-sm leading-7 text-stone-50",
+          className,
+        )}
+        {...props}
+      >
+        {children}
+      </code>
     ) : (
-      <code className="rounded bg-sand-200 px-1.5 py-0.5 text-[0.95em] text-sand-900" {...props}>
+      <code
+        className={twMerge(
+          "rounded bg-sand-200 px-1.5 py-0.5 text-[0.95em] text-sand-900",
+          className,
+        )}
+        {...props}
+      >
         {children}
       </code>
     )

@@ -2,7 +2,8 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 
 import ArticleShell from "@/components/mdx/article-shell";
-import { getAllBlogPosts, getBlogPostBySlug, loadBlogPostModule } from "@/lib/content";
+import { getAllBlogPosts, getBlogPostBySlug } from "@/lib/content";
+import { loadBlogPostModule } from "@/lib/content/blog-module";
 
 type BlogPostPageProps = {
   params: Promise<{

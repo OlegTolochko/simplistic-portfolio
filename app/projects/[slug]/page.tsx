@@ -5,7 +5,8 @@ import { ArrowUpRight, Github } from "lucide-react";
 
 import SkillBadges from "@/app/components/skill-badges";
 import ArticleShell from "@/components/mdx/article-shell";
-import { getAllProjects, getProjectBySlug, loadProjectModule } from "@/lib/content";
+import { getAllProjects, getProjectBySlug } from "@/lib/content";
+import { loadProjectModule } from "@/lib/content/project-module";
 
 type ProjectPageProps = {
   params: Promise<{

@@ -62,7 +62,10 @@ function ensureStringArray(value: unknown, field: string, entryPath: string) {
     return [];
   }
 
-  if (!Array.isArray(value) || value.some((item) => typeof item !== "string" || item.trim().length === 0)) {
+  if (
+    !Array.isArray(value) ||
+    value.some((item) => typeof item !== "string" || item.trim().length === 0)
+  ) {
     throw new Error(`Invalid "${field}" in ${entryPath}: expected an array of strings.`);
   }
 
@@ -285,14 +288,6 @@ export function getFeaturedProjects(limit = 3) {
   return getAllProjects()
     .filter((project) => project.featured)
     .slice(0, limit);
-}
-
-export async function loadBlogPostModule(slug: string) {
-  return import(`@/content/blog/${slug}/index.mdx`);
-}
-
-export async function loadProjectModule(slug: string) {
-  return import(`@/content/projects/${slug}/index.mdx`);
 }
 
 export type { BlogPost, BlogPostMeta, ProjectEntry, ProjectMeta };
