@@ -34,14 +34,26 @@ npm run dev
 
 ### Basic Configuration
 
-Most of the portfolio content can be customized through the `project_constants.ts` file. This includes:
+Most of the personal/profile configuration still lives in `app/constants/project_constants.ts`. This includes:
 
 - Personal information
 - Social media links
 - Skills and technologies
 - Work experience
-- Projects
 - Contact information
+
+Long-form content now lives in filesystem-backed MDX content:
+
+- Blog posts: `content/blog/<slug>/index.mdx`
+- Projects: `content/projects/<slug>/index.mdx`
+
+Authoring and deployment guide:
+
+- `docs/content-authoring-and-deployment.md`
+
+Sample article showing the available writing surface:
+
+- `content/blog/mdx-playground/index.mdx`
 
 ### Image Assets
 

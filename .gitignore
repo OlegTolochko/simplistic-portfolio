@@ -38,3 +38,5 @@ next-env.d.ts
 .env
 app/data/knowledge_graph.json
 public/data/knowledge_graph.json
+blog-temp/
+docs/

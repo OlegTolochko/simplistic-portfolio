@@ -2,12 +2,17 @@
 import React, { useState, useRef, useEffect, useCallback } from "react";
 import { motion, useInView } from "framer-motion";
 import Project from "./project";
-import { project_previews } from "@/app/constants/project_constants";
-import { usePortfolioContext } from "../context/ProjectContext";
 import { ChevronDown, ChevronUp } from "lucide-react";
 
-const Projects = () => {
-  const { isOpen, openProject } = usePortfolioContext();
+type HomepageProjectCard = {
+  slug: string;
+  name: string;
+  description: string;
+  skills: string[];
+  img_url: string;
+};
+
+const Projects = ({ projects }: { projects: HomepageProjectCard[] }) => {
   const [expanded, setExpanded] = useState(false);
   const contentRef = useRef<HTMLDivElement>(null);
   const buttonRef = useRef<HTMLDivElement>(null);
@@ -15,11 +20,11 @@ const Projects = () => {
   
   const isPeekInView = useInView(buttonRef, { once: false, amount: 0.3 });
 
-  const hasMoreProjects = project_previews.length > 2;
-  const firstRowProjects = project_previews.slice(0, 2);
-  const remainingProjects = project_previews.slice(2);
+  const hasMoreProjects = projects.length > 2;
+  const firstRowProjects = projects.slice(0, 2);
+  const remainingProjects = projects.slice(2);
 
-  const PEEK_HEIGHT = 128;
+  const PEEK_HEIGHT = 112;
   const HOVER_PADDING = 48;
 
   useEffect(() => {
@@ -66,16 +71,13 @@ const Projects = () => {
         {/* First row - always visible */}
         <div className="py-5 mx-1 md:mx-4 grid grid-cols-1 md:grid-cols-2 gap-4 max-w-[100%] auto-rows-fr px-4">
           {firstRowProjects.map((project) => (
-            <div key={project.index} className="h-full">
+            <div key={project.slug} className="h-full">
               <Project
-                index={project.index}
                 name={project.name}
                 description={project.description}
                 skills={project.skills}
                 img_url={project.img_url}
-                url={project.url}
-                isOpen={isOpen}
-                toggleOverlay={() => openProject(project.index)}
+                slug={project.slug}
               />
             </div>
           ))}
@@ -96,18 +98,15 @@ const Projects = () => {
               >
                 {remainingProjects.map((project) => (
                   <div
-                    key={project.index}
+                    key={project.slug}
                     className={`h-full ${!expanded ? "pointer-events-none" : ""}`}
                   >
                     <Project
-                      index={project.index}
                       name={project.name}
                       description={project.description}
                       skills={project.skills}
                       img_url={project.img_url}
-                      url={project.url}
-                      isOpen={isOpen}
-                      toggleOverlay={() => openProject(project.index)}
+                      slug={project.slug}
                       forceInView={expanded ? undefined : isPeekInView}
                     />
                   </div>
@@ -126,7 +125,7 @@ const Projects = () => {
             <div ref={buttonRef} className="flex justify-center relative z-10 mt-2 mb-8">
               <motion.button
                 onClick={handleToggle}
-                className="flex items-center gap-2 px-6 py-3 bg-sand-200 hover:bg-sand-300 border-2 border-sand-500 rounded-full font-medium transition-colors shadow-lg"
+                className="flex items-center gap-2 px-6 py-3 bg-sand-200 hover:bg-sand-300 border-2 border-sand-500 rounded-full font-medium text-stone-900 transition-colors shadow-lg"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
               >

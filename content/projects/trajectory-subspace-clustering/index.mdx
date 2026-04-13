@@ -1,0 +1,43 @@
+---
+title: Trajectory Embedding Learning for Subspace Clustering
+summary: A research-heavy bachelor thesis on motion segmentation that re-examined benchmark methodology and introduced an attention-based architectural extension.
+teaser: A deep learning research project investigating motion segmentation, reproducible evaluation, and a Transformer-based extension for stronger clustering quality.
+publishedAt: "2025-07-01"
+featured: true
+order: 3
+tags:
+  - research
+  - computer-vision
+  - transformers
+stack:
+  - Python
+  - PyTorch
+  - Numpy
+  - Typst
+heroImage: /project_2/model_architecture.png
+cardImage: /project_2/model_architecture.png
+repoUrl: https://github.com/OlegTolochko/trajectory-subspace-clustering
+liveUrl: /project_2/thesis.pdf
+---
+
+## Overview
+
+This project is a Bachelor Thesis about deep learning-based motion segmentation. 
+It involves a faithful re-implementation of a state-of-the-art CVPR paper and addresses critical flaws in existing evaluation protocols. 
+The thesis introduces a reproducible evaluation framework, extensive ablation studies on data augmentation, and a novel Cross-Trajectory Attention mechanism.
+
+## The Problem with Benchmarks
+
+A deep dive into the standard Hopkins155 dataset revealed significant issues: data leakage due to parent-child sequence relationships and a high volume of stationary points. 
+To solve this, I designed a strict 'Parent-Wise Splitting' protocol and a cross-validation strategy, proving that naive splitting significantly overestimates model generalization.
+
+## Technical Implementation
+
+Implemented in Python using PyTorch. The architecture consists of a 1D-CNN feature extractor and a custom Subspace Estimator that learns basis functions to represent motion. 
+The project utilizes Weights & Biases (wandb) for tracking hundreds of experiments and Bayesian optimization for hyperparameter tuning.
+
+## Novel Contributions: Attention & Augmentation
+
+I investigated the impact of SimCLR-inspired augmentations (shifting and occlusion) on unsupervised learning. 
+Furthermore, I extended the architecture by integrating a Transformer Encoder to enable cross-trajectory attention. 
+This allowed trajectories to 'communicate' and exchange motion information, resulting in a statistically significant performance improvement (p < 0.0001) compared to the base architecture.
