@@ -26,9 +26,6 @@ export default function BlogPage() {
         <h1 className="mt-4 text-4xl font-black leading-tight text-sand-950 sm:text-5xl">
           Long-form notes, experiments, and technical writeups.
         </h1>
-        <p className="mt-6 text-lg leading-8 text-sand-700">
-          Markdown-first articles with room for richer technical visuals when the topic needs them.
-        </p>
       </div>
 
       <div className="mt-16 space-y-6">
