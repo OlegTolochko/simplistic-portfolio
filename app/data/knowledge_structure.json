@@ -33,6 +33,18 @@
       "parents": ["math"]
     },
     {
+      "id": "calculus",
+      "label": "Calculus",
+      "domain": "math",
+      "parents": ["math"]
+    },
+    {
+      "id": "functional-analysis",
+      "label": "Functional Analysis",
+      "domain": "math",
+      "parents": ["math", "linear-algebra"]
+    },
+    {
       "id": "probability-theory",
       "label": "Probability Theory",
       "domain": "statistics",
@@ -362,6 +374,24 @@
       "parents": ["optimization"]
     },
     {
+      "id": "gd",
+      "label": "Gradient Descent",
+      "domain": "deep-learning",
+      "parents": ["optimization"]
+    },
+    {
+      "id": "sgd",
+      "label": "Stochastic Gradient Descent",
+      "domain": "deep-learning",
+      "parents": ["gd", "optimization"]
+    },
+    {
+      "id": "gauss-newton",
+      "label": "Gauss-Newton Algorithm",
+      "domain": "math",
+      "parents": ["optimization", "calculus"]
+    },
+    {
       "id": "cross-entropy",
       "label": "Cross-Entropy",
       "domain": "deep-learning",
@@ -372,6 +402,27 @@
       "label": "Transfer Learning",
       "domain": "deep-learning",
       "parents": ["deep-learning"]
+    },
+    {
+      "id": "normalization",
+      "label": "Normalization",
+      "domain": "deep-learning",
+      "parents": ["deep-learning"]
+    },
+    {
+      "id": "bn",
+      "label": "Batch Normalization",
+      "domain": "deep-learning",
+      "parents": ["normalization", "cnns"]
+    },
+    {
+      "id": "gn",
+      "label": "Group Normalization",
+      "domain": "deep-learning",
+      "parents": ["normalization", "cnns"],
+      "links": [
+        "https://arxiv.org/abs/1803.08494 | Group Normalization Paper"
+      ]
     },
     {
       "id": "fine-tuning",
@@ -509,6 +560,12 @@
       "parents": ["statistics", "text-classification"]
     },
     {
+      "id": "linear-regression",
+      "label": "Linear Regression",
+      "domain": "statistics",
+      "parents": ["statistics", "optimization", "linear-algebra"]
+    },
+    {
       "id": "svms",
       "label": "Support Vector Machines",
       "domain": "statistics",
@@ -557,6 +614,15 @@
       "parents": ["computer-vision", "object-tracking"]
     },
     {
+      "id": "flownet",
+      "label": "FlowNet",
+      "domain": "computer-vision",
+      "parents": ["optical-flow", "cnns"],
+      "links": [
+        "https://arxiv.org/abs/1504.06852 | FlowNet Paper"
+      ]
+    },
+    {
       "id": "taylor-expansion",
       "label": "Taylor Expansion",
       "domain": "math",
@@ -569,10 +635,16 @@
       "parents": ["math"]
     },
     {
+      "id": "convex-sets",
+      "label": "Convex Sets",
+      "domain": "math",
+      "parents": ["convexity"]
+    },
+    {
       "id": "convex-hull",
       "label": "Convex Hull",
       "domain": "math",
-      "parents": ["math", "convexity"]
+      "parents": ["math", "convex-sets"]
     },
     {
       "id": "gaussian-kernel",
@@ -593,6 +665,60 @@
       "parents": ["linear-algebra"]
     },
     {
+      "id": "hermitian",
+      "label": "Hermitian Matrix",
+      "domain": "math",
+      "parents": ["linear-algebra"]
+    },
+    {
+      "id": "matrix-span",
+      "label": "Matrix Span",
+      "domain": "math",
+      "parents": ["linear-algebra"]
+    },
+    {
+      "id": "matrix-rank",
+      "label": "Matrix Rank",
+      "domain": "math",
+      "parents": ["linear-algebra", "matrix-span"]
+    },
+    {
+      "id": "matrix-range",
+      "label": "Matrix Range",
+      "domain": "math",
+      "parents": ["linear-algebra", "matrix-span"]
+    },
+    {
+      "id": "linear-subspaces",
+      "label": "Linear Subspaces",
+      "domain": "math",
+      "parents": ["linear-algebra", "matrix-span"]
+    },
+    {
+      "id": "frobenius-norm",
+      "label": "Frobenius Norm",
+      "domain": "math",
+      "parents": ["linear-algebra"]
+    },
+    {
+      "id": "hilbert-space",
+      "label": "Hilbert Space",
+      "domain": "math",
+      "parents": ["functional-analysis", "linear-algebra"]
+    },
+    {
+      "id": "cauchy-schwarz",
+      "label": "Cauchy-Schwarz Inequality",
+      "domain": "math",
+      "parents": ["linear-algebra", "hilbert-space"]
+    },
+    {
+      "id": "riemann-integral",
+      "label": "Riemann Integral",
+      "domain": "math",
+      "parents": ["calculus"]
+    },
+    {
       "id": "pca",
       "label": "Principal Component Analysis",
       "domain": "math",
@@ -609,6 +735,12 @@
       "label": "CNNs",
       "domain": "deep-learning",
       "parents": ["deep-learning"]
+    },
+    {
+      "id": "image-processing",
+      "label": "Image Processing",
+      "domain": "computer-vision",
+      "parents": ["computer-vision"]
     },
     {
       "id": "im2col",
@@ -644,10 +776,16 @@
       "parents": ["cnns", "image-segmentation"]
     },
     {
+      "id": "dilated-convolutions",
+      "label": "Dilated Convolutions",
+      "domain": "deep-learning",
+      "parents": ["cnns", "semantic-segmentation"]
+    },
+    {
       "id": "aspp",
       "label": "ASPP (Atrous Spatial Pyramid Pooling)",
       "domain": "computer-vision",
-      "parents": ["semantic-segmentation", "cnns"],
+      "parents": ["semantic-segmentation", "dilated-convolutions"],
       "links": [
         "https://arxiv.org/abs/1606.00915 | DeepLab v2 / ASPP Paper"
       ]
@@ -734,7 +872,13 @@
       "id": "hog",
       "label": "Histogram of Oriented Gradients (HOG)",
       "domain": "computer-vision",
-      "parents": ["computer-vision", "object-detection"]
+      "parents": ["image-processing", "object-detection"]
+    },
+    {
+      "id": "sobel-operator",
+      "label": "Sobel Operator",
+      "domain": "computer-vision",
+      "parents": ["image-processing"]
     },
     {
       "id": "hinge-loss",
@@ -761,6 +905,24 @@
       "parents": ["contrastive-learning"],
       "links": [
         "https://arxiv.org/abs/2002.05709 | SimCLR Paper"
+      ]
+    },
+    {
+      "id": "moco",
+      "label": "MoCo",
+      "domain": "deep-learning",
+      "parents": ["contrastive-learning"],
+      "links": [
+        "https://arxiv.org/abs/1911.05722 | MoCo Paper"
+      ]
+    },
+    {
+      "id": "dino",
+      "label": "DINO",
+      "domain": "deep-learning",
+      "parents": ["contrastive-learning", "vision-transformers"],
+      "links": [
+        "https://arxiv.org/abs/2104.14294 | DINO Paper"
       ]
     },
     {
@@ -929,6 +1091,15 @@
       ]
     },
     {
+      "id": "panoptic-fpn",
+      "label": "Panoptic FPN",
+      "domain": "computer-vision",
+      "parents": ["panoptic-segmentation", "fpn"],
+      "links": [
+        "https://arxiv.org/abs/1901.02446 | Panoptic FPN Paper"
+      ]
+    },
+    {
       "id": "retinanet",
       "label": "RetinaNet",
       "domain": "computer-vision",
@@ -1007,6 +1178,24 @@
       "parents": ["panoptic-segmentation", "cnns"],
       "links": [
         "https://arxiv.org/abs/2012.00720 | Panoptic FCN Paper"
+      ]
+    },
+    {
+      "id": "mask2former",
+      "label": "Mask2Former",
+      "domain": "computer-vision",
+      "parents": ["panoptic-segmentation", "semantic-segmentation", "transformers"],
+      "links": [
+        "https://arxiv.org/abs/2112.01527 | Mask2Former Paper"
+      ]
+    },
+    {
+      "id": "sam",
+      "label": "Segment Anything Model (SAM)",
+      "domain": "computer-vision",
+      "parents": ["image-segmentation", "vision-transformers"],
+      "links": [
+        "https://arxiv.org/abs/2304.02643 | Segment Anything Paper"
       ]
     }
   ],
@@ -1186,6 +1375,30 @@
       "weight": 1
     },
     {
+      "source": "gd",
+      "target": "sgd",
+      "kind": "related",
+      "weight": 1
+    },
+    {
+      "source": "sgd",
+      "target": "adam",
+      "kind": "related",
+      "weight": 1
+    },
+    {
+      "source": "gauss-newton",
+      "target": "linear-regression",
+      "kind": "related",
+      "weight": 1
+    },
+    {
+      "source": "bn",
+      "target": "gn",
+      "kind": "related",
+      "weight": 1
+    },
+    {
       "source": "svms",
       "target": "hinge-loss",
       "kind": "related",
@@ -1234,8 +1447,50 @@
       "weight": 1
     },
     {
+      "source": "moco",
+      "target": "simclr",
+      "kind": "related",
+      "weight": 1
+    },
+    {
+      "source": "dino",
+      "target": "moco",
+      "kind": "related",
+      "weight": 1
+    },
+    {
       "source": "pca",
       "target": "svd",
+      "kind": "related",
+      "weight": 1
+    },
+    {
+      "source": "hermitian",
+      "target": "svd",
+      "kind": "related",
+      "weight": 1
+    },
+    {
+      "source": "matrix-rank",
+      "target": "matrix-range",
+      "kind": "related",
+      "weight": 1
+    },
+    {
+      "source": "linear-subspaces",
+      "target": "matrix-span",
+      "kind": "related",
+      "weight": 1
+    },
+    {
+      "source": "cauchy-schwarz",
+      "target": "hilbert-space",
+      "kind": "related",
+      "weight": 1
+    },
+    {
+      "source": "convex-sets",
+      "target": "convex-hull",
       "kind": "related",
       "weight": 1
     },
@@ -1246,7 +1501,19 @@
       "weight": 1
     },
     {
+      "source": "sobel-operator",
+      "target": "hog",
+      "kind": "related",
+      "weight": 1
+    },
+    {
       "source": "segflow",
+      "target": "optical-flow",
+      "kind": "related",
+      "weight": 1
+    },
+    {
+      "source": "flownet",
       "target": "optical-flow",
       "kind": "related",
       "weight": 1
@@ -1260,6 +1527,30 @@
     {
       "source": "fpn",
       "target": "retinanet",
+      "kind": "related",
+      "weight": 1
+    },
+    {
+      "source": "fpn",
+      "target": "panoptic-fpn",
+      "kind": "related",
+      "weight": 1
+    },
+    {
+      "source": "panoptic-fpn",
+      "target": "panoptic-fcn",
+      "kind": "related",
+      "weight": 1
+    },
+    {
+      "source": "dilated-convolutions",
+      "target": "aspp",
+      "kind": "related",
+      "weight": 1
+    },
+    {
+      "source": "mask2former",
+      "target": "sam",
       "kind": "related",
       "weight": 1
     },
