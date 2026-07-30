@@ -44,8 +44,16 @@ PI_HOST="${PI_HOST:-pi}"
 PI_REPO_PATH="${PI_REPO_PATH:-~/simplistic-portfolio}"
 DATA_FILE="public/data/knowledge_graph.json"
 
-echo "==> Step 1: Syncing from Anki + Obsidian..."
 cd "$REPO_DIR"
+
+# Opt-in: normalise/complete the #kg:: tags in Anki first, so cards added since
+# the last run actually land on a concept. RETAG=1 ./scripts/sync-knowledge-to-pi.sh
+if [ "${RETAG:-0}" = "1" ]; then
+  echo "==> Step 0: Retagging Anki notes..."
+  node scripts/retag-anki.mjs
+fi
+
+echo "==> Step 1: Syncing from Anki + Obsidian..."
 node scripts/sync-knowledge.mjs
 
 NODE_COUNT=$(grep -c '"id"' "$DATA_FILE" || true)

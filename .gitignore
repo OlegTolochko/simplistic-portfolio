@@ -40,3 +40,6 @@ app/data/knowledge_graph.json
 public/data/knowledge_graph.json
 blog-temp/
 docs/
+
+# Anki tag snapshots written by scripts/retag-anki.mjs
+scripts/backups/

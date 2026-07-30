@@ -6,6 +6,7 @@ export type KnowledgeDomain =
   | "deep-learning"
   | "nlp"
   | "computer-vision"
+  | "3d-vision"
   | "statistics"
   | "backend"
   | "frontend"
@@ -57,6 +58,7 @@ export const domainLabel = (domain: string) => {
     "deep-learning": "Deep Learning",
     nlp: "NLP",
     "computer-vision": "Computer Vision",
+    "3d-vision": "3D Vision",
     statistics: "Statistics",
     "ml-systems": "ML Systems",
     backend: "Backend",
@@ -75,6 +77,8 @@ export const domainColor = (domain: KnowledgeDomain) => {
       return "#0ea5e9";
     case "computer-vision":
       return "#22c55e";
+    case "3d-vision":
+      return "#a16207";
     case "statistics":
       return "#14b8a6";
     case "ml-systems":

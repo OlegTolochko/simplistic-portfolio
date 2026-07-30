@@ -8,7 +8,9 @@
     "start": "next start",
     "lint": "next lint",
     "knowledge:sync": "node scripts/sync-knowledge.mjs",
-    "knowledge:sync:dry": "node scripts/sync-knowledge.mjs --dry"
+    "knowledge:sync:dry": "node scripts/sync-knowledge.mjs --dry",
+    "knowledge:retag": "node scripts/retag-anki.mjs",
+    "knowledge:retag:dry": "node scripts/retag-anki.mjs --dry --verbose"
   },
   "dependencies": {
     "@mdx-js/loader": "^3.1.1",
@@ -23,7 +25,6 @@
     "next": "^15.5.12",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
-    "react-force-graph-2d": "^1.29.1",
     "remark-frontmatter": "^5.0.0",
     "remark-gfm": "^4.0.1",
     "remark-mdx-frontmatter": "^5.2.0",

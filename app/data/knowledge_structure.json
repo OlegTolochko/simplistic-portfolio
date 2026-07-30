@@ -1,28 +1,7 @@
 {
   "concepts": [
     {
-      "id": "deep-learning",
-      "label": "Deep Learning",
-      "domain": "deep-learning"
-    },
-    {
-      "id": "nlp",
-      "label": "NLP",
-      "domain": "nlp"
-    },
-    {
-      "id": "computer-vision",
-      "label": "Computer Vision",
-      "domain": "computer-vision",
-      "parents": ["deep-learning"]
-    },
-    {
-      "id": "statistics",
-      "label": "Statistics",
-      "domain": "statistics"
-    },
-    {
-      "id": "math",
+      "id": "mathematics",
       "label": "Mathematics",
       "domain": "math"
     },
@@ -30,1535 +9,2871 @@
       "id": "linear-algebra",
       "label": "Linear Algebra",
       "domain": "math",
-      "parents": ["math"]
+      "parents": [
+        "mathematics"
+      ]
+    },
+    {
+      "id": "matrix-span",
+      "label": "Matrix Span",
+      "domain": "math",
+      "parents": [
+        "linear-algebra"
+      ]
+    },
+    {
+      "id": "matrix-rank",
+      "label": "Matrix Rank",
+      "domain": "math",
+      "parents": [
+        "linear-algebra"
+      ]
+    },
+    {
+      "id": "linear-subspaces",
+      "label": "Linear Subspaces",
+      "domain": "math",
+      "parents": [
+        "linear-algebra"
+      ]
+    },
+    {
+      "id": "hermitian-matrix",
+      "label": "Hermitian Matrix",
+      "domain": "math",
+      "parents": [
+        "linear-algebra"
+      ]
+    },
+    {
+      "id": "singular-value-decomposition",
+      "label": "Singular Value Decomposition",
+      "domain": "math",
+      "parents": [
+        "linear-algebra"
+      ]
+    },
+    {
+      "id": "eigendecomposition",
+      "label": "Eigendecomposition",
+      "domain": "math",
+      "parents": [
+        "linear-algebra"
+      ]
+    },
+    {
+      "id": "laplacian",
+      "label": "Laplacian",
+      "domain": "math",
+      "parents": [
+        "linear-algebra"
+      ]
+    },
+    {
+      "id": "inner-product",
+      "label": "Inner Product",
+      "domain": "math",
+      "parents": [
+        "linear-algebra"
+      ]
+    },
+    {
+      "id": "vector-norms",
+      "label": "Vector Norms",
+      "domain": "math",
+      "parents": [
+        "linear-algebra"
+      ]
+    },
+    {
+      "id": "frobenius-norm",
+      "label": "Frobenius Norm",
+      "domain": "math",
+      "parents": [
+        "vector-norms"
+      ]
+    },
+    {
+      "id": "orthogonality",
+      "label": "Orthogonality",
+      "domain": "math",
+      "parents": [
+        "linear-algebra"
+      ]
+    },
+    {
+      "id": "matrix-calculus",
+      "label": "Matrix Calculus",
+      "domain": "math",
+      "parents": [
+        "linear-algebra",
+        "calculus"
+      ]
     },
     {
       "id": "calculus",
       "label": "Calculus",
       "domain": "math",
-      "parents": ["math"]
+      "parents": [
+        "mathematics"
+      ]
     },
     {
-      "id": "functional-analysis",
-      "label": "Functional Analysis",
+      "id": "derivatives",
+      "label": "Derivatives",
       "domain": "math",
-      "parents": ["math", "linear-algebra"]
-    },
-    {
-      "id": "probability-theory",
-      "label": "Probability Theory",
-      "domain": "statistics",
-      "parents": ["statistics"]
-    },
-    {
-      "id": "information-theory",
-      "label": "Information Theory",
-      "domain": "statistics",
-      "parents": ["probability-theory"]
-    },
-    {
-      "id": "probabilistic-graphical-models",
-      "label": "Probabilistic Graphical Models",
-      "domain": "statistics",
-      "parents": ["probability-theory"]
-    },
-    {
-      "id": "evaluation-metrics",
-      "label": "Evaluation Metrics",
-      "domain": "nlp",
-      "parents": ["nlp"]
-    },
-    {
-      "id": "information-extraction",
-      "label": "Information Extraction",
-      "domain": "nlp",
-      "parents": ["nlp"]
-    },
-    {
-      "id": "sequence-labeling",
-      "label": "Sequence Labeling",
-      "domain": "nlp",
-      "parents": ["nlp"]
-    },
-    {
-      "id": "dependency-parsing",
-      "label": "Dependency Parsing",
-      "domain": "nlp",
-      "parents": ["nlp"]
-    },
-    {
-      "id": "constituency-parsing",
-      "label": "Constituency Parsing",
-      "domain": "nlp",
-      "parents": ["nlp"]
-    },
-    {
-      "id": "language-modeling",
-      "label": "Language Modeling",
-      "domain": "nlp",
-      "parents": ["nlp"]
-    },
-    {
-      "id": "information-retrieval",
-      "label": "Information Retrieval",
-      "domain": "nlp",
-      "parents": ["nlp"]
-    },
-    {
-      "id": "text-classification",
-      "label": "Text Classification",
-      "domain": "nlp",
-      "parents": ["nlp"]
-    },
-    {
-      "id": "attention",
-      "label": "Attention",
-      "domain": "deep-learning",
-      "parents": ["deep-learning"]
-    },
-    {
-      "id": "transformers",
-      "label": "Transformers",
-      "domain": "deep-learning",
-      "parents": ["deep-learning", "attention"]
-    },
-    {
-      "id": "llms",
-      "label": "Large Language Models",
-      "domain": "nlp",
-      "parents": ["language-modeling", "transformers"]
-    },
-    {
-      "id": "rnns",
-      "label": "RNNs",
-      "domain": "deep-learning",
-      "parents": ["deep-learning"]
-    },
-    {
-      "id": "vision-transformers",
-      "label": "Vision Transformers",
-      "domain": "computer-vision",
-      "parents": ["computer-vision", "transformers"]
-    },
-    {
-      "id": "swin-transformer",
-      "label": "Swin Transformer",
-      "domain": "computer-vision",
-      "parents": ["vision-transformers"]
-    },
-    {
-      "id": "bert",
-      "label": "BERT",
-      "domain": "nlp",
-      "parents": ["llms", "relation-extraction"],
-      "links": [
-        "https://arxiv.org/abs/1810.04805 | BERT Paper"
+      "parents": [
+        "calculus"
       ]
     },
     {
-      "id": "regex",
-      "label": "Regex",
-      "domain": "nlp",
-      "parents": ["information-extraction"]
-    },
-    {
-      "id": "coreference-resolution",
-      "label": "Coreference Resolution",
-      "domain": "nlp",
-      "parents": ["information-extraction"]
-    },
-    {
-      "id": "e2e-coref",
-      "label": "End-to-End Coreference Resolution",
-      "domain": "nlp",
-      "parents": ["coreference-resolution"]
-    },
-    {
-      "id": "relation-extraction",
-      "label": "Relation Extraction",
-      "domain": "nlp",
-      "parents": ["information-extraction"]
-    },
-    {
-      "id": "named-entity-recognition",
-      "label": "Named Entity Recognition",
-      "domain": "nlp",
-      "parents": ["information-extraction", "sequence-labeling"]
-    },
-    {
-      "id": "template-filling",
-      "label": "Template Filling",
-      "domain": "nlp",
-      "parents": ["information-extraction"]
-    },
-    {
-      "id": "semantic-role-labeling",
-      "label": "Semantic Role Labeling",
-      "domain": "nlp",
-      "parents": ["information-extraction"]
-    },
-    {
-      "id": "pos-tagging",
-      "label": "POS Tagging",
-      "domain": "nlp",
-      "parents": ["sequence-labeling"]
-    },
-    {
-      "id": "machine-translation",
-      "label": "Machine Translation",
-      "domain": "nlp",
-      "parents": ["nlp"]
-    },
-    {
-      "id": "minimum-bayes-risk",
-      "label": "Minimum Bayes Risk",
-      "domain": "nlp",
-      "parents": ["machine-translation", "evaluation-metrics"]
-    },
-    {
-      "id": "chrf",
-      "label": "chrF",
-      "domain": "nlp",
-      "parents": ["evaluation-metrics"]
-    },
-    {
-      "id": "prec-recall",
-      "label": "Precision + Recall",
-      "domain": "nlp",
-      "parents": ["evaluation-metrics"]
-    },
-    {
-      "id": "naive-bayes",
-      "label": "Naive Bayes",
-      "domain": "statistics",
-      "parents": ["probability-theory", "text-classification"]
-    },
-    {
-      "id": "hmm",
-      "label": "Hidden Markov Models",
-      "domain": "statistics",
-      "parents": ["probabilistic-graphical-models", "sequence-labeling"]
-    },
-    {
-      "id": "crfs",
-      "label": "Conditional Random Fields",
-      "domain": "statistics",
-      "parents": ["probabilistic-graphical-models", "sequence-labeling"],
-      "note": "discriminative counterpart of HMMs"
-    },
-    {
-      "id": "dp",
-      "label": "Dynamic Programming",
+      "id": "chain-rule",
+      "label": "Chain Rule",
       "domain": "math",
-      "parents": ["math"]
-    },
-    {
-      "id": "viterbi",
-      "label": "Viterbi Algorithm",
-      "domain": "statistics",
-      "parents": ["hmm", "dp"]
-    },
-    {
-      "id": "cnf",
-      "label": "Chomsky Normal Form",
-      "domain": "nlp",
-      "parents": ["constituency-parsing"]
-    },
-    {
-      "id": "cky",
-      "label": "CKY Algorithm",
-      "domain": "nlp",
-      "parents": ["constituency-parsing", "dp"]
-    },
-    {
-      "id": "minimum-edit-distance",
-      "label": "Minimum Edit Distance",
-      "domain": "nlp",
-      "parents": ["nlp", "dp"]
-    },
-    {
-      "id": "word2vec",
-      "label": "Word2Vec",
-      "domain": "nlp",
-      "parents": ["language-modeling"]
-    },
-    {
-      "id": "fasttext",
-      "label": "fastText",
-      "domain": "nlp",
-      "parents": ["language-modeling", "text-classification"],
-      "links": [
-        "https://arxiv.org/abs/1607.01759 | Bag of Tricks for Efficient Text Classification",
-        "https://arxiv.org/abs/1607.04606 | Enriching Word Vectors with Subword Information"
+      "parents": [
+        "derivatives"
       ]
     },
     {
-      "id": "rag",
-      "label": "Retrieval-Augmented Generation",
-      "domain": "nlp",
-      "parents": ["llms", "information-retrieval"]
-    },
-    {
-      "id": "cos-similarity",
-      "label": "Cosine Similarity",
-      "domain": "nlp",
-      "parents": ["information-retrieval", "evaluation-metrics"]
-    },
-    {
-      "id": "preference-alignment",
-      "label": "Preference Alignment",
-      "domain": "nlp",
-      "parents": ["llms"]
-    },
-    {
-      "id": "rlhf",
-      "label": "RLHF",
-      "domain": "nlp",
-      "parents": ["preference-alignment"]
-    },
-    {
-      "id": "dpo",
-      "label": "DPO (Direct Preference Optimization)",
-      "domain": "nlp",
-      "parents": ["preference-alignment", "fine-tuning"],
-      "links": [
-        "https://arxiv.org/abs/2305.18290 | DPO Paper"
-      ]
-    },
-    {
-      "id": "sentiment-analysis",
-      "label": "Sentiment Analysis",
-      "domain": "nlp",
-      "parents": ["text-classification"]
-    },
-    {
-      "id": "graph-based-dependency-parsing",
-      "label": "Graph-Based Dependency Parsing",
-      "domain": "nlp",
-      "parents": ["dependency-parsing"]
-    },
-    {
-      "id": "transition-based-dependency-parsing",
-      "label": "Transition-Based Dependency Parsing",
-      "domain": "nlp",
-      "parents": ["dependency-parsing"]
-    },
-    {
-      "id": "semantic-axis",
-      "label": "Semantic Axis",
-      "domain": "nlp",
-      "parents": ["language-modeling"]
-    },
-    {
-      "id": "tf-idf",
-      "label": "TF-IDF",
-      "domain": "nlp",
-      "parents": ["information-retrieval"]
-    },
-    {
-      "id": "bm25",
-      "label": "BM25",
-      "domain": "nlp",
-      "parents": ["information-retrieval"]
-    },
-    {
-      "id": "optimization",
-      "label": "Optimization",
-      "domain": "deep-learning",
-      "parents": ["deep-learning"]
-    },
-    {
-      "id": "adam",
-      "label": "Adam Optimizer",
-      "domain": "deep-learning",
-      "parents": ["optimization"]
-    },
-    {
-      "id": "gd",
-      "label": "Gradient Descent",
-      "domain": "deep-learning",
-      "parents": ["optimization"]
-    },
-    {
-      "id": "sgd",
-      "label": "Stochastic Gradient Descent",
-      "domain": "deep-learning",
-      "parents": ["gd", "optimization"]
-    },
-    {
-      "id": "gauss-newton",
-      "label": "Gauss-Newton Algorithm",
+      "id": "gradient",
+      "label": "Gradient",
       "domain": "math",
-      "parents": ["optimization", "calculus"]
-    },
-    {
-      "id": "cross-entropy",
-      "label": "Cross-Entropy",
-      "domain": "deep-learning",
-      "parents": ["optimization", "entropy"]
-    },
-    {
-      "id": "transfer-learning",
-      "label": "Transfer Learning",
-      "domain": "deep-learning",
-      "parents": ["deep-learning"]
-    },
-    {
-      "id": "normalization",
-      "label": "Normalization",
-      "domain": "deep-learning",
-      "parents": ["deep-learning"]
-    },
-    {
-      "id": "bn",
-      "label": "Batch Normalization",
-      "domain": "deep-learning",
-      "parents": ["normalization", "cnns"]
-    },
-    {
-      "id": "gn",
-      "label": "Group Normalization",
-      "domain": "deep-learning",
-      "parents": ["normalization", "cnns"],
-      "links": [
-        "https://arxiv.org/abs/1803.08494 | Group Normalization Paper"
+      "parents": [
+        "derivatives"
       ]
     },
     {
-      "id": "fine-tuning",
-      "label": "Fine-Tuning",
-      "domain": "nlp",
-      "parents": ["llms"]
-    },
-    {
-      "id": "sft",
-      "label": "Supervised Fine-Tuning",
-      "domain": "nlp",
-      "parents": ["fine-tuning"]
-    },
-    {
-      "id": "lora",
-      "label": "LoRA (Low-Rank Adaptation)",
-      "domain": "nlp",
-      "parents": ["fine-tuning", "transfer-learning"]
-    },
-    {
-      "id": "tokenization",
-      "label": "Tokenization",
-      "domain": "nlp",
-      "parents": ["nlp"]
-    },
-    {
-      "id": "bpe",
-      "label": "Byte Pair Encoding",
-      "domain": "nlp",
-      "parents": ["llms", "tokenization"]
-    },
-    {
-      "id": "unigram-tokenization",
-      "label": "Unigram Tokenization",
-      "domain": "nlp",
-      "parents": ["tokenization", "llms"]
-    },
-    {
-      "id": "markov-model",
-      "label": "Markov Models",
-      "domain": "statistics",
-      "parents": ["probability-theory"]
-    },
-    {
-      "id": "n-gram-lms",
-      "label": "N-gram Language Models",
-      "domain": "nlp",
-      "parents": ["language-modeling"]
-    },
-    {
-      "id": "mle",
-      "label": "Maximum Likelihood Estimation",
-      "domain": "statistics",
-      "parents": ["probability-theory"]
-    },
-    {
-      "id": "entropy",
-      "label": "Entropy",
-      "domain": "statistics",
-      "parents": ["information-theory"]
-    },
-    {
-      "id": "pointwise-mi",
-      "label": "Pointwise Mutual Information (PMI)",
-      "domain": "nlp",
-      "parents": ["information-theory", "nlp"]
-    },
-    {
-      "id": "bootstrapping",
-      "label": "Bootstrapping",
-      "domain": "statistics",
-      "parents": ["statistics"]
-    },
-    {
-      "id": "lstm",
-      "label": "LSTM",
-      "domain": "deep-learning",
-      "parents": ["rnns"]
-    },
-    {
-      "id": "cfg",
-      "label": "Context-Free Grammar",
-      "domain": "nlp",
-      "parents": ["constituency-parsing"]
-    },
-    {
-      "id": "ie",
-      "label": "IE (Information Extraction)",
-      "domain": "nlp",
-      "parents": ["information-extraction"]
-    },
-    {
-      "id": "entity-linking",
-      "label": "Entity Linking",
-      "domain": "nlp",
-      "parents": ["information-extraction", "ie"]
-    },
-    {
-      "id": "discourse-coherence",
-      "label": "Discourse Coherence",
-      "domain": "nlp",
-      "parents": ["nlp"]
-    },
-    {
-      "id": "rst-parsing",
-      "label": "RST Parsing",
-      "domain": "nlp",
-      "parents": ["discourse-coherence"]
-    },
-    {
-      "id": "bleu",
-      "label": "BLEU",
-      "domain": "nlp",
-      "parents": ["machine-translation", "evaluation-metrics"]
-    },
-    {
-      "id": "perplexity",
-      "label": "Perplexity",
-      "domain": "nlp",
-      "parents": ["language-modeling", "evaluation-metrics"]
-    },
-    {
-      "id": "bertscore",
-      "label": "BERTScore",
-      "domain": "nlp",
-      "parents": ["evaluation-metrics", "bert"],
-      "links": [
-        "https://arxiv.org/abs/1904.09675 | BERTScore Paper"
+      "id": "jacobian",
+      "label": "Jacobian",
+      "domain": "math",
+      "parents": [
+        "derivatives"
       ]
     },
     {
-      "id": "logistic-regression",
-      "label": "Logistic Regression",
-      "domain": "statistics",
-      "parents": ["statistics", "text-classification"]
-    },
-    {
-      "id": "linear-regression",
-      "label": "Linear Regression",
-      "domain": "statistics",
-      "parents": ["statistics", "optimization", "linear-algebra"]
-    },
-    {
-      "id": "svms",
-      "label": "Support Vector Machines",
-      "domain": "statistics",
-      "parents": ["statistics", "text-classification", "convexity"]
-    },
-    {
-      "id": "beam-search",
-      "label": "Beam Search",
-      "domain": "nlp",
-      "parents": ["machine-translation", "language-modeling"]
-    },
-    {
-      "id": "llm-training",
-      "label": "LLM Training",
-      "domain": "nlp",
-      "parents": ["llms", "deep-learning"]
-    },
-    {
-      "id": "cross-attention",
-      "label": "Cross-Attention",
-      "domain": "deep-learning",
-      "parents": ["attention", "transformers"]
-    },
-    {
-      "id": "bio-tagging",
-      "label": "BIO Tagging",
-      "domain": "nlp",
-      "parents": ["sequence-labeling", "named-entity-recognition"]
-    },
-    {
-      "id": "object-detection",
-      "label": "Object Detection",
-      "domain": "computer-vision",
-      "parents": ["computer-vision", "cnns"]
-    },
-    {
-      "id": "object-tracking",
-      "label": "Object Tracking",
-      "domain": "computer-vision",
-      "parents": ["computer-vision"]
-    },
-    {
-      "id": "optical-flow",
-      "label": "Optical Flow",
-      "domain": "computer-vision",
-      "parents": ["computer-vision", "object-tracking"]
-    },
-    {
-      "id": "flownet",
-      "label": "FlowNet",
-      "domain": "computer-vision",
-      "parents": ["optical-flow", "cnns"],
-      "links": [
-        "https://arxiv.org/abs/1504.06852 | FlowNet Paper"
+      "id": "divergence",
+      "label": "Divergence",
+      "domain": "math",
+      "parents": [
+        "derivatives"
       ]
     },
     {
       "id": "taylor-expansion",
       "label": "Taylor Expansion",
       "domain": "math",
-      "parents": ["math"]
-    },
-    {
-      "id": "convexity",
-      "label": "Convexity",
-      "domain": "math",
-      "parents": ["math"]
-    },
-    {
-      "id": "convex-sets",
-      "label": "Convex Sets",
-      "domain": "math",
-      "parents": ["convexity"]
-    },
-    {
-      "id": "convex-hull",
-      "label": "Convex Hull",
-      "domain": "math",
-      "parents": ["math", "convex-sets"]
-    },
-    {
-      "id": "gaussian-kernel",
-      "label": "Gaussian Kernel",
-      "domain": "math",
-      "parents": ["math", "statistics"]
-    },
-    {
-      "id": "laplacian",
-      "label": "Laplacian",
-      "domain": "math",
-      "parents": ["math"]
-    },
-    {
-      "id": "svd",
-      "label": "Singular Value Decomposition",
-      "domain": "math",
-      "parents": ["linear-algebra"]
-    },
-    {
-      "id": "hermitian",
-      "label": "Hermitian Matrix",
-      "domain": "math",
-      "parents": ["linear-algebra"]
-    },
-    {
-      "id": "matrix-span",
-      "label": "Matrix Span",
-      "domain": "math",
-      "parents": ["linear-algebra"]
-    },
-    {
-      "id": "matrix-rank",
-      "label": "Matrix Rank",
-      "domain": "math",
-      "parents": ["linear-algebra", "matrix-span"]
-    },
-    {
-      "id": "matrix-range",
-      "label": "Matrix Range",
-      "domain": "math",
-      "parents": ["linear-algebra", "matrix-span"]
-    },
-    {
-      "id": "linear-subspaces",
-      "label": "Linear Subspaces",
-      "domain": "math",
-      "parents": ["linear-algebra", "matrix-span"]
-    },
-    {
-      "id": "frobenius-norm",
-      "label": "Frobenius Norm",
-      "domain": "math",
-      "parents": ["linear-algebra"]
-    },
-    {
-      "id": "hilbert-space",
-      "label": "Hilbert Space",
-      "domain": "math",
-      "parents": ["functional-analysis", "linear-algebra"]
-    },
-    {
-      "id": "cauchy-schwarz",
-      "label": "Cauchy-Schwarz Inequality",
-      "domain": "math",
-      "parents": ["linear-algebra", "hilbert-space"]
+      "parents": [
+        "calculus"
+      ]
     },
     {
       "id": "riemann-integral",
       "label": "Riemann Integral",
       "domain": "math",
-      "parents": ["calculus"]
+      "parents": [
+        "calculus"
+      ]
     },
     {
-      "id": "pca",
-      "label": "Principal Component Analysis",
+      "id": "functional-analysis",
+      "label": "Functional Analysis",
       "domain": "math",
-      "parents": ["linear-algebra", "unsupervised-learning"]
-    },
-    {
-      "id": "triplet-loss",
-      "label": "Triplet Loss",
-      "domain": "deep-learning",
-      "parents": ["optimization", "object-tracking"]
-    },
-    {
-      "id": "cnns",
-      "label": "CNNs",
-      "domain": "deep-learning",
-      "parents": ["deep-learning"]
-    },
-    {
-      "id": "image-processing",
-      "label": "Image Processing",
-      "domain": "computer-vision",
-      "parents": ["computer-vision"]
-    },
-    {
-      "id": "im2col",
-      "label": "im2col",
-      "domain": "deep-learning",
-      "parents": ["cnns"]
-    },
-    {
-      "id": "spatial-transformer-networks",
-      "label": "Spatial Transformer Networks",
-      "domain": "computer-vision",
-      "parents": ["computer-vision", "cnns"],
-      "links": [
-        "https://arxiv.org/abs/1506.02025 | Spatial Transformer Networks Paper"
+      "parents": [
+        "mathematics",
+        "linear-algebra"
       ]
     },
     {
-      "id": "image-segmentation",
-      "label": "Image Segmentation",
-      "domain": "computer-vision",
-      "parents": ["computer-vision", "cnns"]
-    },
-    {
-      "id": "semantic-segmentation",
-      "label": "Semantic Segmentation",
-      "domain": "computer-vision",
-      "parents": ["image-segmentation"]
-    },
-    {
-      "id": "transposed-convolution",
-      "label": "Transposed Convolution",
-      "domain": "deep-learning",
-      "parents": ["cnns", "image-segmentation"]
-    },
-    {
-      "id": "dilated-convolutions",
-      "label": "Dilated Convolutions",
-      "domain": "deep-learning",
-      "parents": ["cnns", "semantic-segmentation"]
-    },
-    {
-      "id": "aspp",
-      "label": "ASPP (Atrous Spatial Pyramid Pooling)",
-      "domain": "computer-vision",
-      "parents": ["semantic-segmentation", "dilated-convolutions"],
-      "links": [
-        "https://arxiv.org/abs/1606.00915 | DeepLab v2 / ASPP Paper"
+      "id": "hilbert-space",
+      "label": "Hilbert Space",
+      "domain": "math",
+      "parents": [
+        "functional-analysis"
       ]
     },
     {
-      "id": "segnet",
-      "label": "SegNet",
-      "domain": "computer-vision",
-      "parents": ["semantic-segmentation", "cnns"],
-      "links": [
-        "https://arxiv.org/abs/1511.00561 | SegNet Paper"
+      "id": "cauchy-sequence",
+      "label": "Cauchy Sequence",
+      "domain": "math",
+      "parents": [
+        "functional-analysis"
       ]
     },
     {
-      "id": "instance-segmentation",
-      "label": "Instance Segmentation",
-      "domain": "computer-vision",
-      "parents": ["image-segmentation", "object-detection"]
-    },
-    {
-      "id": "vos",
-      "label": "Video Object Segmentation",
-      "domain": "computer-vision",
-      "parents": ["instance-segmentation", "object-tracking"]
-    },
-    {
-      "id": "osvos",
-      "label": "OSVOS",
-      "domain": "computer-vision",
-      "parents": ["vos"],
-      "links": [
-        "https://arxiv.org/abs/1611.05198 | OSVOS Paper"
+      "id": "cauchy-schwarz-inequality",
+      "label": "Cauchy-Schwarz Inequality",
+      "domain": "math",
+      "parents": [
+        "functional-analysis"
       ]
     },
     {
-      "id": "segflow",
-      "label": "SegFlow",
-      "domain": "computer-vision",
-      "parents": ["vos", "optical-flow"],
-      "links": [
-        "https://arxiv.org/abs/1709.06750 | SegFlow Paper"
+      "id": "optimization",
+      "label": "Optimization",
+      "domain": "math",
+      "parents": [
+        "mathematics"
       ]
     },
     {
-      "id": "masktrack",
-      "label": "MaskTrack",
-      "domain": "computer-vision",
-      "parents": ["vos", "instance-segmentation"],
-      "links": [
-        "https://arxiv.org/abs/1905.04804 | MaskTrack Paper"
+      "id": "convexity",
+      "label": "Convexity",
+      "domain": "math",
+      "parents": [
+        "optimization"
+      ]
+    },
+    {
+      "id": "convex-sets",
+      "label": "Convex Sets",
+      "domain": "math",
+      "parents": [
+        "convexity"
+      ]
+    },
+    {
+      "id": "convex-hull",
+      "label": "Convex Hull",
+      "domain": "math",
+      "parents": [
+        "convex-sets"
+      ]
+    },
+    {
+      "id": "jensen-inequality",
+      "label": "Jensen's Inequality",
+      "domain": "math",
+      "parents": [
+        "convexity"
+      ]
+    },
+    {
+      "id": "bregman-divergence",
+      "label": "Bregman Divergence",
+      "domain": "math",
+      "parents": [
+        "convexity"
+      ]
+    },
+    {
+      "id": "gradient-descent",
+      "label": "Gradient Descent",
+      "domain": "math",
+      "parents": [
+        "optimization"
+      ]
+    },
+    {
+      "id": "stochastic-gradient-descent",
+      "label": "Stochastic Gradient Descent",
+      "domain": "math",
+      "parents": [
+        "gradient-descent"
+      ]
+    },
+    {
+      "id": "second-order-optimization",
+      "label": "Second-Order Optimization",
+      "domain": "math",
+      "parents": [
+        "optimization"
+      ]
+    },
+    {
+      "id": "newton-method",
+      "label": "Newton's Method",
+      "domain": "math",
+      "parents": [
+        "second-order-optimization"
+      ]
+    },
+    {
+      "id": "gauss-newton",
+      "label": "Gauss-Newton Algorithm",
+      "domain": "math",
+      "parents": [
+        "second-order-optimization"
+      ]
+    },
+    {
+      "id": "least-squares",
+      "label": "Least Squares",
+      "domain": "math",
+      "parents": [
+        "optimization",
+        "linear-regression"
+      ]
+    },
+    {
+      "id": "graph-algorithms",
+      "label": "Graph Algorithms",
+      "domain": "math",
+      "parents": [
+        "mathematics"
       ]
     },
     {
       "id": "min-cost-max-flow",
       "label": "Min-Cost Max-Flow",
       "domain": "math",
-      "parents": ["math", "object-tracking"]
-    },
-    {
-      "id": "ap",
-      "label": "Average Precision",
-      "domain": "computer-vision",
-      "parents": ["evaluation-metrics", "object-detection"]
-    },
-    {
-      "id": "map",
-      "label": "Mean Average Precision",
-      "domain": "computer-vision",
-      "parents": ["evaluation-metrics", "object-detection", "ap"]
-    },
-    {
-      "id": "iou",
-      "label": "Intersection over Union",
-      "domain": "computer-vision",
-      "parents": ["evaluation-metrics", "object-detection"]
-    },
-    {
-      "id": "template-matching",
-      "label": "Template Matching",
-      "domain": "computer-vision",
-      "parents": ["computer-vision"]
-    },
-    {
-      "id": "hog",
-      "label": "Histogram of Oriented Gradients (HOG)",
-      "domain": "computer-vision",
-      "parents": ["image-processing", "object-detection"]
-    },
-    {
-      "id": "sobel-operator",
-      "label": "Sobel Operator",
-      "domain": "computer-vision",
-      "parents": ["image-processing"]
-    },
-    {
-      "id": "hinge-loss",
-      "label": "Hinge Loss",
-      "domain": "deep-learning",
-      "parents": ["optimization", "text-classification"]
-    },
-    {
-      "id": "unsupervised-learning",
-      "label": "Unsupervised Learning",
-      "domain": "deep-learning",
-      "parents": ["deep-learning"]
-    },
-    {
-      "id": "contrastive-learning",
-      "label": "Contrastive Learning",
-      "domain": "deep-learning",
-      "parents": ["deep-learning", "unsupervised-learning"]
-    },
-    {
-      "id": "simclr",
-      "label": "SimCLR",
-      "domain": "deep-learning",
-      "parents": ["contrastive-learning"],
-      "links": [
-        "https://arxiv.org/abs/2002.05709 | SimCLR Paper"
-      ]
-    },
-    {
-      "id": "moco",
-      "label": "MoCo",
-      "domain": "deep-learning",
-      "parents": ["contrastive-learning"],
-      "links": [
-        "https://arxiv.org/abs/1911.05722 | MoCo Paper"
-      ]
-    },
-    {
-      "id": "dino",
-      "label": "DINO",
-      "domain": "deep-learning",
-      "parents": ["contrastive-learning", "vision-transformers"],
-      "links": [
-        "https://arxiv.org/abs/2104.14294 | DINO Paper"
-      ]
-    },
-    {
-      "id": "k-means",
-      "label": "K-Means",
-      "domain": "math",
-      "parents": ["math"]
-    },
-    {
-      "id": "spectral-clustering",
-      "label": "Spectral Clustering",
-      "domain": "math",
-      "parents": ["math", "k-means"]
-    },
-    {
-      "id": "ncut",
-      "label": "Normalized Cut",
-      "domain": "math",
-      "parents": ["spectral-clustering", "math"]
-    },
-    {
-      "id": "nms",
-      "label": "Non-Maximum Suppression",
-      "domain": "computer-vision",
-      "parents": ["object-detection"]
-    },
-    {
-      "id": "giou",
-      "label": "Generalized IoU",
-      "domain": "computer-vision",
-      "parents": ["iou", "evaluation-metrics"]
-    },
-    {
-      "id": "two-stage-detectors",
-      "label": "Two-Stage Detectors",
-      "domain": "computer-vision",
-      "parents": ["object-detection"]
-    },
-    {
-      "id": "single-stage-detectors",
-      "label": "Single-Stage Detectors",
-      "domain": "computer-vision",
-      "parents": ["object-detection"]
-    },
-    {
-      "id": "focal-loss",
-      "label": "Focal Loss",
-      "domain": "computer-vision",
-      "parents": ["single-stage-detectors", "optimization"]
-    },
-    {
-      "id": "r-cnn",
-      "label": "R-CNN",
-      "domain": "computer-vision",
-      "parents": ["two-stage-detectors"],
-      "links": [
-        "https://arxiv.org/abs/1311.2524 | R-CNN Paper"
-      ]
-    },
-    {
-      "id": "spp-net",
-      "label": "SPP-Net",
-      "domain": "computer-vision",
-      "parents": ["two-stage-detectors", "cnns"],
-      "links": [
-        "https://arxiv.org/abs/1406.4729 | SPP-Net Paper"
-      ]
-    },
-    {
-      "id": "fast-r-cnn",
-      "label": "Fast R-CNN",
-      "domain": "computer-vision",
-      "parents": ["two-stage-detectors", "roipooling"],
-      "links": [
-        "https://arxiv.org/abs/1504.08083 | Fast R-CNN Paper"
-      ]
-    },
-    {
-      "id": "faster-r-cnn",
-      "label": "Faster R-CNN",
-      "domain": "computer-vision",
-      "parents": ["two-stage-detectors", "fast-r-cnn"],
-      "links": [
-        "https://arxiv.org/abs/1506.01497 | Faster R-CNN Paper"
-      ]
-    },
-    {
-      "id": "roipooling",
-      "label": "RoI Pooling",
-      "domain": "computer-vision",
-      "parents": ["two-stage-detectors", "fast-r-cnn"]
-    },
-    {
-      "id": "mask-r-cnn",
-      "label": "Mask R-CNN",
-      "domain": "computer-vision",
-      "parents": ["instance-segmentation", "two-stage-detectors"],
-      "links": [
-        "https://arxiv.org/abs/1703.06870 | Mask R-CNN Paper"
-      ]
-    },
-    {
-      "id": "roialign",
-      "label": "RoIAlign",
-      "domain": "computer-vision",
-      "parents": ["mask-r-cnn", "instance-segmentation"]
-    },
-    {
-      "id": "pointrend",
-      "label": "PointRend",
-      "domain": "computer-vision",
-      "parents": ["instance-segmentation", "mask-r-cnn"],
-      "links": [
-        "https://arxiv.org/abs/1912.08193 | PointRend Paper"
-      ]
-    },
-    {
-      "id": "detr",
-      "label": "DETR",
-      "domain": "computer-vision",
-      "parents": ["object-detection", "transformers"],
-      "links": [
-        "https://arxiv.org/abs/2005.12872 | DETR Paper"
+      "parents": [
+        "graph-algorithms"
       ]
     },
     {
       "id": "bipartite-matching",
       "label": "Bipartite Matching",
       "domain": "math",
-      "parents": ["math", "object-tracking"]
-    },
-    {
-      "id": "overfeat",
-      "label": "OverFeat",
-      "domain": "computer-vision",
-      "parents": ["single-stage-detectors"],
-      "links": [
-        "https://arxiv.org/abs/1312.6229 | OverFeat Paper"
+      "parents": [
+        "graph-algorithms"
       ]
     },
     {
-      "id": "yolov1",
-      "label": "YOLOv1",
-      "domain": "computer-vision",
-      "parents": ["single-stage-detectors"],
-      "links": [
-        "https://arxiv.org/abs/1506.02640 | YOLOv1 Paper"
+      "id": "dynamic-programming",
+      "label": "Dynamic Programming",
+      "domain": "math",
+      "parents": [
+        "mathematics"
       ]
     },
     {
-      "id": "ssd",
-      "label": "SSD (Single Shot MultiBox Detector)",
-      "domain": "computer-vision",
-      "parents": ["single-stage-detectors"],
-      "links": [
-        "https://arxiv.org/abs/1512.02325 | SSD Paper"
+      "id": "statistics",
+      "label": "Statistics",
+      "domain": "statistics"
+    },
+    {
+      "id": "probability-theory",
+      "label": "Probability Theory",
+      "domain": "statistics",
+      "parents": [
+        "statistics"
       ]
     },
     {
-      "id": "fpn",
-      "label": "Feature Pyramid Network (FPN)",
-      "domain": "computer-vision",
-      "parents": ["object-detection", "cnns"],
-      "links": [
-        "https://arxiv.org/abs/1612.03144 | FPN Paper"
+      "id": "probability-distributions",
+      "label": "Probability Distributions",
+      "domain": "statistics",
+      "parents": [
+        "probability-theory"
       ]
     },
     {
-      "id": "panoptic-fpn",
-      "label": "Panoptic FPN",
-      "domain": "computer-vision",
-      "parents": ["panoptic-segmentation", "fpn"],
-      "links": [
-        "https://arxiv.org/abs/1901.02446 | Panoptic FPN Paper"
+      "id": "gaussian-distribution",
+      "label": "Gaussian Distribution",
+      "domain": "statistics",
+      "parents": [
+        "probability-distributions"
       ]
     },
     {
-      "id": "retinanet",
-      "label": "RetinaNet",
-      "domain": "computer-vision",
-      "parents": ["single-stage-detectors", "fpn"],
-      "links": [
-        "https://arxiv.org/abs/1708.02002 | RetinaNet Paper"
+      "id": "expected-value",
+      "label": "Expected Value",
+      "domain": "statistics",
+      "parents": [
+        "probability-theory"
       ]
     },
     {
-      "id": "cornernet",
-      "label": "CornerNet",
-      "domain": "computer-vision",
-      "parents": ["single-stage-detectors"],
-      "links": [
-        "https://arxiv.org/abs/1808.01244 | CornerNet Paper"
+      "id": "marginalization",
+      "label": "Marginalization",
+      "domain": "statistics",
+      "parents": [
+        "probability-theory"
       ]
     },
     {
-      "id": "solov2",
-      "label": "SOLOv2",
-      "domain": "computer-vision",
-      "parents": ["instance-segmentation", "single-stage-detectors"],
-      "links": [
-        "https://arxiv.org/abs/2003.10152 | SOLOv2 Paper"
+      "id": "conditional-probability",
+      "label": "Conditional Probability",
+      "domain": "statistics",
+      "parents": [
+        "probability-theory"
       ]
     },
     {
-      "id": "tracktor",
-      "label": "Tracktor",
-      "domain": "computer-vision",
-      "parents": ["object-tracking"],
-      "links": [
-        "https://arxiv.org/abs/1903.05625 | Tracktor Paper"
+      "id": "bayes-rule",
+      "label": "Bayes' Rule",
+      "domain": "statistics",
+      "parents": [
+        "conditional-probability"
       ]
     },
     {
-      "id": "bayesian-tracking",
-      "label": "Bayesian Tracking",
-      "domain": "computer-vision",
-      "parents": ["object-tracking", "probability-theory"]
-    },
-    {
-      "id": "goturn",
-      "label": "GOTURN",
-      "domain": "computer-vision",
-      "parents": ["object-tracking"],
-      "links": [
-        "https://arxiv.org/abs/1604.01802 | GOTURN Paper"
+      "id": "estimation",
+      "label": "Estimation",
+      "domain": "statistics",
+      "parents": [
+        "statistics"
       ]
     },
     {
-      "id": "mdnet",
-      "label": "MDNet",
+      "id": "maximum-likelihood-estimation",
+      "label": "Maximum Likelihood Estimation",
+      "domain": "statistics",
+      "parents": [
+        "estimation"
+      ]
+    },
+    {
+      "id": "bayesian-inference",
+      "label": "Bayesian Inference",
+      "domain": "statistics",
+      "parents": [
+        "estimation",
+        "bayes-rule"
+      ]
+    },
+    {
+      "id": "bootstrapping",
+      "label": "Bootstrapping",
+      "domain": "statistics",
+      "parents": [
+        "estimation"
+      ]
+    },
+    {
+      "id": "information-theory",
+      "label": "Information Theory",
+      "domain": "statistics",
+      "parents": [
+        "probability-theory"
+      ]
+    },
+    {
+      "id": "entropy",
+      "label": "Entropy",
+      "domain": "statistics",
+      "parents": [
+        "information-theory"
+      ]
+    },
+    {
+      "id": "cross-entropy",
+      "label": "Cross-Entropy",
+      "domain": "statistics",
+      "parents": [
+        "information-theory"
+      ]
+    },
+    {
+      "id": "kl-divergence",
+      "label": "KL Divergence",
+      "domain": "statistics",
+      "parents": [
+        "information-theory"
+      ]
+    },
+    {
+      "id": "pointwise-mutual-information",
+      "label": "Pointwise Mutual Information",
+      "domain": "statistics",
+      "parents": [
+        "information-theory"
+      ]
+    },
+    {
+      "id": "probabilistic-graphical-models",
+      "label": "Probabilistic Graphical Models",
+      "domain": "statistics",
+      "parents": [
+        "probability-theory"
+      ]
+    },
+    {
+      "id": "markov-models",
+      "label": "Markov Models",
+      "domain": "statistics",
+      "parents": [
+        "probabilistic-graphical-models"
+      ]
+    },
+    {
+      "id": "hidden-markov-models",
+      "label": "Hidden Markov Models",
+      "domain": "statistics",
+      "parents": [
+        "markov-models"
+      ]
+    },
+    {
+      "id": "viterbi-algorithm",
+      "label": "Viterbi Algorithm",
+      "domain": "statistics",
+      "parents": [
+        "hidden-markov-models",
+        "dynamic-programming"
+      ]
+    },
+    {
+      "id": "conditional-random-fields",
+      "label": "Conditional Random Fields",
+      "domain": "statistics",
+      "parents": [
+        "probabilistic-graphical-models"
+      ]
+    },
+    {
+      "id": "classical-ml",
+      "label": "Classical Machine Learning",
+      "domain": "statistics",
+      "parents": [
+        "statistics"
+      ]
+    },
+    {
+      "id": "supervised-learning",
+      "label": "Supervised Learning",
+      "domain": "statistics",
+      "parents": [
+        "classical-ml"
+      ]
+    },
+    {
+      "id": "unsupervised-learning",
+      "label": "Unsupervised Learning",
+      "domain": "statistics",
+      "parents": [
+        "classical-ml"
+      ]
+    },
+    {
+      "id": "linear-regression",
+      "label": "Linear Regression",
+      "domain": "statistics",
+      "parents": [
+        "supervised-learning"
+      ]
+    },
+    {
+      "id": "logistic-regression",
+      "label": "Logistic Regression",
+      "domain": "statistics",
+      "parents": [
+        "supervised-learning"
+      ]
+    },
+    {
+      "id": "naive-bayes",
+      "label": "Naive Bayes",
+      "domain": "statistics",
+      "parents": [
+        "supervised-learning",
+        "bayes-rule"
+      ]
+    },
+    {
+      "id": "support-vector-machines",
+      "label": "Support Vector Machines",
+      "domain": "statistics",
+      "parents": [
+        "supervised-learning"
+      ]
+    },
+    {
+      "id": "gaussian-kernel",
+      "label": "Gaussian Kernel",
+      "domain": "statistics",
+      "parents": [
+        "support-vector-machines"
+      ]
+    },
+    {
+      "id": "k-means",
+      "label": "K-Means",
+      "domain": "statistics",
+      "parents": [
+        "unsupervised-learning"
+      ]
+    },
+    {
+      "id": "spectral-clustering",
+      "label": "Spectral Clustering",
+      "domain": "statistics",
+      "parents": [
+        "unsupervised-learning",
+        "laplacian"
+      ]
+    },
+    {
+      "id": "normalized-cut",
+      "label": "Normalized Cut",
+      "domain": "statistics",
+      "parents": [
+        "spectral-clustering"
+      ]
+    },
+    {
+      "id": "principal-component-analysis",
+      "label": "Principal Component Analysis",
+      "domain": "statistics",
+      "parents": [
+        "unsupervised-learning",
+        "singular-value-decomposition"
+      ]
+    },
+    {
+      "id": "model-evaluation",
+      "label": "Model Evaluation",
+      "domain": "statistics",
+      "parents": [
+        "classical-ml"
+      ]
+    },
+    {
+      "id": "overfitting",
+      "label": "Overfitting",
+      "domain": "statistics",
+      "parents": [
+        "model-evaluation"
+      ]
+    },
+    {
+      "id": "validation-set",
+      "label": "Validation Set",
+      "domain": "statistics",
+      "parents": [
+        "model-evaluation"
+      ]
+    },
+    {
+      "id": "deep-learning",
+      "label": "Deep Learning",
+      "domain": "deep-learning"
+    },
+    {
+      "id": "neural-network-basics",
+      "label": "Neural Network Basics",
+      "domain": "deep-learning",
+      "parents": [
+        "deep-learning"
+      ]
+    },
+    {
+      "id": "linear-predictor",
+      "label": "Linear Predictor",
+      "domain": "deep-learning",
+      "parents": [
+        "neural-network-basics"
+      ]
+    },
+    {
+      "id": "multilayer-perceptron",
+      "label": "Multilayer Perceptron",
+      "domain": "deep-learning",
+      "parents": [
+        "neural-network-basics"
+      ]
+    },
+    {
+      "id": "activation-functions",
+      "label": "Activation Functions",
+      "domain": "deep-learning",
+      "parents": [
+        "neural-network-basics"
+      ]
+    },
+    {
+      "id": "relu",
+      "label": "ReLU",
+      "domain": "deep-learning",
+      "parents": [
+        "activation-functions"
+      ]
+    },
+    {
+      "id": "dying-relu",
+      "label": "Dying ReLU",
+      "domain": "deep-learning",
+      "parents": [
+        "relu"
+      ]
+    },
+    {
+      "id": "leaky-relu",
+      "label": "Leaky & Parametric ReLU",
+      "domain": "deep-learning",
+      "parents": [
+        "relu"
+      ]
+    },
+    {
+      "id": "maxout",
+      "label": "Maxout",
+      "domain": "deep-learning",
+      "parents": [
+        "activation-functions"
+      ]
+    },
+    {
+      "id": "sigmoid",
+      "label": "Sigmoid",
+      "domain": "deep-learning",
+      "parents": [
+        "activation-functions"
+      ]
+    },
+    {
+      "id": "tanh",
+      "label": "Tanh",
+      "domain": "deep-learning",
+      "parents": [
+        "activation-functions"
+      ]
+    },
+    {
+      "id": "softmax",
+      "label": "Softmax",
+      "domain": "deep-learning",
+      "parents": [
+        "activation-functions"
+      ]
+    },
+    {
+      "id": "network-training",
+      "label": "Network Training",
+      "domain": "deep-learning",
+      "parents": [
+        "deep-learning"
+      ]
+    },
+    {
+      "id": "backpropagation",
+      "label": "Backpropagation",
+      "domain": "deep-learning",
+      "parents": [
+        "network-training",
+        "chain-rule"
+      ]
+    },
+    {
+      "id": "computational-graphs",
+      "label": "Computational Graphs",
+      "domain": "deep-learning",
+      "parents": [
+        "backpropagation"
+      ]
+    },
+    {
+      "id": "vanishing-gradients",
+      "label": "Vanishing Gradients",
+      "domain": "deep-learning",
+      "parents": [
+        "backpropagation"
+      ]
+    },
+    {
+      "id": "exploding-gradients",
+      "label": "Exploding Gradients",
+      "domain": "deep-learning",
+      "parents": [
+        "backpropagation"
+      ]
+    },
+    {
+      "id": "gradient-clipping",
+      "label": "Gradient Clipping",
+      "domain": "deep-learning",
+      "parents": [
+        "exploding-gradients"
+      ]
+    },
+    {
+      "id": "loss-functions",
+      "label": "Loss Functions",
+      "domain": "deep-learning",
+      "parents": [
+        "network-training"
+      ]
+    },
+    {
+      "id": "cross-entropy-loss",
+      "label": "Cross-Entropy Loss",
+      "domain": "deep-learning",
+      "parents": [
+        "loss-functions",
+        "cross-entropy"
+      ]
+    },
+    {
+      "id": "binary-cross-entropy",
+      "label": "Binary Cross-Entropy",
+      "domain": "deep-learning",
+      "parents": [
+        "cross-entropy-loss"
+      ]
+    },
+    {
+      "id": "mse-loss",
+      "label": "MSE Loss",
+      "domain": "deep-learning",
+      "parents": [
+        "loss-functions"
+      ]
+    },
+    {
+      "id": "hinge-loss",
+      "label": "Hinge Loss",
+      "domain": "deep-learning",
+      "parents": [
+        "loss-functions"
+      ]
+    },
+    {
+      "id": "optimizers",
+      "label": "Optimizers",
+      "domain": "deep-learning",
+      "parents": [
+        "network-training",
+        "optimization"
+      ]
+    },
+    {
+      "id": "momentum",
+      "label": "Momentum",
+      "domain": "deep-learning",
+      "parents": [
+        "optimizers"
+      ]
+    },
+    {
+      "id": "adagrad",
+      "label": "AdaGrad",
+      "domain": "deep-learning",
+      "parents": [
+        "optimizers"
+      ]
+    },
+    {
+      "id": "rmsprop",
+      "label": "RMSProp",
+      "domain": "deep-learning",
+      "parents": [
+        "optimizers"
+      ]
+    },
+    {
+      "id": "adam",
+      "label": "Adam",
+      "domain": "deep-learning",
+      "parents": [
+        "optimizers"
+      ]
+    },
+    {
+      "id": "learning-rate-schedules",
+      "label": "Learning-Rate Schedules",
+      "domain": "deep-learning",
+      "parents": [
+        "optimizers"
+      ]
+    },
+    {
+      "id": "learning-rate-warmup",
+      "label": "Learning-Rate Warmup",
+      "domain": "deep-learning",
+      "parents": [
+        "learning-rate-schedules"
+      ]
+    },
+    {
+      "id": "batch-size",
+      "label": "Batch Size",
+      "domain": "deep-learning",
+      "parents": [
+        "network-training"
+      ]
+    },
+    {
+      "id": "regularization",
+      "label": "Regularization",
+      "domain": "deep-learning",
+      "parents": [
+        "network-training"
+      ]
+    },
+    {
+      "id": "weight-decay",
+      "label": "Weight Decay (L2)",
+      "domain": "deep-learning",
+      "parents": [
+        "regularization"
+      ]
+    },
+    {
+      "id": "dropout",
+      "label": "Dropout",
+      "domain": "deep-learning",
+      "parents": [
+        "regularization"
+      ]
+    },
+    {
+      "id": "data-augmentation",
+      "label": "Data Augmentation",
+      "domain": "deep-learning",
+      "parents": [
+        "regularization"
+      ]
+    },
+    {
+      "id": "normalization-layers",
+      "label": "Normalization Layers",
+      "domain": "deep-learning",
+      "parents": [
+        "network-training"
+      ]
+    },
+    {
+      "id": "batch-normalization",
+      "label": "Batch Normalization",
+      "domain": "deep-learning",
+      "parents": [
+        "normalization-layers"
+      ]
+    },
+    {
+      "id": "layer-normalization",
+      "label": "Layer Normalization",
+      "domain": "deep-learning",
+      "parents": [
+        "normalization-layers"
+      ]
+    },
+    {
+      "id": "instance-normalization",
+      "label": "Instance Normalization",
+      "domain": "deep-learning",
+      "parents": [
+        "normalization-layers"
+      ]
+    },
+    {
+      "id": "weight-initialization",
+      "label": "Weight Initialization",
+      "domain": "deep-learning",
+      "parents": [
+        "network-training"
+      ]
+    },
+    {
+      "id": "xavier-initialization",
+      "label": "Xavier Initialization",
+      "domain": "deep-learning",
+      "parents": [
+        "weight-initialization"
+      ]
+    },
+    {
+      "id": "he-initialization",
+      "label": "He Initialization",
+      "domain": "deep-learning",
+      "parents": [
+        "weight-initialization"
+      ]
+    },
+    {
+      "id": "transfer-learning",
+      "label": "Transfer Learning",
+      "domain": "deep-learning",
+      "parents": [
+        "network-training"
+      ]
+    },
+    {
+      "id": "fine-tuning",
+      "label": "Fine-Tuning",
+      "domain": "deep-learning",
+      "parents": [
+        "transfer-learning"
+      ]
+    },
+    {
+      "id": "domain-gap",
+      "label": "Domain Gap",
+      "domain": "deep-learning",
+      "parents": [
+        "transfer-learning"
+      ]
+    },
+    {
+      "id": "architectures",
+      "label": "Architectures",
+      "domain": "deep-learning",
+      "parents": [
+        "deep-learning"
+      ]
+    },
+    {
+      "id": "cnns",
+      "label": "CNNs",
+      "domain": "deep-learning",
+      "parents": [
+        "architectures"
+      ]
+    },
+    {
+      "id": "convolution-arithmetic",
+      "label": "Convolution Arithmetic",
+      "domain": "deep-learning",
+      "parents": [
+        "cnns"
+      ]
+    },
+    {
+      "id": "receptive-field",
+      "label": "Receptive Field",
+      "domain": "deep-learning",
+      "parents": [
+        "cnns"
+      ]
+    },
+    {
+      "id": "pooling",
+      "label": "Pooling",
+      "domain": "deep-learning",
+      "parents": [
+        "cnns"
+      ]
+    },
+    {
+      "id": "im2col",
+      "label": "im2col",
+      "domain": "deep-learning",
+      "parents": [
+        "cnns"
+      ]
+    },
+    {
+      "id": "dilated-convolutions",
+      "label": "Dilated Convolutions",
+      "domain": "deep-learning",
+      "parents": [
+        "cnns"
+      ]
+    },
+    {
+      "id": "transposed-convolution",
+      "label": "Transposed Convolution",
+      "domain": "deep-learning",
+      "parents": [
+        "cnns"
+      ]
+    },
+    {
+      "id": "upsampling",
+      "label": "Upsampling",
+      "domain": "deep-learning",
+      "parents": [
+        "cnns"
+      ]
+    },
+    {
+      "id": "translation-invariance",
+      "label": "Invariance & Equivariance",
+      "domain": "deep-learning",
+      "parents": [
+        "cnns"
+      ]
+    },
+    {
+      "id": "vggnet",
+      "label": "VGGNet",
+      "domain": "deep-learning",
+      "parents": [
+        "cnns"
+      ]
+    },
+    {
+      "id": "inception",
+      "label": "Inception",
+      "domain": "deep-learning",
+      "parents": [
+        "cnns"
+      ]
+    },
+    {
+      "id": "residual-networks",
+      "label": "Residual Networks",
+      "domain": "deep-learning",
+      "parents": [
+        "cnns"
+      ]
+    },
+    {
+      "id": "skip-connections",
+      "label": "Skip Connections",
+      "domain": "deep-learning",
+      "parents": [
+        "residual-networks"
+      ]
+    },
+    {
+      "id": "u-net",
+      "label": "U-Net",
+      "domain": "deep-learning",
+      "parents": [
+        "skip-connections"
+      ]
+    },
+    {
+      "id": "rnns",
+      "label": "RNNs",
+      "domain": "deep-learning",
+      "parents": [
+        "architectures"
+      ]
+    },
+    {
+      "id": "lstm",
+      "label": "LSTM",
+      "domain": "deep-learning",
+      "parents": [
+        "rnns"
+      ]
+    },
+    {
+      "id": "transformers",
+      "label": "Transformers",
+      "domain": "deep-learning",
+      "parents": [
+        "architectures"
+      ]
+    },
+    {
+      "id": "attention",
+      "label": "Attention",
+      "domain": "deep-learning",
+      "parents": [
+        "transformers"
+      ]
+    },
+    {
+      "id": "cross-attention",
+      "label": "Cross-Attention",
+      "domain": "deep-learning",
+      "parents": [
+        "attention"
+      ]
+    },
+    {
+      "id": "positional-encoding",
+      "label": "Positional Encoding",
+      "domain": "deep-learning",
+      "parents": [
+        "transformers"
+      ]
+    },
+    {
+      "id": "autoencoders",
+      "label": "Autoencoders",
+      "domain": "deep-learning",
+      "parents": [
+        "architectures"
+      ]
+    },
+    {
+      "id": "variational-autoencoders",
+      "label": "Variational Autoencoders",
+      "domain": "deep-learning",
+      "parents": [
+        "autoencoders"
+      ]
+    },
+    {
+      "id": "latent-space",
+      "label": "Latent Space",
+      "domain": "deep-learning",
+      "parents": [
+        "autoencoders"
+      ]
+    },
+    {
+      "id": "generative-models",
+      "label": "Generative Models",
+      "domain": "deep-learning",
+      "parents": [
+        "architectures"
+      ]
+    },
+    {
+      "id": "diffusion-models",
+      "label": "Diffusion Models",
+      "domain": "deep-learning",
+      "parents": [
+        "generative-models"
+      ]
+    },
+    {
+      "id": "graph-neural-networks",
+      "label": "Graph Neural Networks",
+      "domain": "deep-learning",
+      "parents": [
+        "architectures"
+      ]
+    },
+    {
+      "id": "representation-learning",
+      "label": "Representation Learning",
+      "domain": "deep-learning",
+      "parents": [
+        "deep-learning"
+      ]
+    },
+    {
+      "id": "contrastive-learning",
+      "label": "Contrastive Learning",
+      "domain": "deep-learning",
+      "parents": [
+        "representation-learning"
+      ]
+    },
+    {
+      "id": "triplet-loss",
+      "label": "Triplet Loss",
+      "domain": "deep-learning",
+      "parents": [
+        "contrastive-learning",
+        "loss-functions"
+      ]
+    },
+    {
+      "id": "simclr",
+      "label": "SimCLR",
+      "domain": "deep-learning",
+      "parents": [
+        "contrastive-learning"
+      ]
+    },
+    {
+      "id": "moco",
+      "label": "MoCo",
+      "domain": "deep-learning",
+      "parents": [
+        "contrastive-learning"
+      ]
+    },
+    {
+      "id": "dino",
+      "label": "DINO",
+      "domain": "deep-learning",
+      "parents": [
+        "representation-learning"
+      ]
+    },
+    {
+      "id": "nlp",
+      "label": "NLP",
+      "domain": "nlp"
+    },
+    {
+      "id": "text-processing",
+      "label": "Text Processing",
+      "domain": "nlp",
+      "parents": [
+        "nlp"
+      ]
+    },
+    {
+      "id": "character-encoding",
+      "label": "Character Encoding",
+      "domain": "nlp",
+      "parents": [
+        "text-processing"
+      ]
+    },
+    {
+      "id": "tokenization",
+      "label": "Tokenization",
+      "domain": "nlp",
+      "parents": [
+        "text-processing"
+      ]
+    },
+    {
+      "id": "byte-pair-encoding",
+      "label": "Byte Pair Encoding",
+      "domain": "nlp",
+      "parents": [
+        "tokenization"
+      ]
+    },
+    {
+      "id": "unigram-tokenization",
+      "label": "Unigram Tokenization",
+      "domain": "nlp",
+      "parents": [
+        "tokenization"
+      ]
+    },
+    {
+      "id": "text-normalization",
+      "label": "Text Normalization",
+      "domain": "nlp",
+      "parents": [
+        "text-processing"
+      ]
+    },
+    {
+      "id": "stemming",
+      "label": "Stemming",
+      "domain": "nlp",
+      "parents": [
+        "text-normalization"
+      ]
+    },
+    {
+      "id": "lemmatization",
+      "label": "Lemmatization",
+      "domain": "nlp",
+      "parents": [
+        "text-normalization"
+      ]
+    },
+    {
+      "id": "morphology",
+      "label": "Morphology",
+      "domain": "nlp",
+      "parents": [
+        "text-processing"
+      ]
+    },
+    {
+      "id": "sentence-segmentation",
+      "label": "Sentence Segmentation",
+      "domain": "nlp",
+      "parents": [
+        "text-processing"
+      ]
+    },
+    {
+      "id": "regex",
+      "label": "Regular Expressions",
+      "domain": "nlp",
+      "parents": [
+        "text-processing"
+      ]
+    },
+    {
+      "id": "minimum-edit-distance",
+      "label": "Minimum Edit Distance",
+      "domain": "nlp",
+      "parents": [
+        "text-processing",
+        "dynamic-programming"
+      ]
+    },
+    {
+      "id": "corpora",
+      "label": "Corpora & Datasheets",
+      "domain": "nlp",
+      "parents": [
+        "nlp"
+      ]
+    },
+    {
+      "id": "language-modeling",
+      "label": "Language Modeling",
+      "domain": "nlp",
+      "parents": [
+        "nlp"
+      ]
+    },
+    {
+      "id": "n-gram-language-models",
+      "label": "N-Gram Language Models",
+      "domain": "nlp",
+      "parents": [
+        "language-modeling"
+      ]
+    },
+    {
+      "id": "smoothing",
+      "label": "Smoothing",
+      "domain": "nlp",
+      "parents": [
+        "n-gram-language-models"
+      ]
+    },
+    {
+      "id": "perplexity",
+      "label": "Perplexity",
+      "domain": "nlp",
+      "parents": [
+        "language-modeling",
+        "entropy"
+      ]
+    },
+    {
+      "id": "large-language-models",
+      "label": "Large Language Models",
+      "domain": "nlp",
+      "parents": [
+        "language-modeling",
+        "transformers"
+      ]
+    },
+    {
+      "id": "prompting",
+      "label": "Prompting",
+      "domain": "nlp",
+      "parents": [
+        "large-language-models"
+      ]
+    },
+    {
+      "id": "in-context-learning",
+      "label": "In-Context Learning",
+      "domain": "nlp",
+      "parents": [
+        "prompting"
+      ]
+    },
+    {
+      "id": "decoding",
+      "label": "Decoding Strategies",
+      "domain": "nlp",
+      "parents": [
+        "large-language-models"
+      ]
+    },
+    {
+      "id": "greedy-decoding",
+      "label": "Greedy Decoding",
+      "domain": "nlp",
+      "parents": [
+        "decoding"
+      ]
+    },
+    {
+      "id": "beam-search",
+      "label": "Beam Search",
+      "domain": "nlp",
+      "parents": [
+        "decoding"
+      ]
+    },
+    {
+      "id": "sampling-strategies",
+      "label": "Sampling Strategies",
+      "domain": "nlp",
+      "parents": [
+        "decoding"
+      ]
+    },
+    {
+      "id": "minimum-bayes-risk",
+      "label": "Minimum Bayes Risk",
+      "domain": "nlp",
+      "parents": [
+        "decoding"
+      ]
+    },
+    {
+      "id": "llm-training",
+      "label": "LLM Training",
+      "domain": "nlp",
+      "parents": [
+        "large-language-models"
+      ]
+    },
+    {
+      "id": "teacher-forcing",
+      "label": "Teacher Forcing",
+      "domain": "nlp",
+      "parents": [
+        "llm-training"
+      ]
+    },
+    {
+      "id": "scaling-laws",
+      "label": "Scaling Laws",
+      "domain": "nlp",
+      "parents": [
+        "llm-training"
+      ]
+    },
+    {
+      "id": "supervised-fine-tuning",
+      "label": "Supervised Fine-Tuning",
+      "domain": "nlp",
+      "parents": [
+        "llm-training",
+        "fine-tuning"
+      ]
+    },
+    {
+      "id": "lora",
+      "label": "LoRA",
+      "domain": "nlp",
+      "parents": [
+        "supervised-fine-tuning"
+      ]
+    },
+    {
+      "id": "preference-alignment",
+      "label": "Preference Alignment",
+      "domain": "nlp",
+      "parents": [
+        "llm-training"
+      ]
+    },
+    {
+      "id": "rlhf",
+      "label": "RLHF",
+      "domain": "nlp",
+      "parents": [
+        "preference-alignment"
+      ]
+    },
+    {
+      "id": "dpo",
+      "label": "Direct Preference Optimization",
+      "domain": "nlp",
+      "parents": [
+        "preference-alignment"
+      ]
+    },
+    {
+      "id": "word-representations",
+      "label": "Word Representations",
+      "domain": "nlp",
+      "parents": [
+        "nlp"
+      ]
+    },
+    {
+      "id": "word2vec",
+      "label": "Word2Vec",
+      "domain": "nlp",
+      "parents": [
+        "word-representations"
+      ]
+    },
+    {
+      "id": "fasttext",
+      "label": "fastText",
+      "domain": "nlp",
+      "parents": [
+        "word-representations"
+      ]
+    },
+    {
+      "id": "cosine-similarity",
+      "label": "Cosine Similarity",
+      "domain": "nlp",
+      "parents": [
+        "word-representations",
+        "inner-product"
+      ]
+    },
+    {
+      "id": "semantic-axis",
+      "label": "Semantic Axis",
+      "domain": "nlp",
+      "parents": [
+        "word-representations"
+      ]
+    },
+    {
+      "id": "bert",
+      "label": "BERT",
+      "domain": "nlp",
+      "parents": [
+        "word-representations",
+        "transformers"
+      ]
+    },
+    {
+      "id": "sequence-labeling",
+      "label": "Sequence Labeling",
+      "domain": "nlp",
+      "parents": [
+        "nlp"
+      ]
+    },
+    {
+      "id": "pos-tagging",
+      "label": "POS Tagging",
+      "domain": "nlp",
+      "parents": [
+        "sequence-labeling"
+      ]
+    },
+    {
+      "id": "named-entity-recognition",
+      "label": "Named Entity Recognition",
+      "domain": "nlp",
+      "parents": [
+        "sequence-labeling"
+      ]
+    },
+    {
+      "id": "bio-tagging",
+      "label": "BIO Tagging",
+      "domain": "nlp",
+      "parents": [
+        "sequence-labeling"
+      ]
+    },
+    {
+      "id": "parsing",
+      "label": "Parsing",
+      "domain": "nlp",
+      "parents": [
+        "nlp"
+      ]
+    },
+    {
+      "id": "constituency-parsing",
+      "label": "Constituency Parsing",
+      "domain": "nlp",
+      "parents": [
+        "parsing"
+      ]
+    },
+    {
+      "id": "context-free-grammar",
+      "label": "Context-Free Grammar",
+      "domain": "nlp",
+      "parents": [
+        "constituency-parsing"
+      ]
+    },
+    {
+      "id": "chomsky-normal-form",
+      "label": "Chomsky Normal Form",
+      "domain": "nlp",
+      "parents": [
+        "context-free-grammar"
+      ]
+    },
+    {
+      "id": "cky-algorithm",
+      "label": "CKY Algorithm",
+      "domain": "nlp",
+      "parents": [
+        "constituency-parsing",
+        "dynamic-programming"
+      ]
+    },
+    {
+      "id": "dependency-parsing",
+      "label": "Dependency Parsing",
+      "domain": "nlp",
+      "parents": [
+        "parsing"
+      ]
+    },
+    {
+      "id": "graph-based-dependency-parsing",
+      "label": "Graph-Based Dependency Parsing",
+      "domain": "nlp",
+      "parents": [
+        "dependency-parsing"
+      ]
+    },
+    {
+      "id": "transition-based-dependency-parsing",
+      "label": "Transition-Based Dependency Parsing",
+      "domain": "nlp",
+      "parents": [
+        "dependency-parsing"
+      ]
+    },
+    {
+      "id": "semantics",
+      "label": "Semantics",
+      "domain": "nlp",
+      "parents": [
+        "nlp"
+      ]
+    },
+    {
+      "id": "semantic-role-labeling",
+      "label": "Semantic Role Labeling",
+      "domain": "nlp",
+      "parents": [
+        "semantics"
+      ]
+    },
+    {
+      "id": "word-sense-disambiguation",
+      "label": "Word Sense Disambiguation",
+      "domain": "nlp",
+      "parents": [
+        "semantics"
+      ]
+    },
+    {
+      "id": "sentiment-analysis",
+      "label": "Sentiment Analysis",
+      "domain": "nlp",
+      "parents": [
+        "semantics"
+      ]
+    },
+    {
+      "id": "discourse-coherence",
+      "label": "Discourse Coherence",
+      "domain": "nlp",
+      "parents": [
+        "semantics"
+      ]
+    },
+    {
+      "id": "rst-parsing",
+      "label": "RST Parsing",
+      "domain": "nlp",
+      "parents": [
+        "discourse-coherence"
+      ]
+    },
+    {
+      "id": "coreference-resolution",
+      "label": "Coreference Resolution",
+      "domain": "nlp",
+      "parents": [
+        "semantics"
+      ]
+    },
+    {
+      "id": "e2e-coreference",
+      "label": "End-to-End Coreference",
+      "domain": "nlp",
+      "parents": [
+        "coreference-resolution"
+      ]
+    },
+    {
+      "id": "information-extraction",
+      "label": "Information Extraction",
+      "domain": "nlp",
+      "parents": [
+        "nlp"
+      ]
+    },
+    {
+      "id": "relation-extraction",
+      "label": "Relation Extraction",
+      "domain": "nlp",
+      "parents": [
+        "information-extraction"
+      ]
+    },
+    {
+      "id": "entity-linking",
+      "label": "Entity Linking",
+      "domain": "nlp",
+      "parents": [
+        "information-extraction"
+      ]
+    },
+    {
+      "id": "template-filling",
+      "label": "Template Filling",
+      "domain": "nlp",
+      "parents": [
+        "information-extraction"
+      ]
+    },
+    {
+      "id": "information-retrieval",
+      "label": "Information Retrieval",
+      "domain": "nlp",
+      "parents": [
+        "nlp"
+      ]
+    },
+    {
+      "id": "tf-idf",
+      "label": "TF-IDF",
+      "domain": "nlp",
+      "parents": [
+        "information-retrieval"
+      ]
+    },
+    {
+      "id": "bm25",
+      "label": "BM25",
+      "domain": "nlp",
+      "parents": [
+        "information-retrieval"
+      ]
+    },
+    {
+      "id": "retrieval-augmented-generation",
+      "label": "Retrieval-Augmented Generation",
+      "domain": "nlp",
+      "parents": [
+        "information-retrieval",
+        "large-language-models"
+      ]
+    },
+    {
+      "id": "machine-translation",
+      "label": "Machine Translation",
+      "domain": "nlp",
+      "parents": [
+        "nlp"
+      ]
+    },
+    {
+      "id": "nlp-evaluation",
+      "label": "NLP Evaluation",
+      "domain": "nlp",
+      "parents": [
+        "nlp"
+      ]
+    },
+    {
+      "id": "bleu",
+      "label": "BLEU",
+      "domain": "nlp",
+      "parents": [
+        "nlp-evaluation"
+      ]
+    },
+    {
+      "id": "chrf",
+      "label": "chrF",
+      "domain": "nlp",
+      "parents": [
+        "nlp-evaluation"
+      ]
+    },
+    {
+      "id": "bertscore",
+      "label": "BERTScore",
+      "domain": "nlp",
+      "parents": [
+        "nlp-evaluation"
+      ]
+    },
+    {
+      "id": "computer-vision",
+      "label": "Computer Vision",
+      "domain": "computer-vision"
+    },
+    {
+      "id": "image-processing",
+      "label": "Image Processing",
       "domain": "computer-vision",
-      "parents": ["object-tracking"],
-      "links": [
-        "https://arxiv.org/abs/1510.07945 | MDNet Paper"
+      "parents": [
+        "computer-vision"
+      ]
+    },
+    {
+      "id": "convolution-filters",
+      "label": "Convolution Filters",
+      "domain": "computer-vision",
+      "parents": [
+        "image-processing"
+      ]
+    },
+    {
+      "id": "sobel-operator",
+      "label": "Sobel Operator",
+      "domain": "computer-vision",
+      "parents": [
+        "convolution-filters"
+      ]
+    },
+    {
+      "id": "histogram-of-oriented-gradients",
+      "label": "Histogram of Oriented Gradients",
+      "domain": "computer-vision",
+      "parents": [
+        "image-processing"
+      ]
+    },
+    {
+      "id": "template-matching",
+      "label": "Template Matching",
+      "domain": "computer-vision",
+      "parents": [
+        "image-processing"
+      ]
+    },
+    {
+      "id": "sliding-window",
+      "label": "Sliding Window",
+      "domain": "computer-vision",
+      "parents": [
+        "image-processing"
+      ]
+    },
+    {
+      "id": "image-classification",
+      "label": "Image Classification",
+      "domain": "computer-vision",
+      "parents": [
+        "computer-vision"
       ]
     },
     {
       "id": "viola-jones",
       "label": "Viola-Jones",
       "domain": "computer-vision",
-      "parents": ["object-detection"]
+      "parents": [
+        "image-classification"
+      ]
+    },
+    {
+      "id": "spatial-transformer-networks",
+      "label": "Spatial Transformer Networks",
+      "domain": "computer-vision",
+      "parents": [
+        "image-classification"
+      ]
+    },
+    {
+      "id": "vision-transformers",
+      "label": "Vision Transformers",
+      "domain": "computer-vision",
+      "parents": [
+        "image-classification",
+        "transformers"
+      ]
+    },
+    {
+      "id": "swin-transformer",
+      "label": "Swin Transformer",
+      "domain": "computer-vision",
+      "parents": [
+        "vision-transformers"
+      ]
+    },
+    {
+      "id": "object-detection",
+      "label": "Object Detection",
+      "domain": "computer-vision",
+      "parents": [
+        "computer-vision"
+      ]
+    },
+    {
+      "id": "two-stage-detectors",
+      "label": "Two-Stage Detectors",
+      "domain": "computer-vision",
+      "parents": [
+        "object-detection"
+      ]
+    },
+    {
+      "id": "r-cnn",
+      "label": "R-CNN",
+      "domain": "computer-vision",
+      "parents": [
+        "two-stage-detectors"
+      ]
+    },
+    {
+      "id": "fast-r-cnn",
+      "label": "Fast R-CNN",
+      "domain": "computer-vision",
+      "parents": [
+        "two-stage-detectors"
+      ]
+    },
+    {
+      "id": "faster-r-cnn",
+      "label": "Faster R-CNN",
+      "domain": "computer-vision",
+      "parents": [
+        "two-stage-detectors"
+      ]
+    },
+    {
+      "id": "spp-net",
+      "label": "SPP-Net",
+      "domain": "computer-vision",
+      "parents": [
+        "two-stage-detectors"
+      ]
+    },
+    {
+      "id": "roi-pooling",
+      "label": "RoI Pooling",
+      "domain": "computer-vision",
+      "parents": [
+        "two-stage-detectors"
+      ]
+    },
+    {
+      "id": "roi-align",
+      "label": "RoI Align",
+      "domain": "computer-vision",
+      "parents": [
+        "roi-pooling"
+      ]
+    },
+    {
+      "id": "single-stage-detectors",
+      "label": "Single-Stage Detectors",
+      "domain": "computer-vision",
+      "parents": [
+        "object-detection"
+      ]
+    },
+    {
+      "id": "overfeat",
+      "label": "OverFeat",
+      "domain": "computer-vision",
+      "parents": [
+        "single-stage-detectors"
+      ]
+    },
+    {
+      "id": "yolo",
+      "label": "YOLO",
+      "domain": "computer-vision",
+      "parents": [
+        "single-stage-detectors"
+      ]
+    },
+    {
+      "id": "ssd",
+      "label": "SSD",
+      "domain": "computer-vision",
+      "parents": [
+        "single-stage-detectors"
+      ]
+    },
+    {
+      "id": "retinanet",
+      "label": "RetinaNet",
+      "domain": "computer-vision",
+      "parents": [
+        "single-stage-detectors"
+      ]
+    },
+    {
+      "id": "focal-loss",
+      "label": "Focal Loss",
+      "domain": "computer-vision",
+      "parents": [
+        "retinanet",
+        "loss-functions"
+      ]
+    },
+    {
+      "id": "cornernet",
+      "label": "CornerNet",
+      "domain": "computer-vision",
+      "parents": [
+        "single-stage-detectors"
+      ]
+    },
+    {
+      "id": "detr",
+      "label": "DETR",
+      "domain": "computer-vision",
+      "parents": [
+        "object-detection",
+        "transformers"
+      ]
+    },
+    {
+      "id": "non-maximum-suppression",
+      "label": "Non-Maximum Suppression",
+      "domain": "computer-vision",
+      "parents": [
+        "object-detection"
+      ]
+    },
+    {
+      "id": "feature-pyramid-network",
+      "label": "Feature Pyramid Network",
+      "domain": "computer-vision",
+      "parents": [
+        "object-detection"
+      ]
+    },
+    {
+      "id": "detection-metrics",
+      "label": "Detection Metrics",
+      "domain": "computer-vision",
+      "parents": [
+        "object-detection"
+      ]
+    },
+    {
+      "id": "intersection-over-union",
+      "label": "Intersection over Union",
+      "domain": "computer-vision",
+      "parents": [
+        "detection-metrics"
+      ]
+    },
+    {
+      "id": "generalized-iou",
+      "label": "Generalized IoU",
+      "domain": "computer-vision",
+      "parents": [
+        "intersection-over-union"
+      ]
+    },
+    {
+      "id": "average-precision",
+      "label": "Average Precision",
+      "domain": "computer-vision",
+      "parents": [
+        "detection-metrics"
+      ]
+    },
+    {
+      "id": "mean-average-precision",
+      "label": "Mean Average Precision",
+      "domain": "computer-vision",
+      "parents": [
+        "average-precision"
+      ]
+    },
+    {
+      "id": "precision-recall",
+      "label": "Precision & Recall",
+      "domain": "computer-vision",
+      "parents": [
+        "detection-metrics"
+      ]
+    },
+    {
+      "id": "segmentation",
+      "label": "Segmentation",
+      "domain": "computer-vision",
+      "parents": [
+        "computer-vision"
+      ]
+    },
+    {
+      "id": "semantic-segmentation",
+      "label": "Semantic Segmentation",
+      "domain": "computer-vision",
+      "parents": [
+        "segmentation"
+      ]
+    },
+    {
+      "id": "fcn",
+      "label": "Fully Convolutional Networks",
+      "domain": "computer-vision",
+      "parents": [
+        "semantic-segmentation"
+      ]
+    },
+    {
+      "id": "segnet",
+      "label": "SegNet",
+      "domain": "computer-vision",
+      "parents": [
+        "semantic-segmentation"
+      ]
+    },
+    {
+      "id": "aspp",
+      "label": "ASPP",
+      "domain": "computer-vision",
+      "parents": [
+        "semantic-segmentation",
+        "dilated-convolutions"
+      ]
+    },
+    {
+      "id": "instance-segmentation",
+      "label": "Instance Segmentation",
+      "domain": "computer-vision",
+      "parents": [
+        "segmentation"
+      ]
+    },
+    {
+      "id": "mask-r-cnn",
+      "label": "Mask R-CNN",
+      "domain": "computer-vision",
+      "parents": [
+        "instance-segmentation",
+        "faster-r-cnn"
+      ]
+    },
+    {
+      "id": "pointrend",
+      "label": "PointRend",
+      "domain": "computer-vision",
+      "parents": [
+        "instance-segmentation"
+      ]
+    },
+    {
+      "id": "solov2",
+      "label": "SOLOv2",
+      "domain": "computer-vision",
+      "parents": [
+        "instance-segmentation"
+      ]
     },
     {
       "id": "panoptic-segmentation",
       "label": "Panoptic Segmentation",
       "domain": "computer-vision",
-      "parents": ["semantic-segmentation", "instance-segmentation"]
+      "parents": [
+        "segmentation"
+      ]
+    },
+    {
+      "id": "panoptic-fpn",
+      "label": "Panoptic FPN",
+      "domain": "computer-vision",
+      "parents": [
+        "panoptic-segmentation"
+      ]
     },
     {
       "id": "panoptic-fcn",
       "label": "Panoptic FCN",
       "domain": "computer-vision",
-      "parents": ["panoptic-segmentation", "cnns"],
-      "links": [
-        "https://arxiv.org/abs/2012.00720 | Panoptic FCN Paper"
+      "parents": [
+        "panoptic-segmentation"
       ]
     },
     {
       "id": "mask2former",
       "label": "Mask2Former",
       "domain": "computer-vision",
-      "parents": ["panoptic-segmentation", "semantic-segmentation", "transformers"],
-      "links": [
-        "https://arxiv.org/abs/2112.01527 | Mask2Former Paper"
+      "parents": [
+        "panoptic-segmentation"
       ]
     },
     {
-      "id": "sam",
-      "label": "Segment Anything Model (SAM)",
+      "id": "segment-anything",
+      "label": "Segment Anything (SAM)",
       "domain": "computer-vision",
-      "parents": ["image-segmentation", "vision-transformers"],
-      "links": [
-        "https://arxiv.org/abs/2304.02643 | Segment Anything Paper"
+      "parents": [
+        "segmentation"
+      ]
+    },
+    {
+      "id": "object-tracking",
+      "label": "Object Tracking",
+      "domain": "computer-vision",
+      "parents": [
+        "computer-vision"
+      ]
+    },
+    {
+      "id": "bayesian-tracking",
+      "label": "Bayesian Tracking",
+      "domain": "computer-vision",
+      "parents": [
+        "object-tracking",
+        "bayesian-inference"
+      ]
+    },
+    {
+      "id": "goturn",
+      "label": "GOTURN",
+      "domain": "computer-vision",
+      "parents": [
+        "object-tracking"
+      ]
+    },
+    {
+      "id": "mdnet",
+      "label": "MDNet",
+      "domain": "computer-vision",
+      "parents": [
+        "object-tracking"
+      ]
+    },
+    {
+      "id": "tracktor",
+      "label": "Tracktor",
+      "domain": "computer-vision",
+      "parents": [
+        "object-tracking"
+      ]
+    },
+    {
+      "id": "video-object-segmentation",
+      "label": "Video Object Segmentation",
+      "domain": "computer-vision",
+      "parents": [
+        "segmentation",
+        "object-tracking"
+      ]
+    },
+    {
+      "id": "osvos",
+      "label": "OSVOS",
+      "domain": "computer-vision",
+      "parents": [
+        "video-object-segmentation"
+      ]
+    },
+    {
+      "id": "masktrack",
+      "label": "MaskTrack",
+      "domain": "computer-vision",
+      "parents": [
+        "video-object-segmentation"
+      ]
+    },
+    {
+      "id": "segflow",
+      "label": "SegFlow",
+      "domain": "computer-vision",
+      "parents": [
+        "video-object-segmentation",
+        "optical-flow"
+      ]
+    },
+    {
+      "id": "optical-flow",
+      "label": "Optical Flow",
+      "domain": "computer-vision",
+      "parents": [
+        "computer-vision"
+      ]
+    },
+    {
+      "id": "aperture-problem",
+      "label": "Aperture Problem",
+      "domain": "computer-vision",
+      "parents": [
+        "optical-flow"
+      ]
+    },
+    {
+      "id": "flownet",
+      "label": "FlowNet",
+      "domain": "computer-vision",
+      "parents": [
+        "optical-flow"
+      ]
+    },
+    {
+      "id": "3d-vision",
+      "label": "3D Vision",
+      "domain": "3d-vision"
+    },
+    {
+      "id": "3d-representations",
+      "label": "3D Representations",
+      "domain": "3d-vision",
+      "parents": [
+        "3d-vision"
+      ]
+    },
+    {
+      "id": "point-clouds",
+      "label": "Point Clouds",
+      "domain": "3d-vision",
+      "parents": [
+        "3d-representations"
+      ]
+    },
+    {
+      "id": "meshes",
+      "label": "Meshes",
+      "domain": "3d-vision",
+      "parents": [
+        "3d-representations"
+      ]
+    },
+    {
+      "id": "vertices-and-faces",
+      "label": "Vertices & Faces",
+      "domain": "3d-vision",
+      "parents": [
+        "meshes"
+      ]
+    },
+    {
+      "id": "uv-mapping",
+      "label": "UV Mapping",
+      "domain": "3d-vision",
+      "parents": [
+        "meshes"
+      ]
+    },
+    {
+      "id": "parametric-surfaces",
+      "label": "Parametric Surfaces",
+      "domain": "3d-vision",
+      "parents": [
+        "3d-representations"
+      ]
+    },
+    {
+      "id": "voxels",
+      "label": "Voxels",
+      "domain": "3d-vision",
+      "parents": [
+        "3d-representations"
+      ]
+    },
+    {
+      "id": "octree",
+      "label": "Octree",
+      "domain": "3d-vision",
+      "parents": [
+        "voxels"
+      ]
+    },
+    {
+      "id": "signed-distance-fields",
+      "label": "Signed Distance Fields",
+      "domain": "3d-vision",
+      "parents": [
+        "3d-representations"
+      ]
+    },
+    {
+      "id": "implicit-representations",
+      "label": "Implicit Representations",
+      "domain": "3d-vision",
+      "parents": [
+        "3d-representations",
+        "signed-distance-fields"
+      ]
+    },
+    {
+      "id": "multi-view",
+      "label": "Multi-View Representations",
+      "domain": "3d-vision",
+      "parents": [
+        "3d-representations"
+      ]
+    },
+    {
+      "id": "3d-registration",
+      "label": "3D Registration",
+      "domain": "3d-vision",
+      "parents": [
+        "3d-vision"
+      ]
+    },
+    {
+      "id": "rigid-alignment",
+      "label": "Rigid Alignment",
+      "domain": "3d-vision",
+      "parents": [
+        "3d-registration"
+      ]
+    },
+    {
+      "id": "icp",
+      "label": "Iterative Closest Point",
+      "domain": "3d-vision",
+      "parents": [
+        "rigid-alignment"
+      ]
+    },
+    {
+      "id": "arap",
+      "label": "As-Rigid-As-Possible",
+      "domain": "3d-vision",
+      "parents": [
+        "3d-registration"
+      ]
+    },
+    {
+      "id": "classical-3d-descriptors",
+      "label": "Classical 3D Descriptors",
+      "domain": "3d-vision",
+      "parents": [
+        "3d-vision"
+      ]
+    },
+    {
+      "id": "surface-reconstruction",
+      "label": "Surface Reconstruction",
+      "domain": "3d-vision",
+      "parents": [
+        "3d-vision"
+      ]
+    },
+    {
+      "id": "poisson-reconstruction",
+      "label": "Poisson Reconstruction",
+      "domain": "3d-vision",
+      "parents": [
+        "surface-reconstruction"
+      ]
+    },
+    {
+      "id": "shape-completion",
+      "label": "Shape Completion",
+      "domain": "3d-vision",
+      "parents": [
+        "surface-reconstruction"
+      ]
+    },
+    {
+      "id": "3d-epn",
+      "label": "3D-EPN",
+      "domain": "3d-vision",
+      "parents": [
+        "shape-completion",
+        "voxels"
+      ]
+    },
+    {
+      "id": "deep-learning-on-3d",
+      "label": "Deep Learning on 3D Data",
+      "domain": "3d-vision",
+      "parents": [
+        "3d-vision"
+      ]
+    },
+    {
+      "id": "pointnet",
+      "label": "PointNet",
+      "domain": "3d-vision",
+      "parents": [
+        "deep-learning-on-3d",
+        "point-clouds"
+      ]
+    },
+    {
+      "id": "point-transformer",
+      "label": "Point Transformer",
+      "domain": "3d-vision",
+      "parents": [
+        "deep-learning-on-3d",
+        "point-clouds"
+      ]
+    },
+    {
+      "id": "voxnet",
+      "label": "VoxNet",
+      "domain": "3d-vision",
+      "parents": [
+        "deep-learning-on-3d",
+        "voxels"
+      ]
+    },
+    {
+      "id": "octnet",
+      "label": "OctNet",
+      "domain": "3d-vision",
+      "parents": [
+        "deep-learning-on-3d",
+        "octree"
+      ]
+    },
+    {
+      "id": "sparse-convolutions",
+      "label": "Sparse Convolutions",
+      "domain": "3d-vision",
+      "parents": [
+        "deep-learning-on-3d",
+        "voxels"
+      ]
+    },
+    {
+      "id": "meshcnn",
+      "label": "MeshCNN",
+      "domain": "3d-vision",
+      "parents": [
+        "deep-learning-on-3d",
+        "meshes"
+      ]
+    },
+    {
+      "id": "meshgpt",
+      "label": "MeshGPT",
+      "domain": "3d-vision",
+      "parents": [
+        "deep-learning-on-3d",
+        "meshes"
+      ]
+    },
+    {
+      "id": "vector-neurons",
+      "label": "Vector Neurons",
+      "domain": "3d-vision",
+      "parents": [
+        "deep-learning-on-3d"
+      ]
+    },
+    {
+      "id": "multi-view-shape-recognition",
+      "label": "Multi-View Shape Recognition",
+      "domain": "3d-vision",
+      "parents": [
+        "deep-learning-on-3d",
+        "multi-view"
+      ]
+    },
+    {
+      "id": "chamfer-distance",
+      "label": "Chamfer Distance",
+      "domain": "3d-vision",
+      "parents": [
+        "deep-learning-on-3d",
+        "point-clouds"
       ]
     }
   ],
   "edges": [
     {
-      "source": "crfs",
-      "target": "hmm",
-      "kind": "related",
-      "weight": 1
+      "source": "deep-learning",
+      "target": "nlp",
+      "kind": "applies-to"
     },
     {
-      "source": "crfs",
-      "target": "sequence-labeling",
-      "kind": "related",
-      "weight": 1
+      "source": "deep-learning",
+      "target": "computer-vision",
+      "kind": "applies-to"
+    },
+    {
+      "source": "deep-learning",
+      "target": "3d-vision",
+      "kind": "applies-to"
+    },
+    {
+      "source": "mathematics",
+      "target": "deep-learning",
+      "kind": "applies-to"
+    },
+    {
+      "source": "statistics",
+      "target": "deep-learning",
+      "kind": "applies-to"
+    },
+    {
+      "source": "optimization",
+      "target": "network-training",
+      "kind": "related"
+    },
+    {
+      "source": "linear-algebra",
+      "target": "singular-value-decomposition",
+      "kind": "related"
+    },
+    {
+      "source": "cnns",
+      "target": "computer-vision",
+      "kind": "applies-to"
+    },
+    {
+      "source": "cnns",
+      "target": "image-processing",
+      "kind": "related"
+    },
+    {
+      "source": "transformers",
+      "target": "large-language-models",
+      "kind": "related"
+    },
+    {
+      "source": "transformers",
+      "target": "vision-transformers",
+      "kind": "related"
     },
     {
       "source": "rnns",
-      "target": "llms",
-      "kind": "related",
-      "weight": 1
+      "target": "language-modeling",
+      "kind": "related"
     },
     {
-      "source": "word2vec",
-      "target": "llms",
-      "kind": "related",
-      "weight": 1
+      "source": "lstm",
+      "target": "rnns",
+      "kind": "related"
     },
     {
-      "source": "fasttext",
-      "target": "word2vec",
-      "kind": "related",
-      "weight": 1
+      "source": "attention",
+      "target": "transformers",
+      "kind": "related"
     },
     {
-      "source": "rag",
-      "target": "cos-similarity",
-      "kind": "related",
-      "weight": 1
+      "source": "hidden-markov-models",
+      "target": "pos-tagging",
+      "kind": "applies-to"
+    },
+    {
+      "source": "conditional-random-fields",
+      "target": "sequence-labeling",
+      "kind": "applies-to"
+    },
+    {
+      "source": "viterbi-algorithm",
+      "target": "pos-tagging",
+      "kind": "applies-to"
     },
     {
       "source": "naive-bayes",
       "target": "sentiment-analysis",
-      "kind": "related",
-      "weight": 1
+      "kind": "applies-to"
     },
     {
-      "source": "bert",
-      "target": "word2vec",
-      "kind": "related",
-      "weight": 1
-    },
-    {
-      "source": "cnf",
-      "target": "cky",
-      "kind": "related",
-      "weight": 1
-    },
-    {
-      "source": "cfg",
-      "target": "cnf",
-      "kind": "related",
-      "weight": 1
-    },
-    {
-      "source": "tf-idf",
-      "target": "text-classification",
-      "kind": "related",
-      "weight": 1
-    },
-    {
-      "source": "bm25",
-      "target": "tf-idf",
-      "kind": "related",
-      "weight": 1
-    },
-    {
-      "source": "sft",
-      "target": "rlhf",
-      "kind": "related",
-      "weight": 1
-    },
-    {
-      "source": "dpo",
-      "target": "rlhf",
-      "kind": "related",
-      "weight": 1
-    },
-    {
-      "source": "bleu",
-      "target": "chrf",
-      "kind": "related",
-      "weight": 1
-    },
-    {
-      "source": "pointwise-mi",
-      "target": "entropy",
-      "kind": "related",
-      "weight": 1
-    },
-    {
-      "source": "bertscore",
-      "target": "bleu",
-      "kind": "related",
-      "weight": 1
-    },
-    {
-      "source": "ap",
-      "target": "map",
-      "kind": "related",
-      "weight": 1
-    },
-    {
-      "source": "iou",
-      "target": "giou",
-      "kind": "related",
-      "weight": 1
-    },
-    {
-      "source": "r-cnn",
-      "target": "spp-net",
-      "kind": "related",
-      "weight": 1
-    },
-    {
-      "source": "spp-net",
-      "target": "fast-r-cnn",
-      "kind": "related",
-      "weight": 1
-    },
-    {
-      "source": "fast-r-cnn",
-      "target": "faster-r-cnn",
-      "kind": "related",
-      "weight": 1
-    },
-    {
-      "source": "faster-r-cnn",
-      "target": "mask-r-cnn",
-      "kind": "related",
-      "weight": 1
-    },
-    {
-      "source": "roipooling",
-      "target": "roialign",
-      "kind": "related",
-      "weight": 1
-    },
-    {
-      "source": "single-stage-detectors",
-      "target": "two-stage-detectors",
-      "kind": "related",
-      "weight": 1
-    },
-    {
-      "source": "object-detection",
-      "target": "object-tracking",
-      "kind": "related",
-      "weight": 1
-    },
-    {
-      "source": "ncut",
-      "target": "spectral-clustering",
-      "kind": "related",
-      "weight": 1
-    },
-    {
-      "source": "laplacian",
-      "target": "spectral-clustering",
-      "kind": "related",
-      "weight": 1
+      "source": "logistic-regression",
+      "target": "neural-network-basics",
+      "kind": "related"
     },
     {
       "source": "cross-entropy",
-      "target": "focal-loss",
-      "kind": "related",
-      "weight": 1
+      "target": "cross-entropy-loss",
+      "kind": "related"
     },
     {
-      "source": "gd",
-      "target": "sgd",
-      "kind": "related",
-      "weight": 1
+      "source": "entropy",
+      "target": "perplexity",
+      "kind": "related"
     },
     {
-      "source": "sgd",
-      "target": "adam",
-      "kind": "related",
-      "weight": 1
+      "source": "dynamic-programming",
+      "target": "minimum-edit-distance",
+      "kind": "applies-to"
     },
     {
-      "source": "gauss-newton",
-      "target": "linear-regression",
-      "kind": "related",
-      "weight": 1
+      "source": "dynamic-programming",
+      "target": "cky-algorithm",
+      "kind": "applies-to"
     },
     {
-      "source": "bn",
-      "target": "gn",
-      "kind": "related",
-      "weight": 1
+      "source": "bipartite-matching",
+      "target": "detr",
+      "kind": "applies-to"
     },
     {
-      "source": "svms",
+      "source": "min-cost-max-flow",
+      "target": "tracktor",
+      "kind": "applies-to"
+    },
+    {
+      "source": "support-vector-machines",
       "target": "hinge-loss",
-      "kind": "related",
-      "weight": 1
+      "kind": "related"
     },
     {
-      "source": "svms",
-      "target": "gaussian-kernel",
-      "kind": "related",
-      "weight": 1
+      "source": "principal-component-analysis",
+      "target": "unsupervised-learning",
+      "kind": "related"
     },
     {
-      "source": "unigram-tokenization",
-      "target": "bpe",
-      "kind": "related",
-      "weight": 1
-    },
-    {
-      "source": "transfer-learning",
-      "target": "fine-tuning",
-      "kind": "related",
-      "weight": 1
-    },
-    {
-      "source": "unsupervised-learning",
-      "target": "k-means",
-      "kind": "related",
-      "weight": 1
-    },
-    {
-      "source": "unsupervised-learning",
-      "target": "spectral-clustering",
-      "kind": "related",
-      "weight": 1
+      "source": "spectral-clustering",
+      "target": "normalized-cut",
+      "kind": "related"
     },
     {
       "source": "contrastive-learning",
-      "target": "triplet-loss",
-      "kind": "related",
-      "weight": 1
+      "target": "dino",
+      "kind": "related"
     },
     {
-      "source": "simclr",
-      "target": "contrastive-learning",
-      "kind": "related",
-      "weight": 1
+      "source": "u-net",
+      "target": "semantic-segmentation",
+      "kind": "applies-to"
     },
     {
-      "source": "moco",
-      "target": "simclr",
-      "kind": "related",
-      "weight": 1
-    },
-    {
-      "source": "dino",
-      "target": "moco",
-      "kind": "related",
-      "weight": 1
-    },
-    {
-      "source": "pca",
-      "target": "svd",
-      "kind": "related",
-      "weight": 1
-    },
-    {
-      "source": "hermitian",
-      "target": "svd",
-      "kind": "related",
-      "weight": 1
-    },
-    {
-      "source": "matrix-rank",
-      "target": "matrix-range",
-      "kind": "related",
-      "weight": 1
-    },
-    {
-      "source": "linear-subspaces",
-      "target": "matrix-span",
-      "kind": "related",
-      "weight": 1
-    },
-    {
-      "source": "cauchy-schwarz",
-      "target": "hilbert-space",
-      "kind": "related",
-      "weight": 1
-    },
-    {
-      "source": "convex-sets",
-      "target": "convex-hull",
-      "kind": "related",
-      "weight": 1
-    },
-    {
-      "source": "hog",
-      "target": "svms",
-      "kind": "related",
-      "weight": 1
-    },
-    {
-      "source": "sobel-operator",
-      "target": "hog",
-      "kind": "related",
-      "weight": 1
-    },
-    {
-      "source": "segflow",
-      "target": "optical-flow",
-      "kind": "related",
-      "weight": 1
-    },
-    {
-      "source": "flownet",
-      "target": "optical-flow",
-      "kind": "related",
-      "weight": 1
-    },
-    {
-      "source": "osvos",
-      "target": "segflow",
-      "kind": "related",
-      "weight": 1
-    },
-    {
-      "source": "fpn",
-      "target": "retinanet",
-      "kind": "related",
-      "weight": 1
-    },
-    {
-      "source": "fpn",
-      "target": "panoptic-fpn",
-      "kind": "related",
-      "weight": 1
-    },
-    {
-      "source": "panoptic-fpn",
-      "target": "panoptic-fcn",
-      "kind": "related",
-      "weight": 1
+      "source": "fcn",
+      "target": "semantic-segmentation",
+      "kind": "related"
     },
     {
       "source": "dilated-convolutions",
       "target": "aspp",
-      "kind": "related",
-      "weight": 1
+      "kind": "applies-to"
     },
     {
-      "source": "mask2former",
-      "target": "sam",
-      "kind": "related",
-      "weight": 1
+      "source": "optical-flow",
+      "target": "video-object-segmentation",
+      "kind": "related"
     },
     {
-      "source": "taylor-expansion",
-      "target": "optical-flow",
-      "kind": "related",
-      "weight": 1
+      "source": "faster-r-cnn",
+      "target": "mask-r-cnn",
+      "kind": "related"
+    },
+    {
+      "source": "intersection-over-union",
+      "target": "non-maximum-suppression",
+      "kind": "related"
+    },
+    {
+      "source": "feature-pyramid-network",
+      "target": "panoptic-fpn",
+      "kind": "related"
+    },
+    {
+      "source": "graph-neural-networks",
+      "target": "point-clouds",
+      "kind": "applies-to"
+    },
+    {
+      "source": "sparse-convolutions",
+      "target": "cnns",
+      "kind": "related"
+    },
+    {
+      "source": "signed-distance-fields",
+      "target": "implicit-representations",
+      "kind": "related"
+    },
+    {
+      "source": "transfer-learning",
+      "target": "fine-tuning",
+      "kind": "related"
+    },
+    {
+      "source": "fine-tuning",
+      "target": "supervised-fine-tuning",
+      "kind": "related"
+    },
+    {
+      "source": "word2vec",
+      "target": "word-representations",
+      "kind": "related"
+    },
+    {
+      "source": "bert",
+      "target": "fine-tuning",
+      "kind": "related"
+    },
+    {
+      "source": "autoencoders",
+      "target": "latent-space",
+      "kind": "related"
+    },
+    {
+      "source": "variational-autoencoders",
+      "target": "generative-models",
+      "kind": "related"
+    },
+    {
+      "source": "diffusion-models",
+      "target": "latent-space",
+      "kind": "related"
+    },
+    {
+      "source": "backpropagation",
+      "target": "jacobian",
+      "kind": "related"
+    },
+    {
+      "source": "gradient-descent",
+      "target": "stochastic-gradient-descent",
+      "kind": "related"
+    },
+    {
+      "source": "adam",
+      "target": "momentum",
+      "kind": "related"
+    },
+    {
+      "source": "batch-normalization",
+      "target": "batch-size",
+      "kind": "related"
+    },
+    {
+      "source": "vanishing-gradients",
+      "target": "residual-networks",
+      "kind": "related"
+    },
+    {
+      "source": "vanishing-gradients",
+      "target": "lstm",
+      "kind": "related"
     }
   ]
 }

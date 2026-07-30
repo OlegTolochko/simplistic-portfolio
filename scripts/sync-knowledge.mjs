@@ -14,12 +14,27 @@ const DRY_RUN = process.argv.includes("--dry");
 const OBSIDIAN_VAULT_PATH = process.env.OBSIDIAN_VAULT_PATH;
 const OBSIDIAN_KNOWLEDGE_DIR = process.env.OBSIDIAN_KNOWLEDGE_DIR ?? "Knowledge";
 const ANKI_URL = process.env.ANKI_CONNECT_URL ?? "http://127.0.0.1:8765";
-const ANKI_DECK = process.env.ANKI_DECK ?? "Knowledge";
+
+/**
+ * Decks that feed the graph. Course decks live outside the Knowledge tree, so
+ * they are listed explicitly; anything not listed here (e.g. "Master::Random
+ * Informatik Zeug") is ignored. Keep in sync with scripts/retag-anki.mjs.
+ */
+const ANKI_DECKS = (
+  process.env.ANKI_DECKS ??
+  "Knowledge,Master::SS26::ml3d,Master::WS2526::I2DL"
+)
+  .split(",")
+  .map((deck) => deck.trim())
+  .filter(Boolean);
+
+const DECK_QUERY = `(${ANKI_DECKS.map((deck) => `deck:"${deck}"`).join(" OR ")})`;
 
 const KNOWN_DOMAINS = new Set([
   "deep-learning",
   "nlp",
   "computer-vision",
+  "3d-vision",
   "statistics",
   "ml-systems",
   "backend",
@@ -311,16 +326,16 @@ const loadStructure = async () => {
 };
 
 const aggregateAnkiByConcept = async (structure) => {
-  const noteIds = await callAnki("findNotes", { query: `deck:\"${ANKI_DECK}\"` });
+  const noteIds = await callAnki("findNotes", { query: DECK_QUERY });
   if (!Array.isArray(noteIds) || noteIds.length === 0) {
-    return { nodeMap: new Map(), links: [] };
+    return { nodeMap: new Map(), links: [], totals: null };
   }
 
   const notesInfo = await callAnki("notesInfo", { notes: noteIds });
 
   const allCardIds = notesInfo.flatMap((note) => note.cards ?? []);
   const dueCardIds = await callAnki("findCards", {
-    query: `deck:\"${ANKI_DECK}\" is:due`,
+    query: `${DECK_QUERY} is:due`,
   });
   const dueSet = new Set(Array.isArray(dueCardIds) ? dueCardIds : []);
 
@@ -398,6 +413,13 @@ const aggregateAnkiByConcept = async (structure) => {
     }
   }
 
+  // Distinct cards actually attached to at least one concept. Per-node counts
+  // roll up into ancestors, so summing them would count a card many times.
+  const attachedCards = new Set();
+  for (const cards of directCardsByConcept.values())
+    for (const cardId of cards) attachedCards.add(cardId);
+  const attachedDue = [...attachedCards].filter((id) => dueSet.has(id)).length;
+
   const nodeMap = new Map();
   for (const [conceptId, cardIds] of rolledUpCardsByConcept.entries()) {
     const current = ensureNodeStats(nodeMap, conceptId);
@@ -431,6 +453,15 @@ const aggregateAnkiByConcept = async (structure) => {
   return {
     nodeMap,
     links: [],
+    totals: {
+      notes: notesInfo.length,
+      cards: attachedCards.size,
+      dueCards: attachedDue,
+      untaggedNotes: notesInfo.filter(
+        (note) => extractTagBuckets(note.tags ?? []).conceptTags.size === 0 &&
+          extractTagBuckets(note.tags ?? []).contextTags.size === 0
+      ).length,
+    },
   };
 };
 
@@ -594,8 +625,14 @@ const main = async () => {
       updatedAt: new Date().toISOString(),
       structurePath: structure.source,
       obsidianPath: obsidianIndex.sourcePath,
+      decks: ANKI_DECKS,
       nodeCount: nodes.length,
       linkCount: combinedLinks.length,
+      // Distinct card counts — node counts overlap because of the roll-up.
+      noteCount: ankiResult.totals?.notes ?? 0,
+      cardCount: ankiResult.totals?.cards ?? 0,
+      dueCardCount: ankiResult.totals?.dueCards ?? 0,
+      untaggedNoteCount: ankiResult.totals?.untaggedNotes ?? 0,
     },
     nodes,
     links: combinedLinks,
