@@ -2612,6 +2612,391 @@
         "deep-learning-on-3d",
         "point-clouds"
       ]
+    },
+    {
+      "id": "radiance-fields",
+      "label": "Radiance Fields",
+      "domain": "3d-vision",
+      "parents": [
+        "implicit-representations"
+      ]
+    },
+    {
+      "id": "volume-rendering",
+      "label": "Volume Rendering",
+      "domain": "3d-vision",
+      "parents": [
+        "radiance-fields"
+      ]
+    },
+    {
+      "id": "nerf",
+      "label": "NeRF",
+      "domain": "3d-vision",
+      "parents": [
+        "radiance-fields"
+      ]
+    },
+    {
+      "id": "instant-ngp",
+      "label": "Instant-NGP",
+      "domain": "3d-vision",
+      "parents": [
+        "nerf"
+      ]
+    },
+    {
+      "id": "plenoxels",
+      "label": "Plenoxels",
+      "domain": "3d-vision",
+      "parents": [
+        "nerf",
+        "voxels"
+      ]
+    },
+    {
+      "id": "tensorf",
+      "label": "TensoRF",
+      "domain": "3d-vision",
+      "parents": [
+        "nerf"
+      ]
+    },
+    {
+      "id": "pixelnerf",
+      "label": "PixelNeRF",
+      "domain": "3d-vision",
+      "parents": [
+        "nerf"
+      ]
+    },
+    {
+      "id": "neus",
+      "label": "NeuS",
+      "domain": "3d-vision",
+      "parents": [
+        "radiance-fields",
+        "signed-distance-fields"
+      ]
+    },
+    {
+      "id": "gaussian-splatting",
+      "label": "3D Gaussian Splatting",
+      "domain": "3d-vision",
+      "parents": [
+        "radiance-fields"
+      ]
+    },
+    {
+      "id": "pixelsplat",
+      "label": "pixelSplat",
+      "domain": "3d-vision",
+      "parents": [
+        "gaussian-splatting"
+      ]
+    },
+    {
+      "id": "mvsplat",
+      "label": "MVSplat",
+      "domain": "3d-vision",
+      "parents": [
+        "gaussian-splatting"
+      ]
+    },
+    {
+      "id": "per-scene-optimization",
+      "label": "Per-Scene vs Amortized",
+      "domain": "3d-vision",
+      "parents": [
+        "deep-learning-on-3d"
+      ]
+    },
+    {
+      "id": "occupancy-networks",
+      "label": "Occupancy Networks",
+      "domain": "3d-vision",
+      "parents": [
+        "implicit-representations"
+      ]
+    },
+    {
+      "id": "deepsdf",
+      "label": "DeepSDF",
+      "domain": "3d-vision",
+      "parents": [
+        "signed-distance-fields"
+      ]
+    },
+    {
+      "id": "iso-surface",
+      "label": "Iso-Surface",
+      "domain": "3d-vision",
+      "parents": [
+        "implicit-representations"
+      ]
+    },
+    {
+      "id": "eikonal-regularizer",
+      "label": "Eikonal Regularizer",
+      "domain": "3d-vision",
+      "parents": [
+        "signed-distance-fields"
+      ]
+    },
+    {
+      "id": "structure-from-motion",
+      "label": "Structure from Motion",
+      "domain": "3d-vision",
+      "parents": [
+        "3d-vision"
+      ]
+    },
+    {
+      "id": "colmap",
+      "label": "COLMAP",
+      "domain": "3d-vision",
+      "parents": [
+        "structure-from-motion"
+      ]
+    },
+    {
+      "id": "feature-matching",
+      "label": "Feature Matching",
+      "domain": "3d-vision",
+      "parents": [
+        "structure-from-motion"
+      ]
+    },
+    {
+      "id": "superpoint",
+      "label": "SuperPoint",
+      "domain": "3d-vision",
+      "parents": [
+        "feature-matching"
+      ]
+    },
+    {
+      "id": "superglue",
+      "label": "SuperGlue",
+      "domain": "3d-vision",
+      "parents": [
+        "feature-matching"
+      ]
+    },
+    {
+      "id": "dust3r",
+      "label": "DUSt3R",
+      "domain": "3d-vision",
+      "parents": [
+        "structure-from-motion"
+      ]
+    },
+    {
+      "id": "vggt",
+      "label": "VGGT",
+      "domain": "3d-vision",
+      "parents": [
+        "structure-from-motion"
+      ]
+    },
+    {
+      "id": "depth-anything-3",
+      "label": "Depth Anything 3",
+      "domain": "3d-vision",
+      "parents": [
+        "structure-from-motion"
+      ]
+    },
+    {
+      "id": "3d-generation",
+      "label": "3D Generation",
+      "domain": "3d-vision",
+      "parents": [
+        "3d-vision"
+      ]
+    },
+    {
+      "id": "text-to-3d",
+      "label": "Text-to-3D",
+      "domain": "3d-vision",
+      "parents": [
+        "3d-generation"
+      ]
+    },
+    {
+      "id": "score-distillation",
+      "label": "Score Distillation (SDS)",
+      "domain": "3d-vision",
+      "parents": [
+        "text-to-3d",
+        "diffusion-models"
+      ]
+    },
+    {
+      "id": "dreamfusion",
+      "label": "DreamFusion",
+      "domain": "3d-vision",
+      "parents": [
+        "score-distillation"
+      ]
+    },
+    {
+      "id": "zero-1-to-3",
+      "label": "Zero-1-to-3",
+      "domain": "3d-vision",
+      "parents": [
+        "text-to-3d"
+      ]
+    },
+    {
+      "id": "trellis",
+      "label": "TRELLIS",
+      "domain": "3d-vision",
+      "parents": [
+        "3d-generation"
+      ]
+    },
+    {
+      "id": "trellis2",
+      "label": "TRELLIS.2",
+      "domain": "3d-vision",
+      "parents": [
+        "trellis"
+      ]
+    },
+    {
+      "id": "sdfusion",
+      "label": "SDFusion",
+      "domain": "3d-vision",
+      "parents": [
+        "3d-generation",
+        "signed-distance-fields"
+      ]
+    },
+    {
+      "id": "lion",
+      "label": "LION",
+      "domain": "3d-vision",
+      "parents": [
+        "3d-generation",
+        "point-clouds"
+      ]
+    },
+    {
+      "id": "polygen",
+      "label": "PolyGen",
+      "domain": "3d-vision",
+      "parents": [
+        "3d-generation",
+        "meshes"
+      ]
+    },
+    {
+      "id": "meshart",
+      "label": "MeshArt",
+      "domain": "3d-vision",
+      "parents": [
+        "3d-generation",
+        "meshes"
+      ]
+    },
+    {
+      "id": "preditor3d",
+      "label": "PrEditor3D",
+      "domain": "3d-vision",
+      "parents": [
+        "3d-generation"
+      ]
+    },
+    {
+      "id": "sam3d",
+      "label": "SAM 3D",
+      "domain": "3d-vision",
+      "parents": [
+        "3d-generation",
+        "surface-reconstruction"
+      ]
+    },
+    {
+      "id": "procedural-generation",
+      "label": "Procedural Generation",
+      "domain": "3d-vision",
+      "parents": [
+        "3d-generation"
+      ]
+    },
+    {
+      "id": "scene-generation",
+      "label": "Scene Generation",
+      "domain": "3d-vision",
+      "parents": [
+        "3d-generation"
+      ]
+    },
+    {
+      "id": "unconditional-generation",
+      "label": "Unconditional Generation",
+      "domain": "3d-vision",
+      "parents": [
+        "3d-generation"
+      ]
+    },
+    {
+      "id": "3d-scene-understanding",
+      "label": "3D Scene Understanding",
+      "domain": "3d-vision",
+      "parents": [
+        "3d-vision"
+      ]
+    },
+    {
+      "id": "open-vocabulary-3d",
+      "label": "Open-Vocabulary 3D",
+      "domain": "3d-vision",
+      "parents": [
+        "3d-scene-understanding"
+      ]
+    },
+    {
+      "id": "rgbd-segmentation",
+      "label": "RGB-D Segmentation",
+      "domain": "3d-vision",
+      "parents": [
+        "3d-scene-understanding"
+      ]
+    },
+    {
+      "id": "normalizing-flows",
+      "label": "Normalizing Flows",
+      "domain": "deep-learning",
+      "parents": [
+        "generative-models"
+      ]
+    },
+    {
+      "id": "flow-matching",
+      "label": "Flow Matching",
+      "domain": "deep-learning",
+      "parents": [
+        "generative-models"
+      ]
+    },
+    {
+      "id": "classifier-free-guidance",
+      "label": "Classifier-Free Guidance",
+      "domain": "deep-learning",
+      "parents": [
+        "diffusion-models"
+      ]
+    },
+    {
+      "id": "diffusion-transformer",
+      "label": "Diffusion Transformer (DiT)",
+      "domain": "deep-learning",
+      "parents": [
+        "diffusion-models",
+        "transformers"
+      ]
     }
   ],
   "edges": [
@@ -2873,6 +3258,71 @@
     {
       "source": "vanishing-gradients",
       "target": "lstm",
+      "kind": "related"
+    },
+    {
+      "source": "nerf",
+      "target": "gaussian-splatting",
+      "kind": "related"
+    },
+    {
+      "source": "nerf",
+      "target": "neus",
+      "kind": "related"
+    },
+    {
+      "source": "signed-distance-fields",
+      "target": "neus",
+      "kind": "related"
+    },
+    {
+      "source": "structure-from-motion",
+      "target": "radiance-fields",
+      "kind": "related"
+    },
+    {
+      "source": "colmap",
+      "target": "nerf",
+      "kind": "applies-to"
+    },
+    {
+      "source": "flow-matching",
+      "target": "diffusion-models",
+      "kind": "related"
+    },
+    {
+      "source": "normalizing-flows",
+      "target": "flow-matching",
+      "kind": "related"
+    },
+    {
+      "source": "diffusion-transformer",
+      "target": "trellis",
+      "kind": "applies-to"
+    },
+    {
+      "source": "score-distillation",
+      "target": "diffusion-models",
+      "kind": "related"
+    },
+    {
+      "source": "gaussian-splatting",
+      "target": "point-clouds",
+      "kind": "related"
+    },
+    {
+      "source": "occupancy-networks",
+      "target": "deepsdf",
+      "kind": "related"
+    },
+    {
+      "source": "scene-generation",
+      "target": "3d-scene-understanding",
+      "kind": "related"
+    },
+    {
+      "source": "per-scene-optimization",
+      "target": "nerf",
       "kind": "related"
     }
   ]

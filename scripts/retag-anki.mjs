@@ -105,6 +105,13 @@ const ALIASES = {
   // 3d
   vertices: "vertices-and-faces",
   sdf: "signed-distance-fields",
+  "3dgs": "gaussian-splatting",
+  pixelsplat: "pixelsplat", // guards against the "pixelSplat" casing
+  plenovoxels: "plenoxels",
+  procgen3d: "procedural-generation",
+  da3: "depth-anything-3",
+  sds: "score-distillation",
+  nerfs: "nerf",
 };
 
 /**
@@ -257,6 +264,17 @@ const RULES = [
   [/optical flow/i, ["optical-flow"]],
 
   // -------------------------------------------------------------- 3d vision
+  [/per-scene fitting|amortized prediction|amortized/i, ["per-scene-optimization"]],
+  [/sfm-side|structure from motion/i, ["structure-from-motion"]],
+  [/radiance-side|radiance field/i, ["radiance-fields"]],
+  [/rgb-d/i, ["rgbd-segmentation"]],
+  [/open[- ]vocabulary|closed vocabulary/i, ["open-vocabulary-3d"]],
+  [/atiss|diffuscene|scene composition|scene generation/i, ["scene-generation"]],
+  [/procedural|infinigen|scenesmith/i, ["procedural-generation"]],
+  [/nerf|neural radiance/i, ["nerf"]],
+  [/gaussian splatting|\b3dgs\b/i, ["gaussian-splatting"]],
+  [/score distillation|\bsds\b/i, ["score-distillation"]],
+  [/flow matching/i, ["flow-matching"]],
   [/voxel/i, ["voxels"]],
   [/point cloud/i, ["point-clouds"]],
   [/\bmesh\b|meshes/i, ["meshes"]],
@@ -380,8 +398,13 @@ const main = async () => {
       ...keep,
       ...[...concepts.entries()].map(([id, kind]) => `#${kind}::${id}`),
     ].sort();
+    // Anki's tag registry is case-insensitive and rewrites a tag to whichever
+    // casing was registered first, so a casing-only difference would flip back
+    // and forth forever. The graph lowercases tag ids anyway, so ignore case
+    // when deciding whether a write is actually needed.
+    const fold = (tags) => tags.map((t) => t.toLowerCase()).sort();
     const before = [...note.tags].sort();
-    if (JSON.stringify(next) !== JSON.stringify(before)) {
+    if (JSON.stringify(fold(next)) !== JSON.stringify(fold(before))) {
       planned.push({ noteId: note.noteId, tags: next, before: note.tags });
       normalised += 1;
     }
