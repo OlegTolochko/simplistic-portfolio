@@ -2,17 +2,17 @@
 @tailwind components;
 @tailwind utilities;
 
-* {
-  scroll-behavior: smooth;
-}
-.modal-open {
-  overflow: hidden;
-}
-
-* {
+html {
   scroll-behavior: smooth;
 }
 
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+/* used by the knowledge map side panel */
 .custom-scrollbar::-webkit-scrollbar {
   width: 16px;
 }

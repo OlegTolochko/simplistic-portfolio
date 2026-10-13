@@ -10,12 +10,6 @@ export type BaseContentMeta = {
   readingTimeMinutes: number;
 };
 
-export type BlogPostMeta = BaseContentMeta & {
-  kind: "blog";
-  subtitle?: string;
-  featured: boolean;
-};
-
 export type ProjectMeta = BaseContentMeta & {
   kind: "project";
   teaser: string;
@@ -25,11 +19,6 @@ export type ProjectMeta = BaseContentMeta & {
   repoUrl?: string;
   liveUrl?: string;
   cardImage: string;
-};
-
-export type BlogPost = BlogPostMeta & {
-  body: string;
-  absolutePath: string;
 };
 
 export type ProjectEntry = ProjectMeta & {

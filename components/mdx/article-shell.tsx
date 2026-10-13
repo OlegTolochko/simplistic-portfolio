@@ -1,5 +1,9 @@
-import Image from "next/image";
+import Link from "next/link";
 import type { ReactNode } from "react";
+import { IBM_Plex_Mono, Newsreader } from "next/font/google";
+
+const serif = Newsreader({ subsets: ["latin"], style: ["normal", "italic"], axes: ["opsz"], variable: "--serif" });
+const mono = IBM_Plex_Mono({ subsets: ["latin"], weight: ["400", "500"], variable: "--mono" });
 
 type ArticleShellProps = {
   eyebrow?: string;
@@ -8,104 +12,66 @@ type ArticleShellProps = {
   publishedAt: string;
   updatedAt?: string;
   readingTimeMinutes: number;
-  tags?: string[];
+  stack?: string[];
   heroImage?: string;
   children: ReactNode;
-  preamble?: ReactNode;
   actions?: ReactNode;
 };
 
 function formatDate(dateString: string) {
-  return new Date(`${dateString}T00:00:00`).toLocaleDateString("en-US", {
+  return new Date(`${dateString}T00:00:00`).toLocaleDateString("en-GB", {
     month: "long",
-    day: "numeric",
     year: "numeric",
   });
 }
 
 export default function ArticleShell({
-  eyebrow = "Writing",
+  eyebrow = "Project",
   title,
   summary,
   publishedAt,
   updatedAt,
   readingTimeMinutes,
-  tags = [],
+  stack = [],
   heroImage,
-  preamble,
   actions,
   children,
 }: ArticleShellProps) {
   return (
-    <article className="mx-auto max-w-4xl px-4 pb-24 pt-28 sm:px-6">
-      <header className="space-y-8">
-        <div className="space-y-4">
-          <p className="text-sm font-semibold uppercase tracking-[0.24em] text-blue-700">{eyebrow}</p>
-          <h1 className="max-w-3xl text-4xl font-black leading-tight text-sand-950 sm:text-5xl">
-            {title}
-          </h1>
-          <p className="max-w-3xl text-lg leading-8 text-stone-700 sm:text-xl">{summary}</p>
-        </div>
+    <div className={`${serif.variable} ${mono.variable} min-h-screen bg-[#f3f3f0] text-[#1c1b19]`}>
+      <article className="mx-auto max-w-[760px] px-5 pb-24 pt-10 font-[family-name:var(--serif)] sm:px-7">
+        <nav className="mb-16 font-[family-name:var(--mono)] text-[12px] text-[#6b6962]">
+          <Link href="/" className="hover:text-[#1c1b19]">
+            ← Oleg Tolochko
+          </Link>
+        </nav>
 
-        <div className="flex flex-wrap items-center gap-3 text-sm font-medium text-stone-600">
-          <span>{formatDate(publishedAt)}</span>
-          <span className="text-stone-400">/</span>
-          <span>{readingTimeMinutes} min read</span>
-          {updatedAt ? (
-            <>
-              <span className="text-stone-400">/</span>
-              <span>Updated {formatDate(updatedAt)}</span>
-            </>
+        <header>
+          <p className="font-[family-name:var(--mono)] text-[12px] uppercase tracking-[0.08em] text-[#6b6962]">
+            {eyebrow}
+          </p>
+          <h1 className="mt-3 text-[clamp(2rem,5vw,2.9rem)] font-medium leading-[1.1] tracking-[-0.015em]">{title}</h1>
+          <p className="mt-5 text-[1.2rem] italic leading-[1.5] text-[#4a4843]">{summary}</p>
+
+          <p className="mt-6 flex flex-wrap gap-x-4 gap-y-1 font-[family-name:var(--mono)] text-[12px] text-[#6b6962]">
+            <span>{formatDate(publishedAt)}</span>
+            <span>{readingTimeMinutes} min read</span>
+            {updatedAt ? <span>updated {formatDate(updatedAt)}</span> : null}
+            {stack.length > 0 ? <span>{stack.join(" · ")}</span> : null}
+          </p>
+
+          {actions ? <div className="mt-5">{actions}</div> : null}
+
+          {heroImage ? (
+            // eslint-disable-next-line @next/next/no-img-element
+            <img src={heroImage} alt="" className="mt-10 w-full border border-[#d9d8d0] bg-white" />
           ) : null}
+        </header>
+
+        <div className="mt-10 text-[1.12rem] leading-[1.7] [&_h2]:mb-3 [&_h2]:mt-12 [&_h2]:text-[1.6rem] [&_h2]:font-medium [&_h2]:leading-tight [&_h2]:tracking-[-0.01em] [&_h3]:mb-2 [&_h3]:mt-8 [&_h3]:text-[1.25rem] [&_h3]:font-medium [&_li]:my-1 [&_ol]:my-5 [&_ol]:list-decimal [&_ol]:pl-6 [&_p]:my-5 [&_strong]:font-semibold [&_ul]:my-5 [&_ul]:list-disc [&_ul]:pl-6">
+          {children}
         </div>
-
-        {tags.length > 0 ? (
-          <div className="flex flex-wrap gap-2">
-            {tags.map((tag) => (
-              <span
-                key={tag}
-                className="rounded-full border border-blue-200 bg-blue-50 px-3 py-1 text-sm font-medium text-blue-800"
-              >
-                {tag}
-              </span>
-            ))}
-          </div>
-        ) : null}
-
-        {actions}
-
-        {heroImage ? (
-          <div className="overflow-hidden rounded-[2rem] border border-sand-300 bg-sand-50 shadow-sm">
-            <Image
-              src={heroImage}
-              alt={title}
-              width={1600}
-              height={900}
-              className="h-auto w-full object-cover"
-              priority
-            />
-          </div>
-        ) : null}
-      </header>
-
-      {preamble ? <div className="mt-10">{preamble}</div> : null}
-
-      <div
-        className="
-          mt-12 text-[17px] leading-8 text-stone-800
-          [&_h2]:mt-14 [&_h2]:text-3xl [&_h2]:font-bold [&_h2]:leading-tight [&_h2]:text-sand-950
-          [&_h3]:mt-10 [&_h3]:text-2xl [&_h3]:font-semibold [&_h3]:leading-tight [&_h3]:text-sand-950
-          [&_h4]:mt-8 [&_h4]:text-xl [&_h4]:font-semibold [&_h4]:text-sand-950
-          [&_p]:my-6 [&_p]:leading-8 [&_p]:text-stone-800
-          [&_ul]:my-6 [&_ul]:list-disc [&_ul]:pl-6
-          [&_ol]:my-6 [&_ol]:list-decimal [&_ol]:pl-6
-          [&_li]:my-2 [&_li]:text-stone-800
-          [&_hr]:my-12 [&_hr]:border-sand-300
-          [&_strong]:font-semibold [&_strong]:text-sand-950
-        "
-      >
-        {children}
-      </div>
-    </article>
+      </article>
+    </div>
   );
 }

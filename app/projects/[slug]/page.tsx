@@ -1,9 +1,6 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import { notFound } from "next/navigation";
-import { ArrowUpRight, Github } from "lucide-react";
 
-import SkillBadges from "@/app/components/skill-badges";
 import ArticleShell from "@/components/mdx/article-shell";
 import { getAllProjects, getProjectBySlug } from "@/lib/content";
 import { loadProjectModule } from "@/lib/content/project-module";
@@ -13,28 +10,6 @@ type ProjectPageProps = {
     slug: string;
   }>;
 };
-
-function ProjectLink({
-  href,
-  children,
-  icon,
-}: {
-  href: string;
-  children: React.ReactNode;
-  icon: React.ReactNode;
-}) {
-  return (
-    <Link
-      href={href}
-      className="inline-flex items-center gap-2 rounded-full border border-sand-400 bg-white px-4 py-2 text-sm font-medium text-stone-900 shadow-sm transition-colors hover:bg-sand-100"
-      rel={href.startsWith("http") ? "noreferrer" : undefined}
-      target={href.startsWith("http") ? "_blank" : undefined}
-    >
-      {icon}
-      {children}
-    </Link>
-  );
-}
 
 export async function generateStaticParams() {
   return getAllProjects().map((project) => ({
@@ -48,7 +23,7 @@ export async function generateMetadata({ params }: ProjectPageProps): Promise<Me
 
   if (!project) {
     return {
-      title: "Project Not Found | Oleg Tolochko",
+      title: "Project not found | Oleg Tolochko",
     };
   }
 
@@ -67,36 +42,36 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
   }
 
   const { default: Content } = await loadProjectModule(slug);
+  const links = [
+    project.repoUrl ? { label: "Code", href: project.repoUrl } : null,
+    project.liveUrl ? { label: project.liveUrl.endsWith(".pdf") ? "PDF" : "Website", href: project.liveUrl } : null,
+  ].filter((l): l is { label: string; href: string } => l !== null);
 
   return (
     <main>
       <ArticleShell
-        eyebrow="Projects"
         title={project.title}
         summary={project.summary}
         publishedAt={project.publishedAt}
         updatedAt={project.updatedAt}
         readingTimeMinutes={project.readingTimeMinutes}
+        stack={project.stack}
         heroImage={project.heroImage}
         actions={
-          project.liveUrl || project.repoUrl ? (
-            <div className="flex flex-wrap gap-3">
-              {project.liveUrl ? (
-                <ProjectLink href={project.liveUrl} icon={<ArrowUpRight size={16} />}>
-                  View project
-                </ProjectLink>
-              ) : null}
-              {project.repoUrl ? (
-                <ProjectLink href={project.repoUrl} icon={<Github size={16} />}>
-                  View repository
-                </ProjectLink>
-              ) : null}
-            </div>
-          ) : null
-        }
-        preamble={
-          project.stack.length > 0 ? (
-            <SkillBadges skills={project.stack} badgeHeight={30} className="gap-2" />
+          links.length > 0 ? (
+            <p className="flex gap-5 font-[family-name:var(--mono)] text-[13px]">
+              {links.map((l) => (
+                <a
+                  key={l.href}
+                  href={l.href}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="border-b border-[#1c1b19] hover:border-[#2f6ea5] hover:text-[#2f6ea5]"
+                >
+                  {l.label} ↗
+                </a>
+              ))}
+            </p>
           ) : null
         }
       >

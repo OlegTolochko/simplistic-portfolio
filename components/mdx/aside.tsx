@@ -1,9 +1,5 @@
 import type { ReactNode } from "react";
 
 export default function Aside({ children }: { children: ReactNode }) {
-  return (
-    <aside className="my-8 rounded-[1.75rem] border border-sand-300 bg-sand-50 px-5 py-4 text-base leading-7 text-sand-700 shadow-sm">
-      {children}
-    </aside>
-  );
+  return <aside className="my-8 border-l-2 border-[#d9d8d0] pl-5 text-[1rem] leading-7 text-[#4a4843]">{children}</aside>;
 }
