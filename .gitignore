@@ -43,3 +43,6 @@ docs/
 
 # Anki tag snapshots written by scripts/retag-anki.mjs
 scripts/backups/
+
+# python bytecode from scripts/assets
+__pycache__/

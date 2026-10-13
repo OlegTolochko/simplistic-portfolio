@@ -1,0 +1,367 @@
+.root {
+  --paper: #f6f4ee;
+  --ink: #1c1b19;
+  --soft: #5f5d57;
+  --faint: #8d8a82;
+  --rule: #1c1b19;
+  --hair: #d9d5ca;
+  --blue: #2f6ea5;
+
+  min-height: 100vh;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--serif), "Times New Roman", serif;
+  font-optical-sizing: auto;
+  font-size: 18px;
+  line-height: 1.58;
+  font-feature-settings: "kern", "liga", "onum";
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+:global(body):has(.root) {
+  background: #f6f4ee;
+}
+
+.root ::selection {
+  background: #2f6ea533;
+}
+
+.root a {
+  color: var(--blue);
+  text-decoration: none;
+}
+.root a:hover {
+  text-decoration: underline;
+  text-underline-offset: 0.18em;
+  text-decoration-thickness: 1px;
+}
+
+/* the arXiv-style margin stamp */
+.stamp {
+  position: fixed;
+  left: clamp(8px, 2.2vw, 36px);
+  top: 50%;
+  transform: translateY(-50%) rotate(180deg);
+  writing-mode: vertical-rl;
+  font-family: var(--serif), serif;
+  font-size: 22px;
+  letter-spacing: 0.02em;
+  white-space: pre;
+  color: #b9b5aa;
+  pointer-events: none;
+  user-select: none;
+}
+
+.page {
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 88px 28px 56px;
+}
+
+/* ---------- title block ---------- */
+.titleBlock {
+  text-align: center;
+}
+.title {
+  font-size: clamp(2.1rem, 5.4vw, 2.85rem);
+  font-weight: 500;
+  line-height: 1.12;
+  letter-spacing: -0.012em;
+  margin: 0 0 22px;
+}
+.affiliations {
+  font-size: 1.04rem;
+  margin: 0;
+}
+.affiliations sup {
+  font-size: 0.66em;
+  margin-left: 1px;
+}
+.sep {
+  display: inline-block;
+  width: 2.2em;
+}
+.contact {
+  margin: 4px 0 0;
+  font-size: 0.98rem;
+}
+.email {
+  font-family: var(--mono), ui-monospace, monospace;
+  font-size: 0.84rem;
+  letter-spacing: -0.01em;
+}
+.root a.email {
+  color: var(--ink);
+}
+.dot {
+  margin: 0 0.6em;
+  color: var(--faint);
+}
+
+/* ---------- teaser ---------- */
+.teaser {
+  margin: 44px 0 0;
+}
+.teaserImages {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  max-width: 520px;
+  margin: 0 auto;
+}
+.teaserImages img {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+  display: block;
+}
+.teaser figcaption,
+.tableWrap figcaption {
+  font-size: 0.9rem;
+  line-height: 1.5;
+  margin: 12px auto 0;
+  max-width: 520px;
+  color: var(--ink);
+}
+.teaser figcaption b,
+.tableWrap figcaption b {
+  font-weight: 600;
+}
+
+/* ---------- abstract ---------- */
+.abstract {
+  margin: 42px auto 0;
+  max-width: 640px;
+}
+.abstract h2 {
+  text-align: center;
+  font-size: 1.05rem;
+  font-weight: 600;
+  margin: 0 0 10px;
+}
+.abstract p {
+  font-style: italic;
+  text-align: justify;
+  hyphens: auto;
+  margin: 0;
+}
+.abstract p + p {
+  text-indent: 1.4em;
+}
+
+/* ---------- sections ---------- */
+.section {
+  margin-top: 56px;
+}
+.section h2 {
+  font-size: 1.22rem;
+  font-weight: 600;
+  margin: 0 0 18px;
+  letter-spacing: -0.005em;
+}
+.section h2 span {
+  display: inline-block;
+  min-width: 1.6em;
+}
+
+.empty {
+  color: var(--soft);
+  font-style: italic;
+  margin: 0;
+}
+
+.refs {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.refs li {
+  display: grid;
+  grid-template-columns: 2.2em 1fr;
+  margin-bottom: 8px;
+}
+.refNo {
+  color: var(--soft);
+}
+
+/* ---------- projects ---------- */
+.projects {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+.project {
+  display: grid;
+  grid-template-columns: 210px 1fr;
+  gap: 26px;
+  align-items: start;
+}
+.thumb {
+  aspect-ratio: 3 / 2;
+  width: 100%;
+  background: #fff;
+  overflow: hidden;
+  position: relative;
+  mix-blend-mode: multiply;
+  outline: 1px solid var(--hair);
+}
+.thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.canvas {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+.projectText h3 {
+  font-size: 1.08rem;
+  font-weight: 600;
+  line-height: 1.3;
+  margin: -2px 0 3px;
+}
+.venue {
+  font-style: italic;
+  font-size: 0.95rem;
+  color: var(--soft);
+  margin: 0 0 7px;
+  line-height: 1.4;
+}
+.status {
+  font-style: normal;
+  color: #a33b2a;
+}
+.summary {
+  margin: 0;
+  font-size: 0.98rem;
+  line-height: 1.52;
+}
+.links {
+  margin: 6px 0 0;
+  display: flex;
+  gap: 0.7em;
+  flex-wrap: wrap;
+  font-size: 0.95rem;
+}
+
+/* ---------- booktabs table ---------- */
+.tableWrap {
+  margin: 0;
+}
+.tableWrap figcaption {
+  margin: 0 0 10px;
+  max-width: none;
+}
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.95rem;
+  line-height: 1.4;
+  border-top: 1.4px solid var(--rule);
+  border-bottom: 1.4px solid var(--rule);
+}
+.table th {
+  text-align: left;
+  font-weight: 600;
+  padding: 7px 14px 6px 0;
+  border-bottom: 0.8px solid var(--rule);
+}
+.table td {
+  padding: 6px 14px 6px 0;
+  vertical-align: top;
+}
+.table tbody tr:first-child td {
+  padding-top: 9px;
+}
+.table tbody:last-child tr:last-child td {
+  padding-bottom: 9px;
+}
+.group tr:first-child td {
+  border-top: 0.8px solid var(--rule);
+}
+.num {
+  white-space: nowrap;
+  font-variant-numeric: lining-nums tabular-nums;
+}
+.instInline {
+  display: none;
+}
+.detail {
+  display: block;
+  font-size: 0.86rem;
+  color: var(--soft);
+  font-style: italic;
+}
+
+/* ---------- footnotes ---------- */
+.footnotes {
+  margin-top: 64px;
+  font-size: 0.86rem;
+  line-height: 1.5;
+}
+.footnotes hr {
+  width: 34%;
+  border: 0;
+  border-top: 0.8px solid var(--rule);
+  margin: 0 0 8px;
+}
+.footnotes p {
+  margin: 0 0 3px;
+}
+.footnotes sup {
+  margin-right: 3px;
+}
+.footHead {
+  font-variant: small-caps;
+  letter-spacing: 0.04em;
+  color: var(--soft);
+}
+.colophon {
+  display: flex;
+  gap: 1.4em;
+  margin-top: 26px !important;
+  color: var(--faint);
+}
+.root .colophon a {
+  color: var(--faint);
+}
+.pageNo {
+  text-align: center;
+  margin-top: 30px !important;
+  font-size: 0.95rem;
+}
+
+@media (max-width: 860px) {
+  .stamp {
+    display: none;
+  }
+}
+
+@media (max-width: 620px) {
+  .root {
+    font-size: 17px;
+  }
+  .page {
+    padding: 56px 20px 40px;
+  }
+  .sep {
+    display: block;
+    height: 0;
+  }
+  .project {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+  .table th:nth-child(3),
+  .table td:nth-child(3) {
+    display: none;
+  }
+  .instInline {
+    display: block;
+    font-size: 0.9rem;
+  }
+}

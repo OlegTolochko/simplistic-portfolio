@@ -2,76 +2,36 @@
 
 ![Next JS](https://img.shields.io/badge/Next-black?style=for-the-badge&logo=next.js&logoColor=white)
 ![TypeScript](https://img.shields.io/badge/typescript-%23007ACC.svg?style=for-the-badge&logo=typescript&logoColor=white)
-![TailwindCSS](https://img.shields.io/badge/tailwindcss-%2338B2AC.svg?style=for-the-badge&logo=tailwind-css&logoColor=white)
 ![React](https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB)
 
-A minimal and customizable portfolio template built with Next.js. Live demo: [tolochko.dev](https://tolochko.dev/)
+Personal research portfolio built with Next.js. Live: [tolochko.dev](https://tolochko.dev/)
 
-## Quick Start
-
-1. Clone the repository:
-
-```bash
-git clone https://github.com/yourusername/simplistic-portfolio.git
-cd simplistic-portfolio
-```
-
-2. Install dependencies:
+## Quick start
 
 ```bash
 npm install
+npm run dev     # http://localhost:3000
+npm run build && npm start
 ```
 
-3. Start the development server:
+## Structure
+
+- `content/site.ts` holds all homepage content: profile, publications, projects, education, positions.
+- `components/home/` renders the homepage, typeset like a paper (Newsreader, booktabs table, arXiv-style margin stamp).
+- `components/convex-mesh.tsx` draws the APEX thumbnail: a chair predicted by the best ShapeNet55 complete-input model, as its 512 coloured convex polytopes (WebGL2, paper-figure palette).
+- `content/projects/<slug>/index.mdx` are long-form project write-ups, served at `/projects/<slug>`.
+- `app/knowledge` is the knowledge map (see `scripts/sync-knowledge.mjs`).
+
+## Generated assets
+
+`public/assets/` is produced by `scripts/assets/assets.py`, which reads the source repositories under `~/repos`
+(GF4Shape evaluation outputs, Hopkins155, the MSW simulator, figures from the ML3D, GenPC and HyperDM projects):
 
 ```bash
-npm run dev
+~/repos/ml3d-project/.venv/bin/python scripts/assets/assets.py            # everything
+~/repos/ml3d-project/.venv/bin/python scripts/assets/assets.py apex thesis # single steps
 ```
-
-4. Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-## Customization
-
-### Basic Configuration
-
-Most of the personal/profile configuration still lives in `app/constants/project_constants.ts`. This includes:
-
-- Personal information
-- Social media links
-- Skills and technologies
-- Work experience
-- Contact information
-
-Long-form content now lives in filesystem-backed MDX content:
-
-- Blog posts: `content/blog/<slug>/index.mdx`
-- Projects: `content/projects/<slug>/index.mdx`
-
-Authoring and deployment guide:
-
-- `docs/content-authoring-and-deployment.md`
-
-Sample article showing the available writing surface:
-
-- `content/blog/mdx-playground/index.mdx`
-
-### Image Assets
-
-Replace the images in the public directory with your own:
-
-- `public/personal_images/` - Your profile pictures
-- `public/project_n/` - Project related images
-- `public/favicon.svg` - Website favicon
-- `public/skill_images` - Skill images
-
-### Advanced Customization
-
-The template uses Tailwind CSS for styling. You can modify the following files for more detailed customization:
-
-- `tailwind.config.js` - Theme configuration
-- `globals.css` - Global styles
-- `components/` - Individual component styling
 
 ## License
 
-This project is licensed under the MIT License - see the `LICENSE` file for details.
+MIT, see `LICENSE`.

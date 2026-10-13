@@ -1,31 +1,32 @@
-import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import type { Metadata, Viewport } from "next";
 import "./globals.css";
 
-const inter = Inter({ subsets: ["latin"] });
-
 export const metadata: Metadata = {
-  title: "Oleg Tolochko - Portfolio",
-  description: "A simplistic portfolio website.",
+  metadataBase: new URL("https://tolochko.dev"),
+  title: "Oleg Tolochko",
+  description:
+    "Oleg Tolochko, M.Sc. Informatics student at TU Munich working on 3D computer vision: point cloud completion, Gaussian splatting and uncertainty.",
   icons: {
-    icon: [{ url: "/favicon.png", type: "image/x-icon", sizes: "any" }],
+    icon: [{ url: "/favicon.png", type: "image/png", sizes: "any" }],
     shortcut: "/favicon.png",
+  },
+  openGraph: {
+    title: "Oleg Tolochko",
+    description: "3D computer vision, TU Munich.",
+    url: "https://tolochko.dev",
+    images: ["/assets/portrait-square.webp"],
   },
 };
 
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+};
+
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
-      <body
-        className={`${inter.className} bg-sand-100`}
-        suppressHydrationWarning
-      >
-        {children}
-      </body>
+      <body suppressHydrationWarning>{children}</body>
     </html>
   );
 }

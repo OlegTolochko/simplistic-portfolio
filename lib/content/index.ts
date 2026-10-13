@@ -3,12 +3,11 @@ import path from "node:path";
 import { cache } from "react";
 import matter from "gray-matter";
 
-import type { BlogPost, BlogPostMeta, ProjectEntry, ProjectMeta } from "./types";
+import type { BaseContentMeta, ProjectEntry, ProjectMeta } from "./types";
 
-type CollectionName = "blog" | "projects";
+type CollectionName = "projects";
 
 const CONTENT_DIRECTORIES: Record<CollectionName, string> = {
-  blog: path.join(process.cwd(), "content/blog"),
   projects: path.join(process.cwd(), "content/projects"),
 };
 
@@ -155,7 +154,7 @@ function parseBaseMeta(
   body: string,
   data: Record<string, unknown>,
   absolutePath: string,
-): Omit<BlogPostMeta, "kind" | "subtitle" | "featured"> {
+): BaseContentMeta {
   return {
     slug,
     title: ensureString(data.title, "title", absolutePath),
@@ -170,21 +169,6 @@ function parseBaseMeta(
       absolutePath,
     ),
     readingTimeMinutes: estimateReadingTime(body),
-  };
-}
-
-function parseBlogPost(slug: string): BlogPost {
-  const { absolutePath, fileContents } = readEntryFile("blog", slug);
-  const { data, content } = matter(fileContents);
-  const baseMeta = parseBaseMeta(slug, content, data, absolutePath);
-
-  return {
-    ...baseMeta,
-    kind: "blog",
-    subtitle: ensureOptionalString(data.subtitle, "subtitle", absolutePath),
-    featured: ensureBoolean(data.featured, "featured", absolutePath, false),
-    body: content,
-    absolutePath,
   };
 }
 
@@ -220,12 +204,6 @@ function parseProjectEntry(slug: string): ProjectEntry {
   };
 }
 
-function sortByPublishedAtDescending<T extends { publishedAt: string }>(entries: T[]) {
-  return [...entries].sort(
-    (left, right) => new Date(right.publishedAt).getTime() - new Date(left.publishedAt).getTime(),
-  );
-}
-
 function sortProjects(entries: ProjectEntry[]) {
   return [...entries].sort((left, right) => {
     if (left.order != null && right.order != null && left.order !== right.order) {
@@ -252,29 +230,10 @@ function filterDrafts<T extends { draft: boolean }>(entries: T[]) {
   return entries.filter((entry) => !entry.draft);
 }
 
-const getAllBlogPostsCached = cache(() => {
-  const slugs = ensureDirectoryExists(CONTENT_DIRECTORIES.blog);
-  return sortByPublishedAtDescending(filterDrafts(slugs.map(parseBlogPost)));
-});
-
 const getAllProjectsCached = cache(() => {
   const slugs = ensureDirectoryExists(CONTENT_DIRECTORIES.projects);
   return sortProjects(filterDrafts(slugs.map(parseProjectEntry)));
 });
-
-export function getAllBlogPosts() {
-  return getAllBlogPostsCached();
-}
-
-export function getBlogPostBySlug(slug: string) {
-  return getAllBlogPosts().find((post) => post.slug === slug) ?? null;
-}
-
-export function getFeaturedBlogPosts(limit = 3) {
-  return getAllBlogPosts()
-    .filter((post) => post.featured)
-    .slice(0, limit);
-}
 
 export function getAllProjects() {
   return getAllProjectsCached();
@@ -290,4 +249,4 @@ export function getFeaturedProjects(limit = 3) {
     .slice(0, limit);
 }
 
-export type { BlogPost, BlogPostMeta, ProjectEntry, ProjectMeta };
+export type { ProjectEntry, ProjectMeta };
